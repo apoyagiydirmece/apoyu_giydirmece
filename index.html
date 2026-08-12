@@ -815,9 +815,6 @@ const target =
 const gameArea =
     document.getElementById("gameArea");
 
-const finishButton =
-    document.getElementById("finishButton");
-
 const scoreElement =
     document.getElementById("score");
 
@@ -850,6 +847,11 @@ let highestCombo = 0;
 let lastHitTime = 0;
 
 const COMBO_TIMEOUT = 900;
+
+/* Skor kaydetme */
+let saveTimer = null;
+let saveInProgress = false;
+let saveAgain = false;
 
 
 /* =========================================================
