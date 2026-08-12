@@ -1,1739 +1,664 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width,
-             initial-scale=1.0,
-             maximum-scale=1.0,
-             user-scalable=no"
->
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 
 <title>APOYU GİYDİRMECE</title>
 
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
 <style>
-
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
 }
 
-html,
-body {
-
-    margin: 0;
-    padding: 0;
-
-    min-height: 100%;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
+html,body{
+    margin:0;
+    min-height:100%;
+    font-family:Arial,Helvetica,sans-serif;
+    color:#fff;
     background:
-        radial-gradient(
-            circle at top,
-            #26344d 0%,
-            #111827 45%,
-            #070b12 100%
-        );
-
-    color: white;
-
-    overflow-x: hidden;
+        radial-gradient(circle at top,#26344d 0%,#111827 45%,#070b12 100%);
 }
 
-
-body {
-    min-height: 100vh;
+body{
+    min-height:100vh;
+    overflow-x:hidden;
 }
 
-
-button,
-input {
-    font-family: inherit;
+button,input{
+    font:inherit;
 }
 
-
-button {
-    cursor: pointer;
+button{
+    cursor:pointer;
 }
 
-
-.container {
-
-    width:
-        min(1100px, 94%);
-
-    margin: auto;
-
-    padding:
-        25px 0 50px;
+.container{
+    width:min(1100px,94%);
+    margin:auto;
+    padding:25px 0 50px;
 }
 
+/* HEADER */
 
-/* =====================================================
-   HEADER
-===================================================== */
-
-.header {
-
-    text-align: center;
-
-    margin-bottom: 20px;
+.header{
+    text-align:center;
+    margin-bottom:20px;
 }
 
-
-.header h1 {
-
-    margin: 0;
-
-    font-size:
-        clamp(30px, 6vw, 54px);
-
-    font-weight: 900;
-
-    letter-spacing: -2px;
+.header h1{
+    margin:0;
+    font-size:clamp(30px,6vw,54px);
+    font-weight:900;
+    letter-spacing:-2px;
 }
 
-
-.header p {
-
-    margin:
-        8px 0 0;
-
-    color:
-        #aeb9ca;
-
-    font-size: 15px;
+.header p{
+    color:#aeb9ca;
+    margin:8px 0 0;
 }
 
+/* LOGIN */
 
-/* =====================================================
-   AUTH SCREEN
-===================================================== */
-
-.auth-screen {
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 100;
-
-    overflow-y: auto;
-
-    padding:
-        25px 15px;
-
+.auth-screen{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
     background:
-        radial-gradient(
-            circle at center,
-            rgba(38,52,77,.96),
-            rgba(3,7,18,.99)
-        );
+        radial-gradient(circle at center,
+        rgba(38,52,77,.96),
+        rgba(3,7,18,.99));
+    overflow:auto;
 }
 
-
-.auth-wrapper {
-
-    width:
-        min(1050px, 100%);
-
-    margin:
-        0 auto;
-
-    display:
-        grid;
-
-    grid-template-columns:
-        430px 1fr;
-
-    gap: 20px;
-
-    align-items:
-        start;
+.auth-screen.hidden{
+    display:none;
 }
 
+.auth-box{
+    width:min(520px,96vw);
+    padding:30px;
+    border-radius:26px;
+    background:rgba(15,23,42,.94);
+    border:1px solid rgba(255,255,255,.1);
+    box-shadow:0 30px 100px rgba(0,0,0,.6);
+}
 
-.auth-box {
+.logo{
+    text-align:center;
+    font-size:55px;
+    margin-bottom:5px;
+}
 
+.auth-box h2{
+    text-align:center;
+    margin:0;
+    font-size:32px;
+}
+
+.auth-subtitle{
+    text-align:center;
+    color:#9ca3af;
+    margin:10px 0 25px;
+    line-height:1.5;
+}
+
+.input-group{
+    margin-bottom:14px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:7px;
+    color:#cbd5e1;
+    font-size:14px;
+    font-weight:700;
+}
+
+.input{
+    width:100%;
+    padding:15px;
+    border-radius:13px;
+    border:1px solid #374151;
+    background:#0b1220;
+    color:white;
+    outline:none;
+}
+
+.input:focus{
+    border-color:#60a5fa;
+    box-shadow:0 0 0 3px rgba(96,165,250,.12);
+}
+
+.auth-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:18px;
+}
+
+.auth-btn{
+    border:0;
+    border-radius:13px;
+    padding:14px;
+    font-weight:900;
+    color:white;
+}
+
+.register-btn{
+    background:#2563eb;
+}
+
+.login-btn{
+    background:#16a34a;
+}
+
+.auth-btn:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+.auth-status{
+    min-height:24px;
+    text-align:center;
+    margin-top:15px;
+    font-size:14px;
+}
+
+.auth-status.error{
+    color:#f87171;
+}
+
+.auth-status.success{
+    color:#86efac;
+}
+
+.auth-status.loading{
+    color:#fbbf24;
+}
+
+/* LOGIN LEADERBOARD */
+
+.login-board{
+    margin-top:28px;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(2,6,23,.7);
+}
+
+.login-board-title{
+    padding:15px 18px;
+    font-size:18px;
+    font-weight:900;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.mini-board{
+    max-height:220px;
+    overflow:auto;
+}
+
+.mini-row{
+    display:grid;
+    grid-template-columns:45px 1fr 100px;
+    padding:11px 16px;
+    border-top:1px solid rgba(255,255,255,.05);
+    align-items:center;
+}
+
+.mini-row:first-child{
+    border-top:0;
+}
+
+.mini-rank{
+    font-weight:900;
+}
+
+.mini-score{
+    text-align:right;
+    font-weight:900;
+}
+
+.board-loading{
+    padding:25px;
+    text-align:center;
+    color:#9ca3af;
+}
+
+/* USER BAR */
+
+.user-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.user-info{
+    padding:10px 15px;
+    border-radius:13px;
+    background:rgba(15,23,42,.85);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.logout-btn{
+    border:0;
+    padding:10px 14px;
+    border-radius:12px;
+    background:#374151;
+    color:white;
+    font-weight:800;
+}
+
+/* GAME */
+
+.game-area{
+    position:relative;
+    min-height:560px;
+    border-radius:24px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.02);
+    box-shadow:0 25px 80px rgba(0,0,0,.4);
+    overflow:hidden;
+}
+
+.stats{
+    position:absolute;
+    top:18px;
+    left:20px;
+    right:20px;
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    z-index:5;
+}
+
+.stat{
+    min-width:120px;
+    padding:10px 15px;
+    text-align:center;
+    border-radius:12px;
+    background:rgba(15,23,42,.85);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.stat-label{
+    display:block;
+    font-size:11px;
+    color:#9ca3af;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.stat-value{
+    display:block;
+    margin-top:3px;
+    font-size:22px;
+    font-weight:900;
+}
+
+.target-zone{
+    position:absolute;
+    left:50%;
+    top:58%;
+    transform:translate(-50%,-50%);
+    width:min(380px,80vw);
+    height:400px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.target{
+    position:relative;
+    width:min(330px,72vw);
+    height:min(330px,72vw);
+    border-radius:50%;
+    overflow:hidden;
+    cursor:pointer;
+    user-select:none;
+    touch-action:manipulation;
     background:
-        rgba(15,23,42,.94);
-
-    border:
-        1px solid
-        rgba(255,255,255,.1);
-
-    border-radius:
-        25px;
-
-    padding:
-        30px;
-
+        radial-gradient(circle,#374151,#111827);
+    border:5px solid #374151;
     box-shadow:
-        0 30px 100px
-        rgba(0,0,0,.55);
+        0 30px 60px rgba(0,0,0,.5),
+        inset 0 0 30px rgba(255,255,255,.08);
 }
 
-
-.logo {
-
-    text-align: center;
-
-    font-size: 58px;
-
-    margin-bottom: 5px;
-}
-
-
-.auth-box h2 {
-
-    text-align: center;
-
-    margin:
-        0 0 8px;
-
-    font-size:
-        32px;
-
-    font-weight:
-        1000;
-}
-
-
-.auth-description {
-
-    text-align: center;
-
-    color:
-        #9ca3af;
-
-    line-height:
-        1.5;
-
-    margin-bottom:
-        25px;
-}
-
-
-.auth-tabs {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap: 5px;
-
-    padding: 5px;
-
+.target-placeholder{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
     background:
-        #0b1220;
-
-    border-radius:
-        13px;
-
-    margin-bottom:
-        20px;
+        radial-gradient(circle at 35% 25%,
+        #64748b,#1e293b 65%,#0f172a);
 }
 
-
-.auth-tab {
-
-    border: 0;
-
-    padding:
-        11px;
-
-    border-radius:
-        9px;
-
-    color:
-        #9ca3af;
-
-    background:
-        transparent;
-
-    font-weight:
-        800;
+.target-placeholder strong{
+    font-size:45px;
+    font-weight:1000;
 }
 
-
-.auth-tab.active {
-
-    background:
-        #2563eb;
-
-    color:
-        white;
+.target-placeholder span{
+    margin-top:8px;
+    color:rgba(255,255,255,.55);
 }
 
-
-.field {
-
-    margin-bottom:
-        15px;
+.hit{
+    animation:punch .12s linear;
 }
 
-
-.field label {
-
-    display: block;
-
-    margin-bottom:
-        7px;
-
-    font-size:
-        13px;
-
-    color:
-        #aeb9ca;
-
-    font-weight:
-        700;
+@keyframes punch{
+    0%{transform:scale(1) rotate(0)}
+    35%{transform:scale(.94) rotate(-3deg)}
+    70%{transform:scale(1.05) rotate(3deg)}
+    100%{transform:scale(1) rotate(0)}
 }
 
-
-.input {
-
-    width: 100%;
-
-    padding:
-        15px;
-
-    border-radius:
-        13px;
-
-    border:
-        1px solid
-        #374151;
-
-    outline: none;
-
-    background:
-        #0b1220;
-
-    color:
-        white;
-
-    font-size:
-        16px;
+.combo{
+    position:absolute;
+    left:50%;
+    top:34%;
+    transform:translate(-50%,-50%) scale(.8);
+    font-size:clamp(28px,7vw,55px);
+    font-weight:1000;
+    color:#fbbf24;
+    opacity:0;
+    pointer-events:none;
+    z-index:10;
 }
 
-
-.input:focus {
-
-    border-color:
-        #60a5fa;
-
-    box-shadow:
-        0 0 0 3px
-        rgba(96,165,250,.12);
+.combo.show{
+    animation:comboPop .25s ease-out forwards;
 }
 
-
-.primary-button {
-
-    width: 100%;
-
-    border: 0;
-
-    border-radius:
-        13px;
-
-    padding:
-        15px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #2563eb,
-            #7c3aed
-        );
-
-    color: white;
-
-    font-size:
-        16px;
-
-    font-weight:
-        900;
-
-    margin-top:
-        5px;
-}
-
-
-.primary-button:disabled {
-
-    opacity:
-        .55;
-
-    cursor:
-        not-allowed;
-}
-
-
-.auth-status {
-
-    min-height:
-        24px;
-
-    margin-top:
-        13px;
-
-    text-align:
-        center;
-
-    font-size:
-        14px;
-
-    line-height:
-        1.4;
-}
-
-
-.auth-status.error {
-    color:
-        #f87171;
-}
-
-
-.auth-status.success {
-    color:
-        #86efac;
-}
-
-
-.auth-status.loading {
-    color:
-        #fbbf24;
-}
-
-
-/* =====================================================
-   AUTH LEADERBOARD
-===================================================== */
-
-.login-board {
-
-    background:
-        rgba(15,23,42,.9);
-
-    border:
-        1px solid
-        rgba(255,255,255,.1);
-
-    border-radius:
-        25px;
-
-    overflow:
-        hidden;
-
-    box-shadow:
-        0 30px 100px
-        rgba(0,0,0,.45);
-}
-
-
-.login-board-header {
-
-    padding:
-        22px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        space-between;
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.07);
-}
-
-
-.login-board-header h3 {
-
-    margin: 0;
-
-    font-size:
-        22px;
-}
-
-
-.refresh {
-
-    border: 0;
-
-    background:
-        #374151;
-
-    color: white;
-
-    padding:
-        9px 12px;
-
-    border-radius:
-        9px;
-
-    font-weight:
-        800;
-
-    font-size:
-        12px;
-}
-
-
-.top-player {
-
-    padding:
-        25px;
-
-    text-align:
-        center;
-
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(37,99,235,.2),
-            transparent 70%
-        );
-}
-
-
-.top-player .crown {
-
-    font-size:
-        42px;
-}
-
-
-.top-player-name {
-
-    font-size:
-        25px;
-
-    font-weight:
-        1000;
-
-    margin-top:
-        5px;
-}
-
-
-.top-player-score {
-
-    color:
-        #fbbf24;
-
-    font-size:
-        18px;
-
-    font-weight:
-        900;
-
-    margin-top:
-        5px;
-}
-
-
-.auth-score-list {
-
-    max-height:
-        380px;
-
-    overflow-y:
-        auto;
-}
-
-
-.auth-score-row {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        55px 1fr 100px;
-
-    align-items:
-        center;
-
-    gap: 10px;
-
-    padding:
-        13px 18px;
-
-    border-top:
-        1px solid
-        rgba(255,255,255,.05);
-}
-
-
-.auth-score-rank {
-
-    font-size:
-        18px;
-
-    font-weight:
-        900;
-}
-
-
-.auth-score-name {
-
-    font-weight:
-        800;
-
-    overflow:
-        hidden;
-
-    text-overflow:
-        ellipsis;
-
-    white-space:
-        nowrap;
-}
-
-
-.auth-score-meta {
-
-    color:
-        #9ca3af;
-
-    font-size:
-        11px;
-
-    margin-top:
-        3px;
-}
-
-
-.auth-score-value {
-
-    text-align:
-        right;
-
-    font-weight:
-        1000;
-
-    color:
-        #86efac;
-}
-
-
-.empty {
-
-    padding:
-        35px;
-
-    text-align:
-        center;
-
-    color:
-        #9ca3af;
-}
-
-
-/* =====================================================
-   APP
-===================================================== */
-
-.app {
-
-    display:
-        none;
-}
-
-
-.sound-button {
-
-    position: fixed;
-
-    top: 18px;
-    right: 18px;
-
-    width: 52px;
-    height: 52px;
-
-    border-radius:
-        50%;
-
-    border:
-        1px solid
-        rgba(255,255,255,.15);
-
-    background:
-        rgba(15,23,42,.9);
-
-    color: white;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    font-size:
-        23px;
-
-    z-index:
-        1000;
-
-    box-shadow:
-        0 8px 30px
-        rgba(0,0,0,.35);
-
-    backdrop-filter:
-        blur(10px);
-}
-
-
-.user-badge {
-
-    position: fixed;
-
-    top: 25px;
-    left: 22px;
-
-    z-index:
-        1000;
-
-    padding:
-        9px 14px;
-
-    border-radius:
-        20px;
-
-    background:
-        rgba(15,23,42,.9);
-
-    border:
-        1px solid
-        rgba(255,255,255,.1);
-
-    font-weight:
-        800;
-
-    font-size:
-        13px;
-}
-
-
-.logout-button {
-
-    position: fixed;
-
-    top: 68px;
-    left: 22px;
-
-    z-index:
-        1000;
-
-    border: 0;
-
-    background:
-        rgba(127,29,29,.9);
-
-    color: white;
-
-    padding:
-        7px 12px;
-
-    border-radius:
-        10px;
-
-    font-size:
-        11px;
-
-    font-weight:
-        800;
-}
-
-
-/* =====================================================
-   GAME
-===================================================== */
-
-.game-area {
-
-    position: relative;
-
-    min-height:
-        600px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.08);
-
-    border-radius:
-        24px;
-
-    background:
-        linear-gradient(
-            rgba(255,255,255,.025),
-            rgba(255,255,255,.01)
-        );
-
-    box-shadow:
-        0 25px 80px
-        rgba(0,0,0,.4);
-
-    overflow:
-        hidden;
-}
-
-
-.stats {
-
-    position: absolute;
-
-    left: 20px;
-    right: 20px;
-    top: 18px;
-
-    display:
-        flex;
-
-    justify-content:
-        center;
-
-    gap: 12px;
-
-    flex-wrap:
-        wrap;
-
-    z-index: 5;
-}
-
-
-.stat {
-
-    min-width:
-        120px;
-
-    padding:
-        10px 15px;
-
-    text-align:
-        center;
-
-    border-radius:
-        12px;
-
-    background:
-        rgba(15,23,42,.85);
-
-    border:
-        1px solid
-        rgba(255,255,255,.08);
-
-    backdrop-filter:
-        blur(10px);
-}
-
-
-.stat-label {
-
-    display: block;
-
-    font-size:
-        11px;
-
-    color:
-        #9ca3af;
-
-    text-transform:
-        uppercase;
-
-    letter-spacing:
-        1px;
-}
-
-
-.stat-value {
-
-    display: block;
-
-    margin-top:
-        3px;
-
-    font-size:
-        22px;
-
-    font-weight:
-        900;
-}
-
-
-.target-zone {
-
-    position: absolute;
-
-    left: 50%;
-    top: 58%;
-
-    transform:
-        translate(-50%, -50%);
-
-    width:
-        min(380px,80vw);
-
-    height:
-        400px;
-
-    display:
-        flex;
-
-    justify-content:
-        center;
-
-    align-items:
-        center;
-}
-
-
-.target {
-
-    position: relative;
-
-    width:
-        min(330px,72vw);
-
-    height:
-        min(330px,72vw);
-
-    border-radius:
-        50%;
-
-    overflow:
-        hidden;
-
-    cursor:
-        pointer;
-
-    user-select:
-        none;
-
-    touch-action:
-        manipulation;
-
-    background:
-        radial-gradient(
-            circle,
-            #374151,
-            #111827
-        );
-
-    border:
-        5px solid
-        #374151;
-
-    box-shadow:
-        0 30px 60px
-        rgba(0,0,0,.5),
-        inset 0 0 30px
-        rgba(255,255,255,.08);
-}
-
-
-.target-placeholder {
-
-    position:
-        absolute;
-
-    inset: 0;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    flex-direction:
-        column;
-
-    text-align:
-        center;
-
-    pointer-events:
-        none;
-
-    background:
-        radial-gradient(
-            circle at 35% 25%,
-            #64748b,
-            #1e293b 65%,
-            #0f172a
-        );
-}
-
-
-.target-placeholder strong {
-
-    font-size:
-        clamp(28px,7vw,45px);
-
-    font-weight:
-        1000;
-}
-
-
-.target-placeholder span {
-
-    margin-top:
-        8px;
-
-    font-size:
-        12px;
-
-    color:
-        rgba(255,255,255,.55);
-}
-
-
-.target.hit {
-
-    animation:
-        punch .12s linear;
-}
-
-
-@keyframes punch {
-
-    0% {
-        transform:
-            scale(1)
-            rotate(0deg);
+@keyframes comboPop{
+    0%{
+        opacity:0;
+        transform:translate(-50%,-50%) scale(.5);
     }
-
-    35% {
-        transform:
-            scale(.94)
-            rotate(-3deg);
+    60%{
+        opacity:1;
+        transform:translate(-50%,-50%) scale(1.15);
     }
-
-    70% {
-        transform:
-            scale(1.05)
-            rotate(3deg);
-    }
-
-    100% {
-        transform:
-            scale(1)
-            rotate(0deg);
+    100%{
+        opacity:1;
+        transform:translate(-50%,-50%) scale(1);
     }
 }
 
-
-.combo {
-
-    position:
-        absolute;
-
-    left: 50%;
-    top: 34%;
-
-    transform:
-        translate(-50%,-50%)
-        scale(.8);
-
-    font-size:
-        clamp(28px,7vw,55px);
-
-    font-weight:
-        1000;
-
-    color:
-        #fbbf24;
-
-    text-shadow:
-        0 0 25px
-        rgba(251,191,36,.45);
-
-    opacity:
-        0;
-
-    pointer-events:
-        none;
-
-    z-index:
-        10;
+.floating-score{
+    position:absolute;
+    font-size:24px;
+    font-weight:1000;
+    color:#86efac;
+    pointer-events:none;
+    z-index:20;
+    animation:floatScore .8s ease-out forwards;
 }
 
-
-.combo.show {
-
-    animation:
-        comboPop .25s
-        ease-out forwards;
-}
-
-
-@keyframes comboPop {
-
-    0% {
-        opacity: 0;
-
-        transform:
-            translate(-50%,-50%)
-            scale(.5);
+@keyframes floatScore{
+    0%{
+        opacity:1;
+        transform:translate(-50%,0) scale(1);
     }
-
-    60% {
-        opacity: 1;
-
-        transform:
-            translate(-50%,-50%)
-            scale(1.15);
-    }
-
-    100% {
-        opacity: 1;
-
-        transform:
-            translate(-50%,-50%)
-            scale(1);
+    100%{
+        opacity:0;
+        transform:translate(-50%,-90px) scale(1.3);
     }
 }
 
-
-.floating-score {
-
-    position:
-        absolute;
-
-    font-size:
-        24px;
-
-    font-weight:
-        1000;
-
-    color:
-        #86efac;
-
-    pointer-events:
-        none;
-
-    z-index:
-        20;
-
-    animation:
-        floatScore .8s
-        ease-out forwards;
+.finish-button{
+    position:absolute;
+    bottom:18px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:20;
+    padding:12px 20px;
+    border:0;
+    border-radius:12px;
+    background:#dc2626;
+    color:white;
+    font-weight:900;
 }
 
+/* LEADERBOARD */
 
-@keyframes floatScore {
-
-    0% {
-
-        opacity: 1;
-
-        transform:
-            translate(-50%,0)
-            scale(1);
-    }
-
-    100% {
-
-        opacity: 0;
-
-        transform:
-            translate(-50%,-90px)
-            scale(1.3);
-    }
+.leaderboard{
+    margin-top:22px;
+    border-radius:20px;
+    background:rgba(15,23,42,.85);
+    border:1px solid rgba(255,255,255,.08);
+    overflow:hidden;
 }
 
-
-.finish-button {
-
-    position:
-        absolute;
-
-    bottom:
-        18px;
-
-    left:
-        50%;
-
-    transform:
-        translateX(-50%);
-
-    z-index:
-        20;
-
-    padding:
-        12px 20px;
-
-    border:
-        0;
-
-    border-radius:
-        12px;
-
-    background:
-        #dc2626;
-
-    color:
-        white;
-
-    font-size:
-        14px;
-
-    font-weight:
-        900;
-
-    display:
-        none;
+.leaderboard-header{
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-
-.shake {
-
-    animation:
-        shake .16s
-        linear;
+.leaderboard-header h2{
+    margin:0;
 }
 
-
-@keyframes shake {
-
-    0%,100% {
-        transform:
-            translate(0);
-    }
-
-    25% {
-        transform:
-            translate(-5px,3px);
-    }
-
-    50% {
-        transform:
-            translate(5px,-3px);
-    }
-
-    75% {
-        transform:
-            translate(-3px,-2px);
-    }
+.refresh-btn{
+    border:0;
+    border-radius:10px;
+    padding:9px 12px;
+    background:#374151;
+    color:white;
+    font-weight:800;
 }
 
-
-/* =====================================================
-   LEADERBOARD
-===================================================== */
-
-.leaderboard {
-
-    margin-top:
-        22px;
-
-    border-radius:
-        20px;
-
-    background:
-        rgba(15,23,42,.85);
-
-    border:
-        1px solid
-        rgba(255,255,255,.08);
-
-    overflow:
-        hidden;
+.row{
+    display:grid;
+    grid-template-columns:60px 1fr 120px 100px;
+    padding:13px 20px;
+    border-top:1px solid rgba(255,255,255,.06);
+    align-items:center;
 }
 
-
-.leaderboard-header {
-
-    padding:
-        20px;
-
-    display:
-        flex;
-
-    justify-content:
-        space-between;
-
-    align-items:
-        center;
+.score{
+    text-align:right;
+    font-weight:900;
 }
 
-
-.leaderboard-header h2 {
-
-    margin: 0;
-
-    font-size:
-        22px;
+.combo-score{
+    text-align:right;
+    color:#fbbf24;
+    font-weight:800;
 }
 
-
-.table-row {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        60px 1fr 120px 100px;
-
-    padding:
-        13px 20px;
-
-    border-top:
-        1px solid
-        rgba(255,255,255,.06);
-
-    align-items:
-        center;
+.empty{
+    padding:30px;
+    text-align:center;
+    color:#9ca3af;
 }
 
+@media(max-width:600px){
 
-.table-header {
-
-    color:
-        #9ca3af;
-
-    font-size:
-        12px;
-
-    text-transform:
-        uppercase;
-}
-
-
-.rank {
-
-    font-weight:
-        900;
-}
-
-
-.table-score {
-
-    text-align:
-        right;
-
-    font-weight:
-        900;
-}
-
-
-.combo-score {
-
-    text-align:
-        right;
-
-    color:
-        #fbbf24;
-
-    font-weight:
-        800;
-}
-
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-
-@media(max-width:800px) {
-
-    .auth-wrapper {
-
-        grid-template-columns:
-            1fr;
+    .auth-box{
+        padding:22px;
     }
 
-    .auth-box {
-
-        max-width:
-            500px;
-
-        margin:
-            auto;
-
-        width: 100%;
+    .auth-buttons{
+        grid-template-columns:1fr;
     }
 
-    .login-board {
+    .game-area{
+        min-height:570px;
+    }
 
-        max-width:
-            500px;
+    .stats{
+        top:12px;
+        left:8px;
+        right:8px;
+        gap:6px;
+    }
 
-        margin:
-            auto;
+    .stat{
+        min-width:78px;
+        padding:8px;
+    }
 
-        width: 100%;
+    .stat-value{
+        font-size:18px;
+    }
+
+    .row{
+        grid-template-columns:45px 1fr 90px;
+        padding:12px;
+    }
+
+    .combo-score{
+        display:none;
+    }
+
+    .user-bar{
+        flex-direction:column;
+        align-items:stretch;
     }
 }
-
-
-@media(max-width:600px) {
-
-    .container {
-
-        width: 96%;
-
-        padding-top:
-            15px;
-    }
-
-    .header h1 {
-
-        font-size:
-            32px;
-    }
-
-    .game-area {
-
-        min-height:
-            590px;
-
-        border-radius:
-            18px;
-    }
-
-    .stats {
-
-        top: 12px;
-
-        left: 8px;
-        right: 8px;
-
-        gap: 6px;
-    }
-
-    .stat {
-
-        min-width:
-            78px;
-
-        padding: 8px;
-    }
-
-    .stat-value {
-
-        font-size:
-            18px;
-    }
-
-    .target-zone {
-
-        top: 57%;
-    }
-
-    .table-row {
-
-        grid-template-columns:
-            45px 1fr 90px;
-
-        padding:
-            12px;
-    }
-
-    .table-row .combo-score {
-
-        display:
-            none;
-    }
-
-    .table-header .combo-score {
-
-        display:
-            none;
-    }
-
-    .sound-button {
-
-        width:
-            46px;
-
-        height:
-            46px;
-
-        top: 12px;
-
-        right: 12px;
-
-        font-size:
-            21px;
-    }
-
-    .user-badge {
-
-        top:
-            12px;
-
-        left:
-            12px;
-    }
-
-    .logout-button {
-
-        top:
-            52px;
-
-        left:
-            12px;
-    }
-}
-
 </style>
-
 </head>
-
 
 <body>
 
+<!-- GİRİŞ / KAYIT -->
 
-<!-- =====================================================
-     AUTH
-===================================================== -->
+<div class="auth-screen" id="authScreen">
 
-<div
-    class="auth-screen"
-    id="authScreen"
->
+    <div class="auth-box">
 
-    <div class="auth-wrapper">
+        <div class="logo">🥊</div>
 
+        <h2>APOYU GİYDİRMECE</h2>
 
-        <!-- GİRİŞ -->
+        <div class="auth-subtitle">
+            Hesabını oluştur, skorunu kaydet<br>
+            ve liderlik tablosunda yerini al.
+        </div>
 
-        <div class="auth-box">
+        <div class="input-group">
+            <label for="username">Kullanıcı adı</label>
 
-            <div class="logo">
-                🥊
-            </div>
+            <input
+                id="username"
+                class="input"
+                type="text"
+                maxlength="20"
+                placeholder="Kullanıcı adını gir"
+                autocomplete="username"
+                spellcheck="false"
+            >
+        </div>
 
-            <h2>
-                APOYU<br>
-                GİYDİRMECE
-            </h2>
+        <div class="input-group">
+            <label for="password">Şifre</label>
 
-            <div class="auth-description">
+            <input
+                id="password"
+                class="input"
+                type="password"
+                maxlength="72"
+                placeholder="Şifreni gir"
+                autocomplete="current-password"
+            >
+        </div>
 
-                Hesabınla giriş yap ve
-                skorunu liderlik tablosuna taşı.
+        <div class="auth-buttons">
 
-            </div>
+            <button
+                class="auth-btn register-btn"
+                id="registerButton"
+            >
+                KAYIT OL
+            </button>
 
-
-            <div class="auth-tabs">
-
-                <button
-                    class="auth-tab active"
-                    id="loginTab"
-                >
-                    GİRİŞ YAP
-                </button>
-
-                <button
-                    class="auth-tab"
-                    id="registerTab"
-                >
-                    KAYIT OL
-                </button>
-
-            </div>
-
-
-            <form id="authForm">
-
-
-                <div class="field">
-
-                    <label>
-                        Kullanıcı adı
-                    </label>
-
-                    <input
-                        class="input"
-                        id="username"
-                        type="text"
-                        maxlength="20"
-                        minlength="3"
-                        autocomplete="username"
-                        placeholder="mustafa_123"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>
-                        Şifre
-                    </label>
-
-                    <input
-                        class="input"
-                        id="password"
-                        type="password"
-                        minlength="6"
-                        autocomplete="current-password"
-                        placeholder="••••••••"
-                        required
-                    >
-
-                </div>
-
-
-                <button
-                    class="primary-button"
-                    id="authButton"
-                    type="submit"
-                >
-                    GİRİŞ YAP
-                </button>
-
-
-                <div
-                    class="auth-status"
-                    id="authStatus"
-                ></div>
-
-
-            </form>
+            <button
+                class="auth-btn login-btn"
+                id="loginButton"
+            >
+                GİRİŞ YAP
+            </button>
 
         </div>
 
+        <div
+            class="auth-status"
+            id="authStatus"
+        ></div>
 
-        <!-- SKOR TABLOSU -->
+
+        <!-- GİRİŞ EKRANINDA SKOR TABLOSU -->
 
         <div class="login-board">
 
-            <div class="login-board-header">
-
-                <h3>
-                    🏆 TOP OYUNCULAR
-                </h3>
-
-                <button
-                    class="refresh"
-                    id="authRefresh"
-                >
-                    YENİLE
-                </button>
-
+            <div class="login-board-title">
+                <span>🏆 EN İYİ OYUNCULAR</span>
+                <span>TOP 10</span>
             </div>
 
-
             <div
-                class="top-player"
-                id="topPlayer"
+                class="mini-board"
+                id="loginLeaderboard"
             >
-
-                <div class="crown">
-                    👑
+                <div class="board-loading">
+                    Skor tablosu yükleniyor...
                 </div>
-
-                <div
-                    class="top-player-name"
-                    id="topPlayerName"
-                >
-                    Henüz skor yok
-                </div>
-
-                <div
-                    class="top-player-score"
-                    id="topPlayerScore"
-                >
-                    -
-                </div>
-
-            </div>
-
-
-            <div
-                class="auth-score-list"
-                id="authScoreList"
-            >
-
-                <div class="empty">
-                    Skorlar yükleniyor...
-                </div>
-
             </div>
 
         </div>
 
     </div>
-
 </div>
-
-
-
-<!-- =====================================================
-     APP
-===================================================== -->
-
-<div
-    class="app"
-    id="app"
->
-
-
-<button
-    class="sound-button"
-    id="soundButton"
->
-    🔊
-</button>
-
-
-<div
-    class="user-badge"
-    id="userBadge"
->
-    👤 -
-</div>
-
-
-<button
-    class="logout-button"
-    id="logoutButton"
->
-    ÇIKIŞ YAP
-</button>
 
 
 <div class="container">
 
-
     <div class="header">
 
-        <h1>
-            🥊 APOYU GİYDİRMECE
-        </h1>
+        <h1>🥊 APOYU GİYDİRMECE</h1>
 
         <p>
-            Ne kadar hızlı vurursan
-            o kadar yüksek combo!
+            Ne kadar hızlı vurursan o kadar yüksek combo!
         </p>
+
+    </div>
+
+
+    <div
+        class="user-bar"
+        id="userBar"
+        style="display:none;"
+    >
+
+        <div class="user-info">
+            👤 <strong id="currentUsername"></strong>
+        </div>
+
+        <button
+            class="logout-btn"
+            id="logoutButton"
+        >
+            ÇIKIŞ YAP
+        </button>
 
     </div>
 
@@ -1743,71 +668,26 @@ button {
         id="gameArea"
     >
 
-
         <div class="stats">
 
-
             <div class="stat">
-
-                <span class="stat-label">
-                    Skor
-                </span>
-
-                <span
-                    class="stat-value"
-                    id="score"
-                >
-                    0
-                </span>
-
+                <span class="stat-label">Skor</span>
+                <span class="stat-value" id="score">0</span>
             </div>
 
-
             <div class="stat">
-
-                <span class="stat-label">
-                    Vuruş
-                </span>
-
-                <span
-                    class="stat-value"
-                    id="hits"
-                >
-                    0
-                </span>
-
+                <span class="stat-label">Vuruş</span>
+                <span class="stat-value" id="hits">0</span>
             </div>
 
-
             <div class="stat">
-
-                <span class="stat-label">
-                    Combo
-                </span>
-
-                <span
-                    class="stat-value"
-                    id="comboValue"
-                >
-                    x0
-                </span>
-
+                <span class="stat-label">Combo</span>
+                <span class="stat-value" id="comboValue">x0</span>
             </div>
 
-
             <div class="stat">
-
-                <span class="stat-label">
-                    En yüksek
-                </span>
-
-                <span
-                    class="stat-value"
-                    id="best"
-                >
-                    0
-                </span>
-
+                <span class="stat-label">En yüksek</span>
+                <span class="stat-value" id="best">0</span>
             </div>
 
         </div>
@@ -1823,28 +703,17 @@ button {
 
         <div class="target-zone">
 
-
             <div
                 class="target"
                 id="target"
             >
 
-                <div
-                    class="target-placeholder"
-                >
-
-                    <strong>
-                        APO
-                    </strong>
-
-                    <span>
-                        VUR!
-                    </span>
-
+                <div class="target-placeholder">
+                    <strong>APO</strong>
+                    <span>VUR!</span>
                 </div>
 
             </div>
-
 
         </div>
 
@@ -1852,26 +721,22 @@ button {
         <button
             class="finish-button"
             id="finishButton"
+            style="display:none;"
         >
             OYUNU BİTİR
         </button>
 
-
     </div>
 
-
-    <!-- LEADERBOARD -->
 
     <div class="leaderboard">
 
         <div class="leaderboard-header">
 
-            <h2>
-                🏆 Skor Tablosu
-            </h2>
+            <h2>🏆 Skor Tablosu</h2>
 
             <button
-                class="refresh"
+                class="refresh-btn"
                 id="refreshScores"
             >
                 YENİLE
@@ -1879,1601 +744,936 @@ button {
 
         </div>
 
+        <div class="row">
 
-        <div
-            class="table-row table-header"
-        >
+            <div>#</div>
 
-            <div>
-                #
-            </div>
+            <div>Oyuncu</div>
 
-            <div>
-                Oyuncu
-            </div>
+            <div class="score">Skor</div>
 
-            <div class="table-score">
-                Skor
-            </div>
-
-            <div class="combo-score">
-                Combo
-            </div>
+            <div class="combo-score">Combo</div>
 
         </div>
 
-
-        <div
-            id="leaderboardRows"
-        ></div>
+        <div id="leaderboardRows">
+            <div class="empty">
+                Skor tablosu yükleniyor...
+            </div>
+        </div>
 
     </div>
 
-
 </div>
-
-</div>
-
 
 
 <script>
 
-/* =====================================================
+/* =========================================================
    SUPABASE
-===================================================== */
+========================================================= */
 
-const SUPABASE_URL =
-    "https://sqotorneqppbwsmnyxmy.supabase.co";
+const FUNCTION_URL =
+    "https://sqotorneqppbwsmnyxmy.supabase.co/functions/v1/swift-service";
 
 const SUPABASE_KEY =
     "sb_publishable_wUBbPRmoS1SkvRM88SqWLw_yKoUx4Rf";
 
 
-const {
-    createClient
-} = window.supabase;
-
-
-const supabase =
-    createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
-
-
-/* =====================================================
-   ELEMENTS
-===================================================== */
+/* =========================================================
+   ELEMENTLER
+========================================================= */
 
 const authScreen =
-    document.getElementById(
-        "authScreen"
-    );
-
-const app =
-    document.getElementById(
-        "app"
-    );
-
-const authForm =
-    document.getElementById(
-        "authForm"
-    );
+    document.getElementById("authScreen");
 
 const usernameInput =
-    document.getElementById(
-        "username"
-    );
+    document.getElementById("username");
 
 const passwordInput =
-    document.getElementById(
-        "password"
-    );
+    document.getElementById("password");
 
-const authButton =
-    document.getElementById(
-        "authButton"
-    );
+const registerButton =
+    document.getElementById("registerButton");
+
+const loginButton =
+    document.getElementById("loginButton");
 
 const authStatus =
-    document.getElementById(
-        "authStatus"
-    );
+    document.getElementById("authStatus");
 
-const loginTab =
-    document.getElementById(
-        "loginTab"
-    );
-
-const registerTab =
-    document.getElementById(
-        "registerTab"
-    );
-
-const authScoreList =
-    document.getElementById(
-        "authScoreList"
-    );
-
-const topPlayerName =
-    document.getElementById(
-        "topPlayerName"
-    );
-
-const topPlayerScore =
-    document.getElementById(
-        "topPlayerScore"
-    );
-
-const authRefresh =
-    document.getElementById(
-        "authRefresh"
-    );
-
-const userBadge =
-    document.getElementById(
-        "userBadge"
-    );
-
-const logoutButton =
-    document.getElementById(
-        "logoutButton"
-    );
-
-const target =
-    document.getElementById(
-        "target"
-    );
-
-const gameArea =
-    document.getElementById(
-        "gameArea"
-    );
-
-const scoreElement =
-    document.getElementById(
-        "score"
-    );
-
-const hitsElement =
-    document.getElementById(
-        "hits"
-    );
-
-const comboElement =
-    document.getElementById(
-        "comboValue"
-    );
-
-const bestElement =
-    document.getElementById(
-        "best"
-    );
-
-const comboText =
-    document.getElementById(
-        "comboText"
-    );
-
-const finishButton =
-    document.getElementById(
-        "finishButton"
-    );
+const loginLeaderboard =
+    document.getElementById("loginLeaderboard");
 
 const leaderboardRows =
-    document.getElementById(
-        "leaderboardRows"
+    document.getElementById("leaderboardRows");
+
+const currentUsername =
+    document.getElementById("currentUsername");
+
+const userBar =
+    document.getElementById("userBar");
+
+const logoutButton =
+    document.getElementById("logoutButton");
+
+const target =
+    document.getElementById("target");
+
+const gameArea =
+    document.getElementById("gameArea");
+
+const finishButton =
+    document.getElementById("finishButton");
+
+const scoreElement =
+    document.getElementById("score");
+
+const hitsElement =
+    document.getElementById("hits");
+
+const comboElement =
+    document.getElementById("comboValue");
+
+const bestElement =
+    document.getElementById("best");
+
+const comboText =
+    document.getElementById("comboText");
+
+
+/* =========================================================
+   OYUNCU
+========================================================= */
+
+let currentUser = null;
+
+let gameStarted = false;
+
+let score = 0;
+let hits = 0;
+let combo = 0;
+let highestCombo = 0;
+
+let lastHitTime = 0;
+
+const COMBO_TIMEOUT = 900;
+
+
+/* =========================================================
+   API
+========================================================= */
+
+async function api(action, data = {}) {
+
+    const response = await fetch(
+        FUNCTION_URL,
+        {
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json",
+                "apikey":SUPABASE_KEY,
+                "Authorization":"Bearer " + SUPABASE_KEY
+            },
+
+            body:JSON.stringify({
+                action,
+                ...data
+            })
+        }
     );
 
-const refreshScores =
-    document.getElementById(
-        "refreshScores"
-    );
+    const text = await response.text();
 
-const soundButton =
-    document.getElementById(
-        "soundButton"
-    );
+    let result;
 
-
-/* =====================================================
-   AUTH MODE
-===================================================== */
-
-let authMode = "login";
-
-
-function setAuthMode(mode) {
-
-    authMode = mode;
-
-    if (mode === "login") {
-
-        loginTab.classList.add(
-            "active"
+    try{
+        result = JSON.parse(text);
+    }
+    catch{
+        throw new Error(
+            "Sunucudan geçersiz cevap geldi."
         );
-
-        registerTab.classList.remove(
-            "active"
-        );
-
-        authButton.textContent =
-            "GİRİŞ YAP";
-
-        passwordInput.autocomplete =
-            "current-password";
-
-    } else {
-
-        registerTab.classList.add(
-            "active"
-        );
-
-        loginTab.classList.remove(
-            "active"
-        );
-
-        authButton.textContent =
-            "HESAP OLUŞTUR";
-
-        passwordInput.autocomplete =
-            "new-password";
     }
 
-    authStatus.textContent = "";
+    if(!response.ok){
+        throw new Error(
+            result.error ||
+            "Sunucu isteği başarısız."
+        );
+    }
+
+    return result;
 }
 
 
-loginTab.addEventListener(
-    "click",
-    () => setAuthMode("login")
-);
+/* =========================================================
+   DURUM
+========================================================= */
 
+function setAuthStatus(message,type=""){
 
-registerTab.addEventListener(
-    "click",
-    () => setAuthMode("register")
-);
+    authStatus.textContent = message;
 
-
-/* =====================================================
-   USERNAME → EMAIL
-===================================================== */
-
-/*
-   Supabase Auth email/password istediği için
-   kullanıcı adına özel internal email oluşturuyoruz.
-
-   Kullanıcı gerçek email adresini görmüyor.
-*/
-
-function usernameToEmail(username) {
-
-    return (
-        username
-            .toLowerCase()
-            .trim()
-            .replace(
-                /[^a-z0-9_]/g,
-                ""
-            )
-        +
-        "@apoyu.local"
-    );
+    authStatus.className =
+        "auth-status " + type;
 }
 
 
-/* =====================================================
-   USERNAME VALIDATION
-===================================================== */
+/* =========================================================
+   INPUT
+========================================================= */
 
-function validateUsername(name) {
+function getCredentials(){
 
-    return /^[A-Za-z0-9_]{3,20}$/
-        .test(name);
+    const username =
+        usernameInput.value.trim();
+
+    const password =
+        passwordInput.value;
+
+    if(username.length < 3){
+        throw new Error(
+            "Kullanıcı adı en az 3 karakter olmalı."
+        );
+    }
+
+    if(username.length > 20){
+        throw new Error(
+            "Kullanıcı adı en fazla 20 karakter olabilir."
+        );
+    }
+
+    if(!/^[a-zA-Z0-9_]+$/.test(username)){
+        throw new Error(
+            "Kullanıcı adı sadece harf, rakam ve _ içerebilir."
+        );
+    }
+
+    if(password.length < 6){
+        throw new Error(
+            "Şifre en az 6 karakter olmalı."
+        );
+    }
+
+    return {
+        username,
+        password
+    };
 }
 
 
-/* =====================================================
-   AUTH FORM
-===================================================== */
+/* =========================================================
+   KAYIT
+========================================================= */
 
-authForm.addEventListener(
-    "submit",
-    async (event) => {
+async function register(){
 
-        event.preventDefault();
+    try{
 
-        const username =
-            usernameInput.value.trim();
+        const {
+            username,
+            password
+        } = getCredentials();
 
-        const password =
-            passwordInput.value;
+        registerButton.disabled = true;
+        loginButton.disabled = true;
 
+        setAuthStatus(
+            "Hesap oluşturuluyor...",
+            "loading"
+        );
 
-        if (
-            !validateUsername(
-                username
-            )
-        ) {
-
-            authStatus.className =
-                "auth-status error";
-
-            authStatus.textContent =
-                "Kullanıcı adı 3-20 karakter olmalı. Sadece harf, rakam ve _ kullanılabilir.";
-
-            return;
-        }
-
-
-        if (password.length < 6) {
-
-            authStatus.className =
-                "auth-status error";
-
-            authStatus.textContent =
-                "Şifre en az 6 karakter olmalı.";
-
-            return;
-        }
-
-
-        authButton.disabled =
-            true;
-
-        authStatus.className =
-            "auth-status loading";
-
-
-        if (authMode === "register") {
-
-            authStatus.textContent =
-                "Hesap oluşturuluyor...";
-
-
-            const email =
-                usernameToEmail(
-                    username
-                );
-
-
-            const {
-                data,
-                error
-            } =
-                await supabase.auth.signUp({
-                    email,
-                    password,
-
-                    options: {
-
-                        data: {
-                            username
-                        }
-                    }
-                });
-
-
-            if (error) {
-
-                console.error(
-                    error
-                );
-
-                authStatus.className =
-                    "auth-status error";
-
-                authStatus.textContent =
-                    translateAuthError(
-                        error.message
-                    );
-
-                authButton.disabled =
-                    false;
-
-                return;
-            }
-
-
-            /*
-              Email confirmation kapalıysa
-              session doğrudan oluşur.
-            */
-
-            if (data.session) {
-
-                authStatus.className =
-                    "auth-status success";
-
-                authStatus.textContent =
-                    "Hesap oluşturuldu.";
-
-                await enterGame();
-
-            } else {
-
-                authStatus.className =
-                    "auth-status success";
-
-                authStatus.textContent =
-                    "Hesap oluşturuldu. Supabase email doğrulamasını bekliyor.";
-            }
-
-        } else {
-
-            authStatus.textContent =
-                "Giriş yapılıyor...";
-
-
-            const email =
-                usernameToEmail(
-                    username
-                );
-
-
-            const {
-                data,
-                error
-            } =
-                await supabase.auth.signInWithPassword({
-
-                    email,
-
+        const result =
+            await api(
+                "register",
+                {
+                    username,
                     password
+                }
+            );
 
-                });
-
-
-            if (error) {
-
-                console.error(
-                    error
-                );
-
-                authStatus.className =
-                    "auth-status error";
-
-                authStatus.textContent =
-                    "Kullanıcı adı veya şifre hatalı.";
-
-                authButton.disabled =
-                    false;
-
-                return;
-            }
-
-
-            if (data.session) {
-
-                await enterGame();
-
-            }
-
+        if(!result.success){
+            throw new Error(
+                result.error ||
+                "Kayıt başarısız."
+            );
         }
 
+        setAuthStatus(
+            "✅ Kayıt başarılı! Şimdi giriş yapabilirsin.",
+            "success"
+        );
 
-        authButton.disabled =
-            false;
+        passwordInput.value = "";
 
     }
-);
+    catch(error){
 
+        setAuthStatus(
+            "❌ " + error.message,
+            "error"
+        );
 
-/* =====================================================
-   AUTH ERROR
-===================================================== */
-
-function translateAuthError(
-    message
-) {
-
-    if (
-        message
-            .toLowerCase()
-            .includes(
-                "already registered"
-            )
-    ) {
-
-        return "Bu kullanıcı adı zaten kullanılıyor.";
     }
+    finally{
 
-
-    if (
-        message
-            .toLowerCase()
-            .includes(
-                "password"
-            )
-    ) {
-
-        return "Şifre geçersiz.";
+        registerButton.disabled = false;
+        loginButton.disabled = false;
     }
-
-
-    return (
-        "İşlem başarısız: " +
-        message
-    );
 }
 
 
-/* =====================================================
-   ENTER GAME
-===================================================== */
+/* =========================================================
+   GİRİŞ
+========================================================= */
 
-async function enterGame() {
+async function login(){
 
-    const {
-        data: {
-            user
+    try{
+
+        const {
+            username,
+            password
+        } = getCredentials();
+
+        registerButton.disabled = true;
+        loginButton.disabled = true;
+
+        setAuthStatus(
+            "Giriş yapılıyor...",
+            "loading"
+        );
+
+        const result =
+            await api(
+                "login",
+                {
+                    username,
+                    password
+                }
+            );
+
+        if(!result.success){
+            throw new Error(
+                result.error ||
+                "Giriş başarısız."
+            );
         }
-    } =
-        await supabase.auth.getUser();
 
+        currentUser = {
+            username:result.username
+        };
 
-    if (!user) return;
+        localStorage.setItem(
+            "apoyu_username",
+            result.username
+        );
 
+        enterGame();
 
-    const {
-        data: profile
-    } =
-        await supabase
-            .from("profiles")
-            .select(
-                "username"
-            )
-            .eq(
-                "id",
-                user.id
-            )
-            .single();
-
-
-    if (profile) {
-
-        userBadge.textContent =
-            "👤 " +
-            profile.username;
     }
+    catch(error){
+
+        setAuthStatus(
+            "❌ " + error.message,
+            "error"
+        );
+
+    }
+    finally{
+
+        registerButton.disabled = false;
+        loginButton.disabled = false;
+    }
+}
 
 
-    authScreen.style.display =
-        "none";
+/* =========================================================
+   OYUNA GİR
+========================================================= */
 
-    app.style.display =
-        "block";
+function enterGame(){
 
+    authScreen.classList.add("hidden");
+
+    userBar.style.display = "flex";
+
+    currentUsername.textContent =
+        currentUser.username;
+
+    usernameInput.value = "";
+    passwordInput.value = "";
+
+    setAuthStatus("");
 
     resetGame();
 
-    await renderLeaderboard();
+    renderLeaderboard();
 }
 
 
-/* =====================================================
-   LOGOUT
-===================================================== */
+/* =========================================================
+   ÇIKIŞ
+========================================================= */
 
-logoutButton.addEventListener(
-    "click",
-    async () => {
+function logout(){
 
-        gameStarted = false;
+    gameStarted = false;
 
-        await supabase.auth.signOut();
+    currentUser = null;
 
-        app.style.display =
-            "none";
+    localStorage.removeItem(
+        "apoyu_username"
+    );
 
-        authScreen.style.display =
-            "block";
+    finishButton.style.display = "none";
 
-        usernameInput.value =
-            "";
+    userBar.style.display = "none";
 
-        passwordInput.value =
-            "";
+    authScreen.classList.remove(
+        "hidden"
+    );
 
-        authStatus.textContent =
-            "";
+    usernameInput.focus();
 
-        resetGame();
-
-        await loadLoginLeaderboard();
-    }
-);
-
-
-/* =====================================================
-   AUTH SESSION
-===================================================== */
-
-supabase.auth.onAuthStateChange(
-    async (
-        event,
-        session
-    ) => {
-
-        if (
-            session &&
-            (
-                event ===
-                    "SIGNED_IN" ||
-                event ===
-                    "INITIAL_SESSION"
-            )
-        ) {
-
-            await enterGame();
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   GAME VARIABLES
-===================================================== */
-
-let gameStarted =
-    false;
-
-let score =
-    0;
-
-let hits =
-    0;
-
-let combo =
-    0;
-
-let highestCombo =
-    0;
-
-let lastHitTime =
-    0;
-
-const COMBO_TIMEOUT =
-    900;
-
-
-/* =====================================================
-   AUDIO
-===================================================== */
-
-let audioContext =
-    null;
-
-let soundEnabled =
-    true;
-
-
-function initAudio() {
-
-    if (!audioContext) {
-
-        audioContext =
-            new (
-                window.AudioContext ||
-                window.webkitAudioContext
-            )();
-    }
-
-
-    if (
-        audioContext.state ===
-        "suspended"
-    ) {
-
-        audioContext.resume();
-    }
+    renderLoginLeaderboard();
 }
 
 
-function punchSound(
-    critical = false
-) {
+/* =========================================================
+   OYUNU BAŞLAT
+========================================================= */
 
-    if (!soundEnabled)
-        return;
-
-
-    initAudio();
-
-
-    const oscillator =
-        audioContext.createOscillator();
-
-    const gain =
-        audioContext.createGain();
-
-
-    oscillator.connect(gain);
-
-    gain.connect(
-        audioContext.destination
-    );
-
-
-    oscillator.type =
-        critical
-            ? "square"
-            : "sine";
-
-
-    oscillator.frequency.setValueAtTime(
-        critical ? 180 : 110,
-        audioContext.currentTime
-    );
-
-
-    oscillator.frequency.exponentialRampToValueAtTime(
-        critical ? 80 : 55,
-        audioContext.currentTime +
-            .08
-    );
-
-
-    gain.gain.setValueAtTime(
-        critical ? .13 : .08,
-        audioContext.currentTime
-    );
-
-
-    gain.gain.exponentialRampToValueAtTime(
-        .001,
-        audioContext.currentTime +
-            .09
-    );
-
-
-    oscillator.start();
-
-    oscillator.stop(
-        audioContext.currentTime +
-            .1
-    );
-}
-
-
-soundButton.addEventListener(
-    "click",
-    () => {
-
-        soundEnabled =
-            !soundEnabled;
-
-        soundButton.textContent =
-            soundEnabled
-                ? "🔊"
-                : "🔇";
-
-
-        if (soundEnabled) {
-
-            initAudio();
-        }
-    }
-);
-
-
-/* =====================================================
-   GAME START
-===================================================== */
-
-function resetGame() {
-
-    gameStarted =
-        true;
+function resetGame(){
 
     score = 0;
-
     hits = 0;
-
     combo = 0;
-
     highestCombo = 0;
-
     lastHitTime = 0;
 
+    gameStarted = true;
+
     finishButton.style.display =
-        "inline-block";
+        "block";
 
     updateStats();
 }
 
 
-function endGame() {
+/* =========================================================
+   VURUŞ
+========================================================= */
 
-    gameStarted =
-        false;
+function hit(){
 
-    finishButton.style.display =
-        "none";
-}
-
-
-/* =====================================================
-   HIT
-===================================================== */
-
-target.addEventListener(
-    "pointerdown",
-    hitTarget
-);
-
-
-function hitTarget(event) {
-
-    if (!gameStarted)
-        return;
-
-
-    event.preventDefault();
-
-
-    initAudio();
-
+    if(!gameStarted) return;
 
     const now =
         performance.now();
 
-
-    if (
+    if(
         now - lastHitTime <=
         COMBO_TIMEOUT
-    ) {
-
+    ){
         combo++;
-
-    } else {
-
+    }
+    else{
         combo = 1;
     }
 
-
-    lastHitTime =
-        now;
-
+    lastHitTime = now;
 
     hits++;
 
+    highestCombo =
+        Math.max(
+            highestCombo,
+            combo
+        );
 
-    if (
-        combo >
-        highestCombo
-    ) {
+    let multiplier = 1;
 
-        highestCombo =
-            combo;
-    }
-
-
-    let multiplier =
-        1;
-
-
-    if (combo >= 30)
+    if(combo >= 30)
         multiplier = 5;
-
-    else if (combo >= 20)
+    else if(combo >= 20)
         multiplier = 4;
-
-    else if (combo >= 10)
+    else if(combo >= 10)
         multiplier = 3;
-
-    else if (combo >= 5)
+    else if(combo >= 5)
         multiplier = 2;
 
-
     const critical =
-        Math.random() < .07;
-
+        Math.random() < 0.07;
 
     let points =
         10 * multiplier;
 
-
-    if (critical)
+    if(critical)
         points *= 3;
 
-
-    score +=
-        points;
-
+    score += points;
 
     updateStats();
 
-
     animateTarget();
 
-
-    punchSound(
-        critical
-    );
-
-
     showFloatingScore(
-        event,
         points,
         critical
     );
 
-
-    if (combo >= 2)
+    if(combo >= 2)
         showCombo();
 }
 
 
-/* =====================================================
-   ANIMATION
-===================================================== */
+/* =========================================================
+   ANİMASYON
+========================================================= */
 
-function animateTarget() {
+function animateTarget(){
 
-    target.classList.remove(
-        "hit"
-    );
+    target.classList.remove("hit");
 
     void target.offsetWidth;
 
-    target.classList.add(
-        "hit"
-    );
+    target.classList.add("hit");
 
-
-    gameArea.classList.remove(
-        "shake"
-    );
+    gameArea.classList.remove("hit");
 
     void gameArea.offsetWidth;
 
-    gameArea.classList.add(
-        "shake"
-    );
+    gameArea.classList.add("hit");
 }
 
 
-function showCombo() {
+function showCombo(){
 
     comboText.textContent =
-        `COMBO x${combo}`;
-
+        "COMBO x" + combo;
 
     comboText.classList.remove(
         "show"
     );
 
-
     void comboText.offsetWidth;
 
-
-    comboText.classList.add(
-        "show"
-    );
+    comboText.classList.add("show");
 }
 
 
 function showFloatingScore(
-    event,
     points,
     critical
-) {
+){
 
     const floating =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     floating.className =
         "floating-score";
 
-
     floating.textContent =
         critical
-            ? `CRITICAL +${points}`
-            : `+${points}`;
-
-
-    const rect =
-        gameArea.getBoundingClientRect();
-
-
-    const x =
-        event.clientX -
-        rect.left;
-
-
-    const y =
-        event.clientY -
-        rect.top;
-
+            ? "CRITICAL +" + points
+            : "+" + points;
 
     floating.style.left =
-        `${x}px`;
-
+        "50%";
 
     floating.style.top =
-        `${y}px`;
+        "50%";
 
-
-    if (critical) {
-
+    if(critical)
         floating.style.color =
             "#fbbf24";
-    }
-
 
     gameArea.appendChild(
         floating
     );
 
-
     setTimeout(
-        () =>
-            floating.remove(),
+        () => floating.remove(),
         800
     );
 }
 
 
-/* =====================================================
+/* =========================================================
    STATS
-===================================================== */
+========================================================= */
 
-function updateStats() {
+function updateStats(){
 
     scoreElement.textContent =
-        score.toLocaleString(
-            "tr-TR"
-        );
-
+        score.toLocaleString("tr-TR");
 
     hitsElement.textContent =
         hits;
 
-
     comboElement.textContent =
-        `x${combo}`;
+        "x" + combo;
 }
 
 
-/* =====================================================
-   SUBMIT SCORE
-===================================================== */
+/* =========================================================
+   OYUNU BİTİR
+========================================================= */
 
-finishButton.addEventListener(
-    "click",
-    async () => {
+async function finishGame(){
 
-        if (!gameStarted)
-            return;
+    if(!gameStarted)
+        return;
 
+    gameStarted = false;
 
-        endGame();
+    finishButton.disabled = true;
 
+    finishButton.textContent =
+        "KAYDEDİLİYOR...";
 
-        finishButton.disabled =
-            true;
+    try{
 
+        const result =
+            await api(
+                "submit_score",
+                {
+                    username:
+                        currentUser.username,
 
-        finishButton.textContent =
-            "KAYDEDİLİYOR...";
-
-
-        try {
-
-            const {
-                data: {
-                    session
+                    score,
+                    hits,
+                    highestCombo
                 }
-            } =
-                await supabase.auth.getSession();
-
-
-            if (!session) {
-
-                throw new Error(
-                    "Oturum bulunamadı."
-                );
-            }
-
-
-            const {
-                data,
-                error
-            } =
-                await supabase.functions.invoke(
-                    "swift-service",
-                    {
-                        body: {
-
-                            action:
-                                "submit_score",
-
-                            score:
-                                score,
-
-                            hits:
-                                hits,
-
-                            highestCombo:
-                                highestCombo
-                        }
-                    }
-                );
-
-
-            if (error)
-                throw error;
-
-
-            console.log(
-                "Skor kaydedildi:",
-                data
             );
 
-
-            alert(
-                `🏆 Skorun kaydedildi!\n\n` +
-                `Skor: ${Number(
-                    data.score?.score || score
-                ).toLocaleString("tr-TR")}\n` +
-                `Vuruş: ${hits}\n` +
-                `En yüksek combo: x${highestCombo}`
+        if(!result.success){
+            throw new Error(
+                result.error ||
+                "Skor kaydedilemedi."
             );
-
-
-        } catch (error) {
-
-            console.error(
-                error
-            );
-
-
-            alert(
-                "⚠️ Skor kaydedilemedi.\n\n" +
-                (
-                    error.message ||
-                    "Bilinmeyen hata."
-                )
-            );
-
         }
 
+        alert(
+            "🏆 Skorun kaydedildi!\n\n" +
+            "Skor: " +
+            score.toLocaleString("tr-TR") +
+            "\nVuruş: " +
+            hits +
+            "\nEn yüksek combo: x" +
+            highestCombo
+        );
 
-        finishButton.disabled =
-            false;
+        await renderLeaderboard();
 
+    }
+    catch(error){
+
+        alert(
+            "❌ Skor kaydedilemedi.\n\n" +
+            error.message
+        );
+
+    }
+    finally{
+
+        finishButton.disabled = false;
 
         finishButton.textContent =
             "OYUNU BİTİR";
 
-
-        await renderLeaderboard();
-
-
         resetGame();
-
     }
-);
-
-
-/* =====================================================
-   LEADERBOARD
-===================================================== */
-
-async function loadLeaderboard() {
-
-    const {
-        data,
-        error
-    } =
-        await supabase
-            .from("leaderboard")
-            .select(
-                "id,user_id,username,score,hits,highest_combo,created_at"
-            )
-            .order(
-                "score",
-                {
-                    ascending: false
-                }
-            )
-            .order(
-                "highest_combo",
-                {
-                    ascending: false
-                }
-            )
-            .limit(50);
-
-
-    if (error) {
-
-        console.error(
-            error
-        );
-
-        throw error;
-    }
-
-
-    return data || [];
 }
 
 
-/* =====================================================
-   LOGIN LEADERBOARD
-===================================================== */
+/* =========================================================
+   LEADERBOARD
+========================================================= */
 
-async function loadLoginLeaderboard() {
+async function getLeaderboard(){
 
-    try {
+    const result =
+        await api(
+            "leaderboard"
+        );
+
+    return result.scores || [];
+}
+
+
+function createMiniRow(
+    item,
+    index
+){
+
+    const row =
+        document.createElement("div");
+
+    row.className =
+        "mini-row";
+
+    const medals =
+        ["🥇","🥈","🥉"];
+
+    row.innerHTML = `
+        <div class="mini-rank">
+            ${medals[index] || index + 1}
+        </div>
+
+        <div>
+            ${escapeHtml(item.username)}
+        </div>
+
+        <div class="mini-score">
+            ${Number(item.score).toLocaleString("tr-TR")}
+        </div>
+    `;
+
+    return row;
+}
+
+
+async function renderLoginLeaderboard(){
+
+    loginLeaderboard.innerHTML = `
+        <div class="board-loading">
+            Skor tablosu yükleniyor...
+        </div>
+    `;
+
+    try{
 
         const scores =
-            await loadLeaderboard();
+            await getLeaderboard();
 
+        loginLeaderboard.innerHTML = "";
 
-        authScoreList.innerHTML =
-            "";
+        if(!scores.length){
 
-
-        if (!scores.length) {
-
-            authScoreList.innerHTML =
-                `
-                <div class="empty">
-                    Henüz skor yok.<br>
-                    İlk oyuncu sen ol!
+            loginLeaderboard.innerHTML = `
+                <div class="board-loading">
+                    Henüz skor bulunmuyor.
                 </div>
-                `;
-
-
-            topPlayerName.textContent =
-                "Henüz skor yok";
-
-            topPlayerScore.textContent =
-                "-";
+            `;
 
             return;
         }
 
-
-        const top =
-            scores[0];
-
-
-        topPlayerName.textContent =
-            top.username;
-
-
-        topPlayerScore.textContent =
-            Number(
-                top.score
-            ).toLocaleString(
-                "tr-TR"
-            ) +
-            " puan";
-
-
-        scores.forEach(
-            (
-                item,
-                index
-            ) => {
-
-                const row =
-                    document.createElement(
-                        "div"
+        scores
+            .slice(0,10)
+            .forEach(
+                (item,index)=>{
+                    loginLeaderboard.appendChild(
+                        createMiniRow(item,index)
                     );
+                }
+            );
 
+    }
+    catch(error){
 
-                row.className =
-                    "auth-score-row";
+        console.error(error);
 
-
-                const medal =
-                    index === 0
-                        ? "🥇"
-                        : index === 1
-                            ? "🥈"
-                            : index === 2
-                                ? "🥉"
-                                : index + 1;
-
-
-                row.innerHTML = `
-
-                    <div
-                        class="auth-score-rank"
-                    >
-                        ${medal}
-                    </div>
-
-                    <div>
-
-                        <div
-                            class="auth-score-name"
-                        >
-                            ${escapeHtml(
-                                item.username
-                            )}
-                        </div>
-
-                        <div
-                            class="auth-score-meta"
-                        >
-                            ${item.hits} vuruş
-                            ·
-                            x${item.highest_combo}
-                        </div>
-
-                    </div>
-
-                    <div
-                        class="auth-score-value"
-                    >
-                        ${Number(
-                            item.score
-                        ).toLocaleString(
-                            "tr-TR"
-                        )}
-                    </div>
-                `;
-
-
-                authScoreList.appendChild(
-                    row
-                );
-            }
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            error
-        );
-
-
-        authScoreList.innerHTML =
-            `
-            <div class="empty">
+        loginLeaderboard.innerHTML = `
+            <div class="board-loading">
                 ⚠️ Skor tablosu yüklenemedi.
             </div>
-            `;
+        `;
     }
 }
 
 
-authRefresh.addEventListener(
-    "click",
-    loadLoginLeaderboard
-);
+async function renderLeaderboard(){
 
+    leaderboardRows.innerHTML = `
+        <div class="empty">
+            Skor tablosu yükleniyor...
+        </div>
+    `;
 
-/* =====================================================
-   GAME LEADERBOARD
-===================================================== */
-
-async function renderLeaderboard() {
-
-    try {
+    try{
 
         const scores =
-            await loadLeaderboard();
+            await getLeaderboard();
 
+        leaderboardRows.innerHTML = "";
 
-        leaderboardRows.innerHTML =
-            "";
+        if(!scores.length){
 
-
-        if (!scores.length) {
-
-            leaderboardRows.innerHTML =
-                `
+            leaderboardRows.innerHTML = `
                 <div class="empty">
                     Henüz skor yok.
                 </div>
-                `;
-
+            `;
 
             bestElement.textContent =
                 "0";
 
-
             return;
         }
 
-
         bestElement.textContent =
-            Number(
-                scores[0].score
-            ).toLocaleString(
-                "tr-TR"
-            );
-
+            Number(scores[0].score)
+                .toLocaleString("tr-TR");
 
         scores.forEach(
-            (
-                item,
-                index
-            ) => {
+            (item,index)=>{
 
                 const row =
-                    document.createElement(
-                        "div"
-                    );
-
+                    document.createElement("div");
 
                 row.className =
-                    "table-row";
+                    "row";
 
-
-                const medal =
-                    index === 0
-                        ? "🥇"
-                        : index === 1
-                            ? "🥈"
-                            : index === 2
-                                ? "🥉"
-                                : index + 1;
-
+                const medals =
+                    ["🥇","🥈","🥉"];
 
                 row.innerHTML = `
-
-                    <div class="rank">
-                        ${medal}
+                    <div>
+                        ${medals[index] || index + 1}
                     </div>
 
                     <div>
-                        ${escapeHtml(
-                            item.username
-                        )}
+                        ${escapeHtml(item.username)}
                     </div>
 
-                    <div
-                        class="table-score"
-                    >
-                        ${Number(
-                            item.score
-                        ).toLocaleString(
-                            "tr-TR"
-                        )}
+                    <div class="score">
+                        ${Number(item.score)
+                            .toLocaleString("tr-TR")}
                     </div>
 
-                    <div
-                        class="combo-score"
-                    >
+                    <div class="combo-score">
                         x${item.highest_combo}
                     </div>
-
                 `;
 
-
-                leaderboardRows.appendChild(
-                    row
-                );
+                leaderboardRows.appendChild(row);
             }
         );
 
+    }
+    catch(error){
 
-    } catch (error) {
+        console.error(error);
 
-        console.error(
-            error
-        );
-
-
-        leaderboardRows.innerHTML =
-            `
+        leaderboardRows.innerHTML = `
             <div class="empty">
                 ⚠️ Skor tablosuna bağlanılamadı.
             </div>
-            `;
+        `;
     }
 }
 
 
-refreshScores.addEventListener(
+/* =========================================================
+   HTML GÜVENLİĞİ
+========================================================= */
+
+function escapeHtml(text){
+
+    return String(text)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+}
+
+
+/* =========================================================
+   EVENTLER
+========================================================= */
+
+registerButton.addEventListener(
     "click",
-    renderLeaderboard
+    register
+);
+
+loginButton.addEventListener(
+    "click",
+    login
+);
+
+logoutButton.addEventListener(
+    "click",
+    logout
+);
+
+target.addEventListener(
+    "pointerdown",
+    event=>{
+        event.preventDefault();
+        hit();
+    }
+);
+
+document
+    .getElementById("refreshScores")
+    .addEventListener(
+        "click",
+        renderLeaderboard
+    );
+
+passwordInput.addEventListener(
+    "keydown",
+    event=>{
+        if(event.key === "Enter")
+            login();
+    }
 );
 
 
-/* =====================================================
-   COMBO RESET
-===================================================== */
+/* =========================================================
+   COMBO TIMER
+========================================================= */
 
 setInterval(
-    () => {
-
-        if (!gameStarted)
+    ()=>{
+        if(!gameStarted)
             return;
 
-
-        if (
+        if(
             lastHitTime &&
             performance.now() -
-                lastHitTime >
-                COMBO_TIMEOUT
-        ) {
+            lastHitTime >
+            COMBO_TIMEOUT
+        ){
 
             combo = 0;
 
             comboElement.textContent =
                 "x0";
         }
-
     },
     100
 );
 
 
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
+/* =========================================================
+   BAŞLANGIÇ
+========================================================= */
 
-function escapeHtml(text) {
+renderLoginLeaderboard();
 
-    return String(text)
+renderLeaderboard();
 
-        .replaceAll(
-            "&",
-            "&amp;"
-        )
+const savedUsername =
+    localStorage.getItem(
+        "apoyu_username"
+    );
 
-        .replaceAll(
-            "<",
-            "&lt;"
-        )
+if(savedUsername){
 
-        .replaceAll(
-            ">",
-            "&gt;"
-        )
+    usernameInput.value =
+        savedUsername;
 
-        .replaceAll(
-            '"',
-            "&quot;"
-        )
+    passwordInput.focus();
 
-        .replaceAll(
-            "'",
-            "&#039;"
-        );
 }
-
-
-/* =====================================================
-   INITIAL
-===================================================== */
-
-(async function init() {
-
-    await loadLoginLeaderboard();
-
-
-    const {
-        data: {
-            session
-        }
-    } =
-        await supabase.auth.getSession();
-
-
-    if (session) {
-
-        await enterGame();
-
-    }
-
-})();
 
 </script>
 
