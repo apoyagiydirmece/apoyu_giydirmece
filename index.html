@@ -1,24 +1,43 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<meta
+    name="viewport"
+    content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"
+>
 
 <title>APOYU GİYDİRMECE</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
+html,
+body{
     margin:0;
     min-height:100%;
-    font-family:Arial,Helvetica,sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     color:#fff;
+
     background:
-        radial-gradient(circle at top,#26344d 0%,#111827 45%,#070b12 100%);
+        radial-gradient(
+            circle at top,
+            #26344d 0%,
+            #111827 45%,
+            #070b12 100%
+        );
 }
 
 body{
@@ -26,7 +45,8 @@ body{
     overflow-x:hidden;
 }
 
-button,input{
+button,
+input{
     font:inherit;
 }
 
@@ -34,13 +54,21 @@ button{
     cursor:pointer;
 }
 
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
 .container{
     width:min(1100px,94%);
     margin:auto;
     padding:25px 0 50px;
 }
 
-/* HEADER */
+
+/* =========================================================
+   HEADER
+========================================================= */
 
 .header{
     text-align:center;
@@ -49,7 +77,14 @@ button{
 
 .header h1{
     margin:0;
-    font-size:clamp(30px,6vw,54px);
+
+    font-size:
+        clamp(
+            30px,
+            6vw,
+            54px
+        );
+
     font-weight:900;
     letter-spacing:-2px;
 }
@@ -59,20 +94,29 @@ button{
     margin:8px 0 0;
 }
 
-/* AUTH */
+
+/* =========================================================
+   AUTH
+========================================================= */
 
 .auth-screen{
     position:fixed;
     inset:0;
     z-index:1000;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
     padding:20px;
+
     background:
-        radial-gradient(circle at center,
-        rgba(38,52,77,.96),
-        rgba(3,7,18,.99));
+        radial-gradient(
+            circle at center,
+            rgba(38,52,77,.96),
+            rgba(3,7,18,.99)
+        );
+
     overflow:auto;
 }
 
@@ -82,11 +126,21 @@ button{
 
 .auth-box{
     width:min(520px,96vw);
+
     padding:30px;
+
     border-radius:26px;
-    background:rgba(15,23,42,.94);
-    border:1px solid rgba(255,255,255,.1);
-    box-shadow:0 30px 100px rgba(0,0,0,.6);
+
+    background:
+        rgba(15,23,42,.94);
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.6);
 }
 
 .logo{
@@ -122,30 +176,46 @@ button{
 
 .input{
     width:100%;
+
     padding:15px;
+
     border-radius:13px;
-    border:1px solid #374151;
+
+    border:
+        1px solid
+        #374151;
+
     background:#0b1220;
     color:white;
+
     outline:none;
 }
 
 .input:focus{
     border-color:#60a5fa;
-    box-shadow:0 0 0 3px rgba(96,165,250,.12);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(96,165,250,.12);
 }
 
 .auth-buttons{
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
+
     gap:10px;
+
     margin-top:18px;
 }
 
 .auth-btn{
     border:0;
     border-radius:13px;
+
     padding:14px;
+
     font-weight:900;
     color:white;
 }
@@ -165,8 +235,11 @@ button{
 
 .auth-status{
     min-height:24px;
+
     text-align:center;
+
     margin-top:15px;
+
     font-size:14px;
 }
 
@@ -182,21 +255,34 @@ button{
     color:#fbbf24;
 }
 
-/* LOGIN LEADERBOARD */
+
+/* =========================================================
+   LOGIN LEADERBOARD
+========================================================= */
 
 .login-board{
     margin-top:28px;
+
     border-radius:18px;
+
     overflow:hidden;
-    border:1px solid rgba(255,255,255,.08);
-    background:rgba(2,6,23,.7);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    background:
+        rgba(2,6,23,.7);
 }
 
 .login-board-title{
     padding:15px 18px;
+
     font-size:18px;
     font-weight:900;
+
     display:flex;
+
     justify-content:space-between;
     align-items:center;
 }
@@ -208,10 +294,21 @@ button{
 
 .mini-row{
     display:grid;
-    grid-template-columns:45px 1fr 100px;
+
+    grid-template-columns:
+        45px 1fr 100px;
+
     padding:11px 16px;
-    border-top:1px solid rgba(255,255,255,.05);
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.05);
+
     align-items:center;
+}
+
+.mini-row:first-child{
+    border-top:0;
 }
 
 .mini-rank{
@@ -229,119 +326,204 @@ button{
     color:#9ca3af;
 }
 
-/* USER */
+
+/* =========================================================
+   USER BAR
+========================================================= */
 
 .user-bar{
     display:flex;
+
     justify-content:space-between;
     align-items:center;
+
     gap:10px;
+
     margin-bottom:15px;
 }
 
 .user-info{
     padding:10px 15px;
+
     border-radius:13px;
-    background:rgba(15,23,42,.85);
-    border:1px solid rgba(255,255,255,.08);
+
+    background:
+        rgba(15,23,42,.85);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 }
 
 .logout-btn{
     border:0;
+
     padding:10px 14px;
+
     border-radius:12px;
+
     background:#374151;
+
     color:white;
+
     font-weight:800;
 }
 
-/* GAME */
+
+/* =========================================================
+   GAME
+========================================================= */
 
 .game-area{
     position:relative;
+
     min-height:560px;
+
     border-radius:24px;
-    border:1px solid rgba(255,255,255,.08);
-    background:rgba(255,255,255,.02);
-    box-shadow:0 25px 80px rgba(0,0,0,.4);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    background:
+        rgba(255,255,255,.02);
+
+    box-shadow:
+        0 25px 80px
+        rgba(0,0,0,.4);
+
     overflow:hidden;
 }
 
 .stats{
     position:absolute;
+
     top:18px;
     left:20px;
     right:20px;
+
     display:flex;
+
     justify-content:center;
+
     gap:12px;
+
     flex-wrap:wrap;
+
     z-index:5;
 }
 
 .stat{
     min-width:120px;
+
     padding:10px 15px;
+
     text-align:center;
+
     border-radius:12px;
-    background:rgba(15,23,42,.85);
-    border:1px solid rgba(255,255,255,.08);
+
+    background:
+        rgba(15,23,42,.85);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
 }
 
 .stat-label{
     display:block;
+
     font-size:11px;
+
     color:#9ca3af;
+
     text-transform:uppercase;
+
     letter-spacing:1px;
 }
 
 .stat-value{
     display:block;
+
     margin-top:3px;
+
     font-size:22px;
+
     font-weight:900;
 }
 
 .target-zone{
     position:absolute;
+
     left:50%;
     top:58%;
-    transform:translate(-50%,-50%);
+
+    transform:
+        translate(-50%,-50%);
+
     width:min(380px,80vw);
     height:400px;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
 }
 
 .target{
     position:relative;
+
     width:min(330px,72vw);
     height:min(330px,72vw);
+
     border-radius:50%;
+
     overflow:hidden;
+
     cursor:pointer;
+
     user-select:none;
+
     touch-action:manipulation;
+
     background:
-        radial-gradient(circle,#374151,#111827);
-    border:5px solid #374151;
+        radial-gradient(
+            circle,
+            #374151,
+            #111827
+        );
+
+    border:
+        5px solid
+        #374151;
+
     box-shadow:
-        0 30px 60px rgba(0,0,0,.5),
-        inset 0 0 30px rgba(255,255,255,.08);
+        0 30px 60px
+        rgba(0,0,0,.5),
+
+        inset 0 0 30px
+        rgba(255,255,255,.08);
 }
 
 .target-placeholder{
     position:absolute;
+
     inset:0;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     flex-direction:column;
+
     background:
-        radial-gradient(circle at 35% 25%,
-        #64748b,#1e293b 65%,#0f172a);
+        radial-gradient(
+            circle at 35% 25%,
+            #64748b,
+            #1e293b 65%,
+            #0f172a
+        );
 }
 
 .target-placeholder strong{
@@ -351,89 +533,190 @@ button{
 
 .target-placeholder span{
     margin-top:8px;
-    color:rgba(255,255,255,.55);
+
+    color:
+        rgba(255,255,255,.55);
 }
 
 .hit{
-    animation:punch .12s linear;
+    animation:
+        punch .12s linear;
 }
 
 @keyframes punch{
-    0%{transform:scale(1) rotate(0)}
-    35%{transform:scale(.94) rotate(-3deg)}
-    70%{transform:scale(1.05) rotate(3deg)}
-    100%{transform:scale(1) rotate(0)}
+
+    0%{
+        transform:scale(1) rotate(0);
+    }
+
+    35%{
+        transform:
+            scale(.94)
+            rotate(-3deg);
+    }
+
+    70%{
+        transform:
+            scale(1.05)
+            rotate(3deg);
+    }
+
+    100%{
+        transform:
+            scale(1)
+            rotate(0);
+    }
 }
 
 .combo{
     position:absolute;
+
     left:50%;
     top:34%;
-    transform:translate(-50%,-50%) scale(.8);
-    font-size:clamp(28px,7vw,55px);
+
+    transform:
+        translate(-50%,-50%)
+        scale(.8);
+
+    font-size:
+        clamp(
+            28px,
+            7vw,
+            55px
+        );
+
     font-weight:1000;
+
     color:#fbbf24;
+
     opacity:0;
+
     pointer-events:none;
+
     z-index:10;
 }
 
 .combo.show{
-    animation:comboPop .25s ease-out forwards;
+    animation:
+        comboPop .25s
+        ease-out
+        forwards;
 }
 
 @keyframes comboPop{
+
     0%{
         opacity:0;
-        transform:translate(-50%,-50%) scale(.5);
+
+        transform:
+            translate(-50%,-50%)
+            scale(.5);
     }
 
     60%{
         opacity:1;
-        transform:translate(-50%,-50%) scale(1.15);
+
+        transform:
+            translate(-50%,-50%)
+            scale(1.15);
     }
 
     100%{
         opacity:1;
-        transform:translate(-50%,-50%) scale(1);
+
+        transform:
+            translate(-50%,-50%)
+            scale(1);
     }
 }
 
 .floating-score{
     position:absolute;
+
     font-size:24px;
+
     font-weight:1000;
+
     color:#86efac;
+
     pointer-events:none;
+
     z-index:20;
-    animation:floatScore .8s ease-out forwards;
+
+    animation:
+        floatScore .8s
+        ease-out
+        forwards;
 }
 
 @keyframes floatScore{
+
     0%{
         opacity:1;
-        transform:translate(-50%,0) scale(1);
+
+        transform:
+            translate(-50%,0)
+            scale(1);
     }
 
     100%{
         opacity:0;
-        transform:translate(-50%,-90px) scale(1.3);
+
+        transform:
+            translate(-50%,-90px)
+            scale(1.3);
     }
 }
 
-/* LEADERBOARD */
+.finish-button{
+    position:absolute;
+
+    bottom:18px;
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    z-index:20;
+
+    padding:12px 20px;
+
+    border:0;
+
+    border-radius:12px;
+
+    background:#dc2626;
+
+    color:white;
+
+    font-weight:900;
+}
+
+
+/* =========================================================
+   LEADERBOARD
+========================================================= */
 
 .leaderboard{
     margin-top:22px;
+
     border-radius:20px;
-    background:rgba(15,23,42,.85);
-    border:1px solid rgba(255,255,255,.08);
+
+    background:
+        rgba(15,23,42,.85);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
     overflow:hidden;
 }
 
 .leaderboard-header{
     padding:20px;
+
     display:flex;
+
     justify-content:space-between;
     align-items:center;
 }
@@ -444,18 +727,30 @@ button{
 
 .refresh-btn{
     border:0;
+
     border-radius:10px;
+
     padding:9px 12px;
+
     background:#374151;
+
     color:white;
+
     font-weight:800;
 }
 
 .row{
     display:grid;
-    grid-template-columns:60px 1fr 120px 100px;
+
+    grid-template-columns:
+        60px 1fr 120px 100px;
+
     padding:13px 20px;
-    border-top:1px solid rgba(255,255,255,.06);
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.06);
+
     align-items:center;
 }
 
@@ -466,44 +761,24 @@ button{
 
 .combo-score{
     text-align:right;
+
     color:#fbbf24;
+
     font-weight:800;
 }
 
 .empty{
     padding:30px;
+
     text-align:center;
+
     color:#9ca3af;
 }
 
-.save-status{
-    position:absolute;
-    left:50%;
-    bottom:18px;
-    transform:translateX(-50%);
-    z-index:20;
-    padding:9px 15px;
-    border-radius:10px;
-    background:rgba(15,23,42,.9);
-    color:#9ca3af;
-    font-size:13px;
-    font-weight:700;
-    opacity:0;
-    transition:.2s;
-    pointer-events:none;
-}
 
-.save-status.show{
-    opacity:1;
-}
-
-.save-status.success{
-    color:#86efac;
-}
-
-.save-status.error{
-    color:#f87171;
-}
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:600px){
 
@@ -523,6 +798,7 @@ button{
         top:12px;
         left:8px;
         right:8px;
+
         gap:6px;
     }
 
@@ -536,7 +812,9 @@ button{
     }
 
     .row{
-        grid-template-columns:45px 1fr 90px;
+        grid-template-columns:
+            45px 1fr 90px;
+
         padding:12px;
     }
 
@@ -546,30 +824,54 @@ button{
 
     .user-bar{
         flex-direction:column;
+
         align-items:stretch;
     }
 }
+
 </style>
+
 </head>
+
 
 <body>
 
-<div class="auth-screen" id="authScreen">
+
+<!-- =========================================================
+     LOGIN
+========================================================= -->
+
+<div
+    class="auth-screen"
+    id="authScreen"
+>
 
     <div class="auth-box">
 
-        <div class="logo">🥊</div>
+        <div class="logo">
+            🥊
+        </div>
 
-        <h2>APOYU GİYDİRMECE</h2>
+        <h2>
+            APOYU GİYDİRMECE
+        </h2>
 
         <div class="auth-subtitle">
-            Hesabını oluştur, skorunu kaydet<br>
-            ve liderlik tablosunda yerini al.
+
+            Hesabını oluştur,
+            skorunu kaydet<br>
+
+            ve liderlik tablosunda
+            yerini al.
+
         </div>
+
 
         <div class="input-group">
 
-            <label for="username">
+            <label
+                for="username"
+            >
                 Kullanıcı adı
             </label>
 
@@ -585,9 +887,12 @@ button{
 
         </div>
 
+
         <div class="input-group">
 
-            <label for="password">
+            <label
+                for="password"
+            >
                 Şifre
             </label>
 
@@ -601,6 +906,7 @@ button{
             >
 
         </div>
+
 
         <div class="auth-buttons">
 
@@ -620,28 +926,37 @@ button{
 
         </div>
 
+
         <div
             class="auth-status"
             id="authStatus"
         ></div>
 
+
         <div class="login-board">
 
             <div class="login-board-title">
 
-                <span>🏆 EN İYİ OYUNCULAR</span>
+                <span>
+                    🏆 EN İYİ OYUNCULAR
+                </span>
 
-                <span>TOP 10</span>
+                <span>
+                    TOP 10
+                </span>
 
             </div>
+
 
             <div
                 class="mini-board"
                 id="loginLeaderboard"
             >
+
                 <div class="board-loading">
                     Skor tablosu yükleniyor...
                 </div>
+
             </div>
 
         </div>
@@ -651,14 +966,22 @@ button{
 </div>
 
 
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
 <div class="container">
+
 
     <div class="header">
 
-        <h1>🥊 APOYU GİYDİRMECE</h1>
+        <h1>
+            🥊 APOYU GİYDİRMECE
+        </h1>
 
         <p>
-            Ne kadar hızlı vurursan o kadar yüksek combo!
+            Ne kadar hızlı vurursan
+            o kadar yüksek combo!
         </p>
 
     </div>
@@ -671,8 +994,15 @@ button{
     >
 
         <div class="user-info">
-            👤 <strong id="currentUsername"></strong>
+
+            👤
+
+            <strong
+                id="currentUsername"
+            ></strong>
+
         </div>
+
 
         <button
             class="logout-btn"
@@ -684,32 +1014,82 @@ button{
     </div>
 
 
+    <!-- =====================================================
+         GAME
+    ===================================================== -->
+
     <div
         class="game-area"
         id="gameArea"
     >
 
+
         <div class="stats">
 
-            <div class="stat">
-                <span class="stat-label">Skor</span>
-                <span class="stat-value" id="score">0</span>
-            </div>
 
             <div class="stat">
-                <span class="stat-label">Vuruş</span>
-                <span class="stat-value" id="hits">0</span>
+
+                <span class="stat-label">
+                    Skor
+                </span>
+
+                <span
+                    class="stat-value"
+                    id="score"
+                >
+                    0
+                </span>
+
             </div>
 
-            <div class="stat">
-                <span class="stat-label">Combo</span>
-                <span class="stat-value" id="comboValue">x0</span>
-            </div>
 
             <div class="stat">
-                <span class="stat-label">En yüksek</span>
-                <span class="stat-value" id="best">0</span>
+
+                <span class="stat-label">
+                    Vuruş
+                </span>
+
+                <span
+                    class="stat-value"
+                    id="hits"
+                >
+                    0
+                </span>
+
             </div>
+
+
+            <div class="stat">
+
+                <span class="stat-label">
+                    Combo
+                </span>
+
+                <span
+                    class="stat-value"
+                    id="comboValue"
+                >
+                    x0
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span class="stat-label">
+                    Rekor
+                </span>
+
+                <span
+                    class="stat-value"
+                    id="best"
+                >
+                    0
+                </span>
+
+            </div>
+
 
         </div>
 
@@ -731,9 +1111,13 @@ button{
 
                 <div class="target-placeholder">
 
-                    <strong>APO</strong>
+                    <strong>
+                        APO
+                    </strong>
 
-                    <span>VUR!</span>
+                    <span>
+                        VUR!
+                    </span>
 
                 </div>
 
@@ -742,19 +1126,29 @@ button{
         </div>
 
 
-        <div
-            class="save-status"
-            id="saveStatus"
-        ></div>
+        <button
+            class="finish-button"
+            id="finishButton"
+            style="display:none;"
+        >
+            OYUNU BİTİR
+        </button>
+
 
     </div>
 
+
+    <!-- =====================================================
+         LEADERBOARD
+    ===================================================== -->
 
     <div class="leaderboard">
 
         <div class="leaderboard-header">
 
-            <h2>🏆 Skor Tablosu</h2>
+            <h2>
+                🏆 Skor Tablosu
+            </h2>
 
             <button
                 class="refresh-btn"
@@ -765,17 +1159,27 @@ button{
 
         </div>
 
+
         <div class="row">
 
-            <div>#</div>
+            <div>
+                #
+            </div>
 
-            <div>Oyuncu</div>
+            <div>
+                Oyuncu
+            </div>
 
-            <div class="score">Skor</div>
+            <div class="score">
+                Skor
+            </div>
 
-            <div class="combo-score">Combo</div>
+            <div class="combo-score">
+                Combo
+            </div>
 
         </div>
+
 
         <div id="leaderboardRows">
 
@@ -792,12 +1196,14 @@ button{
 
 <script>
 
+
 /* =========================================================
    SUPABASE
 ========================================================= */
 
 const FUNCTION_URL =
     "https://sqotorneqppbwsmnyxmy.supabase.co/functions/v1/swift-service";
+
 
 const SUPABASE_KEY =
     "sb_publishable_wUBbPRmoS1SkvRM88SqWLw_yKoUx4Rf";
@@ -808,65 +1214,103 @@ const SUPABASE_KEY =
 ========================================================= */
 
 const authScreen =
-    document.getElementById("authScreen");
+    document.getElementById(
+        "authScreen"
+    );
 
 const usernameInput =
-    document.getElementById("username");
+    document.getElementById(
+        "username"
+    );
 
 const passwordInput =
-    document.getElementById("password");
+    document.getElementById(
+        "password"
+    );
 
 const registerButton =
-    document.getElementById("registerButton");
+    document.getElementById(
+        "registerButton"
+    );
 
 const loginButton =
-    document.getElementById("loginButton");
+    document.getElementById(
+        "loginButton"
+    );
 
 const authStatus =
-    document.getElementById("authStatus");
+    document.getElementById(
+        "authStatus"
+    );
 
 const loginLeaderboard =
-    document.getElementById("loginLeaderboard");
+    document.getElementById(
+        "loginLeaderboard"
+    );
 
 const leaderboardRows =
-    document.getElementById("leaderboardRows");
+    document.getElementById(
+        "leaderboardRows"
+    );
 
 const currentUsername =
-    document.getElementById("currentUsername");
+    document.getElementById(
+        "currentUsername"
+    );
 
 const userBar =
-    document.getElementById("userBar");
+    document.getElementById(
+        "userBar"
+    );
 
 const logoutButton =
-    document.getElementById("logoutButton");
+    document.getElementById(
+        "logoutButton"
+    );
 
 const target =
-    document.getElementById("target");
+    document.getElementById(
+        "target"
+    );
 
 const gameArea =
-    document.getElementById("gameArea");
+    document.getElementById(
+        "gameArea"
+    );
+
+const finishButton =
+    document.getElementById(
+        "finishButton"
+    );
 
 const scoreElement =
-    document.getElementById("score");
+    document.getElementById(
+        "score"
+    );
 
 const hitsElement =
-    document.getElementById("hits");
+    document.getElementById(
+        "hits"
+    );
 
 const comboElement =
-    document.getElementById("comboValue");
+    document.getElementById(
+        "comboValue"
+    );
 
 const bestElement =
-    document.getElementById("best");
+    document.getElementById(
+        "best"
+    );
 
 const comboText =
-    document.getElementById("comboText");
-
-const saveStatus =
-    document.getElementById("saveStatus");
+    document.getElementById(
+        "comboText"
+    );
 
 
 /* =========================================================
-   OYUNCU / OYUN
+   OYUNCU
 ========================================================= */
 
 let currentUser = null;
@@ -874,35 +1318,27 @@ let currentUser = null;
 let gameStarted = false;
 
 let score = 0;
+
 let hits = 0;
+
 let combo = 0;
+
 let highestCombo = 0;
 
 let lastHitTime = 0;
 
+
 const COMBO_TIMEOUT = 900;
-
-
-/*
-    SKOR OTOMATİK KAYIT
-
-    Her vuruşta değil.
-
-    Belirli aralıklarla sunucuya gönderiyoruz.
-*/
-
-let saveTimer = null;
-
-let saveInProgress = false;
-
-let pendingSave = false;
 
 
 /* =========================================================
    API
 ========================================================= */
 
-async function api(action,data = {}){
+async function api(
+    action,
+    data = {}
+){
 
     const response =
         await fetch(
@@ -911,23 +1347,32 @@ async function api(action,data = {}){
                 method:"POST",
 
                 headers:{
-                    "Content-Type":"application/json",
-                    "apikey":SUPABASE_KEY,
+                    "Content-Type":
+                        "application/json",
+
+                    "apikey":
+                        SUPABASE_KEY,
+
                     "Authorization":
-                        "Bearer " + SUPABASE_KEY
+                        "Bearer " +
+                        SUPABASE_KEY
                 },
 
-                body:JSON.stringify({
-                    action,
-                    ...data
-                })
+                body:
+                    JSON.stringify({
+                        action,
+                        ...data
+                    })
             }
         );
+
 
     const text =
         await response.text();
 
+
     let result;
+
 
     try{
 
@@ -943,6 +1388,7 @@ async function api(action,data = {}){
 
     }
 
+
     if(!response.ok){
 
         throw new Error(
@@ -952,24 +1398,26 @@ async function api(action,data = {}){
 
     }
 
+
     return result;
 }
 
 
 /* =========================================================
-   STATUS
+   AUTH STATUS
 ========================================================= */
 
 function setAuthStatus(
     message,
-    type=""
+    type = ""
 ){
 
     authStatus.textContent =
         message;
 
     authStatus.className =
-        "auth-status " + type;
+        "auth-status " +
+        type;
 }
 
 
@@ -985,6 +1433,7 @@ function getCredentials(){
     const password =
         passwordInput.value;
 
+
     if(username.length < 3){
 
         throw new Error(
@@ -992,6 +1441,7 @@ function getCredentials(){
         );
 
     }
+
 
     if(username.length > 20){
 
@@ -1001,13 +1451,18 @@ function getCredentials(){
 
     }
 
-    if(!/^[a-zA-Z0-9_]+$/.test(username)){
+
+    if(
+        !/^[a-zA-Z0-9_]+$/
+        .test(username)
+    ){
 
         throw new Error(
             "Kullanıcı adı sadece harf, rakam ve _ içerebilir."
         );
 
     }
+
 
     if(password.length < 6){
 
@@ -1016,6 +1471,7 @@ function getCredentials(){
         );
 
     }
+
 
     return {
         username,
@@ -1035,15 +1491,22 @@ async function register(){
         const {
             username,
             password
-        } = getCredentials();
+        } =
+            getCredentials();
 
-        registerButton.disabled = true;
-        loginButton.disabled = true;
+
+        registerButton.disabled =
+            true;
+
+        loginButton.disabled =
+            true;
+
 
         setAuthStatus(
             "Hesap oluşturuluyor...",
             "loading"
         );
+
 
         const result =
             await api(
@@ -1054,6 +1517,7 @@ async function register(){
                 }
             );
 
+
         if(!result.success){
 
             throw new Error(
@@ -1063,27 +1527,33 @@ async function register(){
 
         }
 
+
         setAuthStatus(
             "✅ Kayıt başarılı! Şimdi giriş yapabilirsin.",
             "success"
         );
 
+
         passwordInput.value = "";
+
 
     }
     catch(error){
 
         setAuthStatus(
-            "❌ " + error.message,
+            "❌ " +
+            error.message,
             "error"
         );
 
     }
     finally{
 
-        registerButton.disabled = false;
-        loginButton.disabled = false;
+        registerButton.disabled =
+            false;
 
+        loginButton.disabled =
+            false;
     }
 }
 
@@ -1099,15 +1569,22 @@ async function login(){
         const {
             username,
             password
-        } = getCredentials();
+        } =
+            getCredentials();
 
-        registerButton.disabled = true;
-        loginButton.disabled = true;
+
+        registerButton.disabled =
+            true;
+
+        loginButton.disabled =
+            true;
+
 
         setAuthStatus(
             "Giriş yapılıyor...",
             "loading"
         );
+
 
         const result =
             await api(
@@ -1118,6 +1595,7 @@ async function login(){
                 }
             );
 
+
         if(!result.success){
 
             throw new Error(
@@ -1127,14 +1605,18 @@ async function login(){
 
         }
 
+
         currentUser = {
-            username:result.username
+            username:
+                result.username
         };
+
 
         localStorage.setItem(
             "apoyu_username",
             result.username
         );
+
 
         enterGame();
 
@@ -1142,16 +1624,19 @@ async function login(){
     catch(error){
 
         setAuthStatus(
-            "❌ " + error.message,
+            "❌ " +
+            error.message,
             "error"
         );
 
     }
     finally{
 
-        registerButton.disabled = false;
-        loginButton.disabled = false;
+        registerButton.disabled =
+            false;
 
+        loginButton.disabled =
+            false;
     }
 }
 
@@ -1160,24 +1645,32 @@ async function login(){
    ENTER GAME
 ========================================================= */
 
-function enterGame(){
+async function enterGame(){
 
-    authScreen.classList.add("hidden");
+    authScreen.classList.add(
+        "hidden"
+    );
 
     userBar.style.display =
         "flex";
 
+
     currentUsername.textContent =
         currentUser.username;
 
+
     usernameInput.value = "";
+
     passwordInput.value = "";
+
 
     setAuthStatus("");
 
+
     resetGame();
 
-    renderLeaderboard();
+
+    await renderLeaderboard();
 }
 
 
@@ -1185,31 +1678,33 @@ function enterGame(){
    LOGOUT
 ========================================================= */
 
-async function logout(){
-
-    /*
-        Çıkış yaparken mevcut skoru
-        bir kez daha göndermeyi deniyoruz.
-    */
-
-    await saveScore(true);
+function logout(){
 
     gameStarted = false;
 
     currentUser = null;
 
+
     localStorage.removeItem(
         "apoyu_username"
     );
 
+
+    finishButton.style.display =
+        "none";
+
+
     userBar.style.display =
         "none";
+
 
     authScreen.classList.remove(
         "hidden"
     );
 
+
     usernameInput.focus();
+
 
     renderLoginLeaderboard();
 }
@@ -1222,17 +1717,32 @@ async function logout(){
 function resetGame(){
 
     score = 0;
+
     hits = 0;
+
     combo = 0;
+
     highestCombo = 0;
+
     lastHitTime = 0;
+
 
     gameStarted = true;
 
+
+    finishButton.style.display =
+        "block";
+
+
+    finishButton.disabled =
+        false;
+
+
+    finishButton.textContent =
+        "OYUNU BİTİR";
+
+
     updateStats();
-
-    clearSaveTimer();
-
 }
 
 
@@ -1245,8 +1755,10 @@ function hit(){
     if(!gameStarted)
         return;
 
+
     const now =
         performance.now();
+
 
     if(
         now - lastHitTime <=
@@ -1262,9 +1774,13 @@ function hit(){
 
     }
 
-    lastHitTime = now;
+
+    lastHitTime =
+        now;
+
 
     hits++;
+
 
     highestCombo =
         Math.max(
@@ -1272,7 +1788,9 @@ function hit(){
             combo
         );
 
+
     let multiplier = 1;
+
 
     if(combo >= 30)
         multiplier = 5;
@@ -1286,232 +1804,37 @@ function hit(){
     else if(combo >= 5)
         multiplier = 2;
 
+
     const critical =
         Math.random() < 0.07;
 
+
     let points =
-        10 * multiplier;
+        10 *
+        multiplier;
+
 
     if(critical)
         points *= 3;
 
+
     score += points;
+
 
     updateStats();
 
+
     animateTarget();
+
 
     showFloatingScore(
         points,
         critical
     );
 
+
     if(combo >= 2)
         showCombo();
-
-
-    /*
-        BURASI ÖNEMLİ
-
-        Skor artık oyun bitince değil,
-        oyun sırasında otomatik kaydedilecek.
-
-        Her vuruşta veritabanına gitmiyoruz.
-        1 saniyelik gecikmeyle son durum gönderiliyor.
-    */
-
-    scheduleAutoSave();
-}
-
-
-/* =========================================================
-   OTOMATİK SKOR KAYDI
-========================================================= */
-
-function scheduleAutoSave(){
-
-    if(!currentUser)
-        return;
-
-    clearTimeout(saveTimer);
-
-    saveTimer =
-        setTimeout(
-            () => {
-
-                saveScore(false);
-
-            },
-            1000
-        );
-}
-
-
-function clearSaveTimer(){
-
-    if(saveTimer){
-
-        clearTimeout(saveTimer);
-
-        saveTimer = null;
-
-    }
-}
-
-
-/* =========================================================
-   SKORU SUNUCUYA GÖNDER
-========================================================= */
-
-async function saveScore(finalSave=false){
-
-    if(!currentUser)
-        return false;
-
-    /*
-        Aynı anda iki kayıt isteği gönderilmesini
-        engelliyoruz.
-    */
-
-    if(saveInProgress){
-
-        pendingSave = true;
-
-        return false;
-
-    }
-
-    /*
-        Henüz hiç vuruş yoksa kayıt yapma.
-    */
-
-    if(hits <= 0)
-        return false;
-
-    saveInProgress = true;
-
-    pendingSave = false;
-
-    if(finalSave){
-
-        showSaveStatus(
-            "Skor kaydediliyor...",
-            ""
-        );
-
-    }
-
-    try{
-
-        const result =
-            await api(
-                "submit_score",
-                {
-                    username:
-                        currentUser.username,
-
-                    score:
-                        score,
-
-                    hits:
-                        hits,
-
-                    highestCombo:
-                        highestCombo
-                }
-            );
-
-        if(!result.success){
-
-            throw new Error(
-                result.error ||
-                "Skor kaydedilemedi."
-            );
-
-        }
-
-        showSaveStatus(
-            "✓ Skor otomatik kaydedildi",
-            "success"
-        );
-
-        /*
-            Skor tablosunu güncelle.
-        */
-
-        await renderLeaderboard();
-
-        /*
-            Giriş ekranındaki tabloyu da
-            güncel tut.
-        */
-
-        await renderLoginLeaderboard();
-
-        return true;
-
-    }
-    catch(error){
-
-        console.error(
-            "AUTO SAVE ERROR:",
-            error
-        );
-
-        showSaveStatus(
-            "⚠ Skor kaydedilemedi",
-            "error"
-        );
-
-        return false;
-
-    }
-    finally{
-
-        saveInProgress = false;
-
-        /*
-            Kaydetme sırasında yeni bir skor
-            oluştuysa tekrar kaydet.
-        */
-
-        if(pendingSave){
-
-            pendingSave = false;
-
-            scheduleAutoSave();
-
-        }
-
-    }
-}
-
-
-/* =========================================================
-   SAVE STATUS
-========================================================= */
-
-function showSaveStatus(
-    message,
-    type=""
-){
-
-    saveStatus.textContent =
-        message;
-
-    saveStatus.className =
-        "save-status show " + type;
-
-    setTimeout(
-        () => {
-
-            saveStatus.classList.remove(
-                "show"
-            );
-
-        },
-        1800
-    );
 }
 
 
@@ -1530,25 +1853,27 @@ function animateTarget(){
     target.classList.add(
         "hit"
     );
-
 }
 
 
 function showCombo(){
 
     comboText.textContent =
-        "COMBO x" + combo;
+        "COMBO x" +
+        combo;
+
 
     comboText.classList.remove(
         "show"
     );
 
+
     void comboText.offsetWidth;
+
 
     comboText.classList.add(
         "show"
     );
-
 }
 
 
@@ -1562,36 +1887,42 @@ function showFloatingScore(
             "div"
         );
 
+
     floating.className =
         "floating-score";
+
 
     floating.textContent =
         critical
             ? "CRITICAL +" + points
             : "+" + points;
 
+
     floating.style.left =
         "50%";
 
+
     floating.style.top =
         "50%";
+
 
     if(critical){
 
         floating.style.color =
             "#fbbf24";
-
     }
+
 
     gameArea.appendChild(
         floating
     );
 
+
     setTimeout(
-        () => floating.remove(),
+        () =>
+            floating.remove(),
         800
     );
-
 }
 
 
@@ -1606,17 +1937,138 @@ function updateStats(){
             "tr-TR"
         );
 
+
     hitsElement.textContent =
         hits;
 
+
     comboElement.textContent =
         "x" + combo;
-
 }
 
 
 /* =========================================================
-   LEADERBOARD
+   OYUNU BİTİR
+========================================================= */
+
+async function finishGame(){
+
+    if(!gameStarted)
+        return;
+
+
+    gameStarted = false;
+
+
+    finishButton.disabled =
+        true;
+
+
+    finishButton.textContent =
+        "KAYDEDİLİYOR...";
+
+
+    try{
+
+        const result =
+            await api(
+                "submit_score",
+                {
+                    username:
+                        currentUser.username,
+
+                    score,
+
+                    hits,
+
+                    highestCombo
+                }
+            );
+
+
+        if(!result.success){
+
+            throw new Error(
+                result.error ||
+                "Skor kaydedilemedi."
+            );
+        }
+
+
+        /*
+            SKOR KAYDI BAŞARILI
+        */
+
+        await renderLeaderboard();
+
+        await renderLoginLeaderboard();
+
+
+        if(result.updated){
+
+            alert(
+                "🏆 SKOR KAYDEDİLDİ!\n\n" +
+
+                "Skor: " +
+                score.toLocaleString(
+                    "tr-TR"
+                ) +
+
+                "\nVuruş: " +
+                hits +
+
+                "\nEn yüksek combo: x" +
+                highestCombo
+            );
+
+        }
+        else{
+
+            alert(
+                "Skorun mevcut rekorundan düşük.\n\n" +
+
+                "Mevcut rekorun: " +
+                Number(
+                    result.bestScore
+                ).toLocaleString(
+                    "tr-TR"
+                )
+            );
+        }
+
+
+    }
+    catch(error){
+
+        console.error(error);
+
+
+        alert(
+            "❌ Skor kaydedilemedi.\n\n" +
+            error.message
+        );
+
+    }
+    finally{
+
+        finishButton.disabled =
+            false;
+
+        finishButton.textContent =
+            "OYUNU BİTİR";
+
+
+        /*
+            Yeni oyun başlat.
+        */
+
+        resetGame();
+    }
+}
+
+
+/* =========================================================
+   GET LEADERBOARD
 ========================================================= */
 
 async function getLeaderboard(){
@@ -1626,12 +2078,13 @@ async function getLeaderboard(){
             "leaderboard"
         );
 
+
     return result.scores || [];
 }
 
 
 /* =========================================================
-   LOGIN BOARD
+   MINI ROW
 ========================================================= */
 
 function createMiniRow(
@@ -1644,8 +2097,10 @@ function createMiniRow(
             "div"
         );
 
+
     row.className =
         "mini-row";
+
 
     const medals =
         [
@@ -1654,6 +2109,7 @@ function createMiniRow(
             "🥉"
         ];
 
+
     row.innerHTML = `
 
         <div class="mini-rank">
@@ -1661,18 +2117,29 @@ function createMiniRow(
         </div>
 
         <div>
-            ${escapeHtml(item.username)}
+            ${escapeHtml(
+                item.username
+            )}
         </div>
 
         <div class="mini-score">
-            ${Number(item.score).toLocaleString("tr-TR")}
+            ${Number(
+                item.score
+            ).toLocaleString(
+                "tr-TR"
+            )}
         </div>
 
     `;
 
+
     return row;
 }
 
+
+/* =========================================================
+   LOGIN LEADERBOARD
+========================================================= */
 
 async function renderLoginLeaderboard(){
 
@@ -1684,12 +2151,16 @@ async function renderLoginLeaderboard(){
 
     `;
 
+
     try{
 
         const scores =
             await getLeaderboard();
 
-        loginLeaderboard.innerHTML = "";
+
+        loginLeaderboard.innerHTML =
+            "";
+
 
         if(!scores.length){
 
@@ -1702,21 +2173,24 @@ async function renderLoginLeaderboard(){
             `;
 
             return;
-
         }
+
 
         scores
             .slice(0,10)
             .forEach(
-                (item,index)=>{
+                (
+                    item,
+                    index
+                ) => {
 
-                    loginLeaderboard.appendChild(
-                        createMiniRow(
-                            item,
-                            index
-                        )
-                    );
-
+                    loginLeaderboard
+                        .appendChild(
+                            createMiniRow(
+                                item,
+                                index
+                            )
+                        );
                 }
             );
 
@@ -1725,6 +2199,7 @@ async function renderLoginLeaderboard(){
 
         console.error(error);
 
+
         loginLeaderboard.innerHTML = `
 
             <div class="board-loading">
@@ -1732,7 +2207,6 @@ async function renderLoginLeaderboard(){
             </div>
 
         `;
-
     }
 }
 
@@ -1751,12 +2225,16 @@ async function renderLeaderboard(){
 
     `;
 
+
     try{
 
         const scores =
             await getLeaderboard();
 
-        leaderboardRows.innerHTML = "";
+
+        leaderboardRows.innerHTML =
+            "";
+
 
         if(!scores.length){
 
@@ -1768,15 +2246,17 @@ async function renderLeaderboard(){
 
             `;
 
+
             bestElement.textContent =
                 "0";
 
-            return;
 
+            return;
         }
 
+
         /*
-            En yüksek skor
+            İlk sıradaki skor
         */
 
         bestElement.textContent =
@@ -1788,15 +2268,20 @@ async function renderLeaderboard(){
 
 
         scores.forEach(
-            (item,index)=>{
+            (
+                item,
+                index
+            ) => {
 
                 const row =
                     document.createElement(
                         "div"
                     );
 
+
                 row.className =
                     "row";
+
 
                 const medals =
                     [
@@ -1805,31 +2290,47 @@ async function renderLeaderboard(){
                         "🥉"
                     ];
 
+
                 row.innerHTML = `
 
                     <div>
-                        ${medals[index] || index + 1}
+                        ${
+                            medals[index] ||
+                            index + 1
+                        }
                     </div>
 
                     <div>
-                        ${escapeHtml(item.username)}
+                        ${escapeHtml(
+                            item.username
+                        )}
                     </div>
 
                     <div class="score">
-                        ${Number(item.score)
-                            .toLocaleString("tr-TR")}
+
+                        ${Number(
+                            item.score
+                        ).toLocaleString(
+                            "tr-TR"
+                        )}
+
                     </div>
 
                     <div class="combo-score">
-                        x${item.highest_combo}
+
+                        x${Number(
+                            item.highest_combo
+                        )}
+
                     </div>
 
                 `;
 
-                leaderboardRows.appendChild(
-                    row
-                );
 
+                leaderboardRows
+                    .appendChild(
+                        row
+                    );
             }
         );
 
@@ -1838,6 +2339,7 @@ async function renderLeaderboard(){
 
         console.error(error);
 
+
         leaderboardRows.innerHTML = `
 
             <div class="empty">
@@ -1845,13 +2347,12 @@ async function renderLeaderboard(){
             </div>
 
         `;
-
     }
 }
 
 
 /* =========================================================
-   HTML ESCAPE
+   HTML SECURITY
 ========================================================= */
 
 function escapeHtml(text){
@@ -1882,12 +2383,11 @@ function escapeHtml(text){
             "'",
             "&#039;"
         );
-
 }
 
 
 /* =========================================================
-   EVENTLER
+   EVENTS
 ========================================================= */
 
 registerButton.addEventListener(
@@ -1895,10 +2395,12 @@ registerButton.addEventListener(
     register
 );
 
+
 loginButton.addEventListener(
     "click",
     login
 );
+
 
 logoutButton.addEventListener(
     "click",
@@ -1906,20 +2408,27 @@ logoutButton.addEventListener(
 );
 
 
+finishButton.addEventListener(
+    "click",
+    finishGame
+);
+
+
 target.addEventListener(
     "pointerdown",
-    event=>{
+    event => {
 
         event.preventDefault();
 
         hit();
-
     }
 );
 
 
 document
-    .getElementById("refreshScores")
+    .getElementById(
+        "refreshScores"
+    )
     .addEventListener(
         "click",
         renderLeaderboard
@@ -1928,11 +2437,15 @@ document
 
 passwordInput.addEventListener(
     "keydown",
-    event=>{
+    event => {
 
-        if(event.key === "Enter")
+        if(
+            event.key ===
+            "Enter"
+        ){
+
             login();
-
+        }
     }
 );
 
@@ -1942,10 +2455,11 @@ passwordInput.addEventListener(
 ========================================================= */
 
 setInterval(
-    ()=>{
+    () => {
 
         if(!gameStarted)
             return;
+
 
         if(
             lastHitTime &&
@@ -1958,68 +2472,10 @@ setInterval(
 
             comboElement.textContent =
                 "x0";
-
         }
 
     },
     100
-);
-
-
-/* =========================================================
-   SAYFA KAPATILIRKEN
-========================================================= */
-
-window.addEventListener(
-    "beforeunload",
-    ()=>{
-
-        /*
-            Tarayıcı kapanırken normal fetch
-            her zaman tamamlanmayabilir.
-
-            Bu nedenle burada sadece son kayıt
-            tetikleniyor.
-        */
-
-        if(
-            currentUser &&
-            hits > 0
-        ){
-
-            const body =
-                JSON.stringify({
-                    action:
-                        "submit_score",
-
-                    username:
-                        currentUser.username,
-
-                    score,
-                    hits,
-
-                    highestCombo
-                });
-
-            try{
-
-                navigator.sendBeacon(
-                    FUNCTION_URL,
-                    new Blob(
-                        [body],
-                        {
-                            type:
-                                "application/json"
-                        }
-                    )
-                );
-
-            }
-            catch{}
-
-        }
-
-    }
 );
 
 
@@ -2029,13 +2485,12 @@ window.addEventListener(
 
 renderLoginLeaderboard();
 
-renderLeaderboard();
-
 
 const savedUsername =
     localStorage.getItem(
         "apoyu_username"
     );
+
 
 if(savedUsername){
 
@@ -2049,4 +2504,5 @@ if(savedUsername){
 </script>
 
 </body>
+
 </html>
