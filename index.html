@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -39,9 +40,7 @@ input {
     padding: 25px 0 40px;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 .header {
     text-align: center;
@@ -61,39 +60,26 @@ input {
     font-size: 15px;
 }
 
-/* =========================
-   SOUND BUTTON
-========================= */
+/* SOUND */
 
 .sound-button {
     position: fixed;
     top: 18px;
     right: 18px;
-
     width: 52px;
     height: 52px;
-
     border-radius: 50%;
     border: 1px solid rgba(255,255,255,.15);
-
     background: rgba(15,23,42,.9);
     color: white;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     font-size: 24px;
-
     cursor: pointer;
-
     z-index: 100;
-
-    box-shadow:
-        0 8px 30px rgba(0,0,0,.35);
-
+    box-shadow: 0 8px 30px rgba(0,0,0,.35);
     backdrop-filter: blur(10px);
-
     padding: 0;
 }
 
@@ -105,32 +91,23 @@ input {
     transform: scale(.92);
 }
 
-/* =========================
-   NAME SCREEN
-========================= */
+/* NAME SCREEN */
 
 .name-screen {
     position: fixed;
     inset: 0;
-
     background:
         radial-gradient(
             circle at center,
             rgba(38,52,77,.95),
             rgba(3,7,18,.98)
         );
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     z-index: 90;
-
     padding: 20px;
-
-    transition:
-        opacity .3s ease,
-        visibility .3s ease;
+    transition: opacity .3s ease, visibility .3s ease;
 }
 
 .name-screen.hidden {
@@ -141,28 +118,17 @@ input {
 
 .name-box {
     width: min(460px, 94vw);
-
     text-align: center;
-
     padding: 35px 25px;
-
     border-radius: 24px;
-
     background: rgba(15,23,42,.9);
-
-    border:
-        1px solid rgba(255,255,255,.1);
-
-    box-shadow:
-        0 30px 100px rgba(0,0,0,.55);
+    border: 1px solid rgba(255,255,255,.1);
+    box-shadow: 0 30px 100px rgba(0,0,0,.55);
 }
 
 .name-box h2 {
     margin: 0 0 10px;
-
-    font-size:
-        clamp(32px, 8vw, 52px);
-
+    font-size: clamp(32px, 8vw, 52px);
     font-weight: 1000;
 }
 
@@ -174,36 +140,24 @@ input {
 
 .name-input {
     width: 100%;
-
     padding: 16px 18px;
-
-    border:
-        1px solid #374151;
-
+    border: 1px solid #374151;
     border-radius: 14px;
-
     background: #111827;
-
     color: white;
-
     outline: none;
-
     font-size: 18px;
-
     text-align: center;
 }
 
 .name-input:focus {
     border-color: #60a5fa;
-    box-shadow:
-        0 0 0 3px rgba(96,165,250,.12);
+    box-shadow: 0 0 0 3px rgba(96,165,250,.12);
 }
 
 .name-status {
     min-height: 24px;
-
     margin-top: 12px;
-
     font-size: 14px;
 }
 
@@ -219,188 +173,112 @@ input {
     color: #fbbf24;
 }
 
-/* =========================
-   GAME AREA
-========================= */
+/* GAME */
 
 .game-area {
     position: relative;
-
     min-height: 560px;
-
-    border:
-        1px solid rgba(255,255,255,.08);
-
+    border: 1px solid rgba(255,255,255,.08);
     border-radius: 24px;
-
     background:
         linear-gradient(
             rgba(255,255,255,.025),
             rgba(255,255,255,.01)
         );
-
-    box-shadow:
-        0 25px 80px rgba(0,0,0,.4);
-
+    box-shadow: 0 25px 80px rgba(0,0,0,.4);
     overflow: hidden;
 }
 
-/* =========================
-   STATS
-========================= */
+/* STATS */
 
 .stats {
     position: absolute;
-
     left: 20px;
     right: 20px;
     top: 18px;
-
     display: flex;
-
     justify-content: center;
-
     gap: 12px;
-
     flex-wrap: wrap;
-
     z-index: 5;
 }
 
 .stat {
     min-width: 120px;
-
     padding: 10px 15px;
-
     text-align: center;
-
     border-radius: 12px;
-
-    background:
-        rgba(15,23,42,.85);
-
-    border:
-        1px solid rgba(255,255,255,.08);
-
+    background: rgba(15,23,42,.85);
+    border: 1px solid rgba(255,255,255,.08);
     backdrop-filter: blur(10px);
 }
 
 .stat-label {
     display: block;
-
     font-size: 11px;
-
     color: #9ca3af;
-
     text-transform: uppercase;
-
     letter-spacing: 1px;
 }
 
 .stat-value {
     display: block;
-
     margin-top: 3px;
-
     font-size: 22px;
-
     font-weight: 900;
 }
 
-/* =========================
-   TARGET
-========================= */
+/* TARGET */
 
 .target-zone {
     position: absolute;
-
     left: 50%;
     top: 58%;
-
-    transform:
-        translate(-50%, -50%);
-
-    width:
-        min(380px, 80vw);
-
-    height:
-        400px;
-
+    transform: translate(-50%, -50%);
+    width: min(380px, 80vw);
+    height: 400px;
     display: flex;
-
     justify-content: center;
     align-items: center;
 }
 
 .target {
     position: relative;
-
-    width:
-        min(330px, 72vw);
-
-    height:
-        min(330px, 72vw);
-
+    width: min(330px, 72vw);
+    height: min(330px, 72vw);
     border-radius: 50%;
-
     overflow: hidden;
-
     cursor: pointer;
-
     user-select: none;
-
     touch-action: manipulation;
-
     background:
-        radial-gradient(
-            circle,
-            #374151,
-            #111827
-        );
-
-    border:
-        5px solid #374151;
-
+        radial-gradient(circle, #374151, #111827);
+    border: 5px solid #374151;
     box-shadow:
         0 30px 60px rgba(0,0,0,.5),
         inset 0 0 30px rgba(255,255,255,.08);
-
-    transition:
-        transform .07s;
+    transition: transform .07s;
 }
 
 .target img {
     position: absolute;
-
     inset: 0;
-
     width: 100%;
     height: 100%;
-
     object-fit: cover;
-
     pointer-events: none;
-
     user-select: none;
 }
 
 .target-placeholder {
     position: absolute;
-
     inset: 0;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     flex-direction: column;
-
     text-align: center;
-
     pointer-events: none;
-
     background:
         radial-gradient(
             circle at 35% 25%,
@@ -411,189 +289,131 @@ input {
 }
 
 .target-placeholder strong {
-    font-size:
-        clamp(28px, 7vw, 45px);
-
+    font-size: clamp(28px, 7vw, 45px);
     font-weight: 1000;
 }
 
 .target-placeholder span {
     margin-top: 8px;
-
     font-size: 12px;
-
     color: rgba(255,255,255,.55);
 }
 
 .target.hit {
-    animation:
-        punch .12s linear;
+    animation: punch .12s linear;
 }
 
 @keyframes punch {
-
     0% {
-        transform:
-            scale(1)
-            rotate(0deg);
+        transform: scale(1) rotate(0deg);
     }
 
     35% {
-        transform:
-            scale(.94)
-            rotate(-3deg);
+        transform: scale(.94) rotate(-3deg);
     }
 
     70% {
-        transform:
-            scale(1.05)
-            rotate(3deg);
+        transform: scale(1.05) rotate(3deg);
     }
 
     100% {
-        transform:
-            scale(1)
-            rotate(0deg);
+        transform: scale(1) rotate(0deg);
     }
 }
 
-/* =========================
-   COMBO
-========================= */
+/* COMBO */
 
 .combo {
     position: absolute;
-
     left: 50%;
     top: 34%;
-
-    transform:
-        translate(-50%, -50%)
-        scale(.8);
-
-    font-size:
-        clamp(28px, 7vw, 55px);
-
+    transform: translate(-50%, -50%) scale(.8);
+    font-size: clamp(28px, 7vw, 55px);
     font-weight: 1000;
-
     color: #fbbf24;
-
-    text-shadow:
-        0 0 25px rgba(251,191,36,.45);
-
+    text-shadow: 0 0 25px rgba(251,191,36,.45);
     opacity: 0;
-
     pointer-events: none;
-
     z-index: 10;
 }
 
 .combo.show {
-    animation:
-        comboPop .25s ease-out forwards;
+    animation: comboPop .25s ease-out forwards;
 }
 
 @keyframes comboPop {
-
     0% {
         opacity: 0;
-
-        transform:
-            translate(-50%, -50%)
-            scale(.5);
+        transform: translate(-50%, -50%) scale(.5);
     }
 
     60% {
         opacity: 1;
-
-        transform:
-            translate(-50%, -50%)
-            scale(1.15);
+        transform: translate(-50%, -50%) scale(1.15);
     }
 
     100% {
         opacity: 1;
-
-        transform:
-            translate(-50%, -50%)
-            scale(1);
+        transform: translate(-50%, -50%) scale(1);
     }
 }
 
-/* =========================
-   FLOATING SCORE
-========================= */
+/* FLOATING SCORE */
 
 .floating-score {
     position: absolute;
-
     font-size: 24px;
-
     font-weight: 1000;
-
     color: #86efac;
-
     pointer-events: none;
-
     z-index: 20;
-
-    animation:
-        floatScore .8s ease-out forwards;
+    animation: floatScore .8s ease-out forwards;
 }
 
 @keyframes floatScore {
-
     0% {
         opacity: 1;
-
-        transform:
-            translate(-50%, 0)
-            scale(1);
+        transform: translate(-50%, 0) scale(1);
     }
 
     100% {
         opacity: 0;
-
-        transform:
-            translate(-50%, -90px)
-            scale(1.3);
+        transform: translate(-50%, -90px) scale(1.3);
     }
 }
 
-/* =========================
-   LEADERBOARD
-========================= */
+/* LEADERBOARD */
 
 .leaderboard {
     margin-top: 22px;
-
     border-radius: 20px;
-
-    background:
-        rgba(15,23,42,.85);
-
-    border:
-        1px solid rgba(255,255,255,.08);
-
+    background: rgba(15,23,42,.85);
+    border: 1px solid rgba(255,255,255,.08);
     overflow: hidden;
 }
 
 .leaderboard-header {
     padding: 20px;
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     gap: 10px;
 }
 
 .leaderboard-header h2 {
     margin: 0;
-
     font-size: 22px;
+}
+
+.refresh-button {
+    background: #374151;
+    font-size: 12px;
+    padding: 9px 12px;
+    border: 0;
+    border-radius: 10px;
+    color: white;
+    font-weight: 800;
+    cursor: pointer;
 }
 
 .table {
@@ -602,26 +422,15 @@ input {
 
 .row {
     display: grid;
-
-    grid-template-columns:
-        60px
-        1fr
-        120px
-        100px;
-
+    grid-template-columns: 60px 1fr 120px 100px;
     padding: 13px 20px;
-
-    border-top:
-        1px solid rgba(255,255,255,.06);
-
+    border-top: 1px solid rgba(255,255,255,.06);
     align-items: center;
 }
 
-.row.header-row {
+.header-row {
     color: #9ca3af;
-
     font-size: 12px;
-
     text-transform: uppercase;
 }
 
@@ -631,50 +440,33 @@ input {
 
 .score {
     font-weight: 900;
-
     text-align: right;
 }
 
 .combo-score {
     text-align: right;
-
     color: #fbbf24;
-
     font-weight: 800;
 }
 
 .empty {
     padding: 30px;
-
     text-align: center;
-
     color: #9ca3af;
 }
 
-/* =========================
-   OVERLAY
-========================= */
+/* OVERLAY */
 
 .overlay {
     position: absolute;
-
     inset: 0;
-
-    background:
-        rgba(3,7,18,.78);
-
-    backdrop-filter:
-        blur(7px);
-
+    background: rgba(3,7,18,.78);
+    backdrop-filter: blur(7px);
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     z-index: 30;
-
     text-align: center;
-
     padding: 20px;
 }
 
@@ -687,95 +479,75 @@ input {
 }
 
 .overlay h2 {
-    font-size:
-        clamp(28px, 7vw, 48px);
-
+    font-size: clamp(28px, 7vw, 48px);
     margin: 0 0 10px;
 }
 
 .overlay p {
     color: #aeb9ca;
-
     line-height: 1.6;
 }
 
-/* =========================
-   FINISH BUTTON
-========================= */
+.new-game-button {
+    border: 0;
+    border-radius: 12px;
+    padding: 14px 22px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    color: white;
+    background: #16a34a;
+}
+
+/* FINISH */
 
 .finish-button {
     position: absolute;
-
     bottom: 18px;
-
     left: 50%;
-
-    transform:
-        translateX(-50%);
-
+    transform: translateX(-50%);
     z-index: 20;
-
-    padding:
-        12px 20px;
-
+    padding: 12px 20px;
     border: 0;
-
     border-radius: 12px;
-
     background: #dc2626;
-
     color: white;
-
     font-size: 14px;
-
     font-weight: 900;
-
     cursor: pointer;
-
     display: none;
 }
 
-/* =========================
-   SHAKE
-========================= */
+/* SHAKE */
 
 .shake {
-    animation:
-        shake .16s linear;
+    animation: shake .16s linear;
 }
 
 @keyframes shake {
-
     0%,100% {
-        transform:
-            translate(0);
+        transform: translate(0);
     }
 
     25% {
-        transform:
-            translate(-5px,3px);
+        transform: translate(-5px,3px);
     }
 
     50% {
-        transform:
-            translate(5px,-3px);
+        transform: translate(5px,-3px);
     }
 
     75% {
-        transform:
-            translate(-3px,-2px);
+        transform: translate(-3px,-2px);
     }
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media (max-width: 600px) {
 
     .container {
         width: 96%;
-
         padding-top: 15px;
     }
 
@@ -785,22 +557,18 @@ input {
 
     .game-area {
         min-height: 570px;
-
         border-radius: 18px;
     }
 
     .stats {
         top: 12px;
-
         left: 8px;
         right: 8px;
-
         gap: 6px;
     }
 
     .stat {
         min-width: 78px;
-
         padding: 8px;
     }
 
@@ -813,18 +581,11 @@ input {
     }
 
     .row {
-        grid-template-columns:
-            45px
-            1fr
-            90px;
-
+        grid-template-columns: 45px 1fr 90px;
         padding: 12px;
     }
 
-    .row .combo-score {
-        display: none;
-    }
-
+    .row .combo-score,
     .header-row .combo-score {
         display: none;
     }
@@ -832,10 +593,8 @@ input {
     .sound-button {
         width: 46px;
         height: 46px;
-
         top: 12px;
         right: 12px;
-
         font-size: 21px;
     }
 }
@@ -867,12 +626,15 @@ input {
 
         <h2>🥊</h2>
 
-        <h2>APOYU<br>GİYDİRMECE</h2>
+        <h2>
+            APOYU<br>
+            GİYDİRMECE
+        </h2>
 
         <p>
             Oyuna başlamak için ismini gir.
             <br>
-            İsmini yazdığın anda oyun başlayacak.
+            İsmini yazdığında oyun başlayacak.
         </p>
 
         <input
@@ -1003,14 +765,8 @@ input {
                 aria-label="Oyunun hedefi"
             >
 
-                <!--
-                    DAHA SONRA BURAYA FOTOĞRAF KOYABİLİRSİN.
-
-                    Örnek:
-
-                    <img src="apo.jpg">
-
-                    Şimdilik placeholder kullanılıyor.
+                <!-- Fotoğraf eklemek istersen:
+                <img src="apo.jpg" alt="Apo">
                 -->
 
                 <div class="target-placeholder">
@@ -1055,16 +811,7 @@ input {
 
                 <button
                     id="newGameButton"
-                    style="
-                        border:0;
-                        border-radius:12px;
-                        padding:14px 22px;
-                        font-size:16px;
-                        font-weight:800;
-                        cursor:pointer;
-                        color:white;
-                        background:#16a34a;
-                    "
+                    class="new-game-button"
                 >
                     YENİ OYUNCU
                 </button>
@@ -1088,16 +835,7 @@ input {
 
             <button
                 id="refreshScores"
-                style="
-                    background:#374151;
-                    font-size:12px;
-                    padding:9px 12px;
-                    border:0;
-                    border-radius:10px;
-                    color:white;
-                    font-weight:800;
-                    cursor:pointer;
-                "
+                class="refresh-button"
             >
                 YENİLE
             </button>
@@ -1138,11 +876,11 @@ input {
 
 
 <script>
+
 /* =========================================================
    SUPABASE
 ========================================================= */
-const API_URL =
-    "https://sqotorneqppbwsmnyxmy.supabase.co/functions/v1/swift-service";
+
 const SUPABASE_FUNCTION_URL =
     "https://sqotorneqppbwsmnyxmy.supabase.co/functions/v1/swift-service";
 
@@ -1154,20 +892,53 @@ const SUPABASE_KEY =
    ELEMENTLER
 ========================================================= */
 
-const playerName = document.getElementById("playerName");
-const startBtn = document.getElementById("startBtn");
-const finishBtn = document.getElementById("finishBtn");
-const overlay = document.getElementById("overlay");
-const bag = document.getElementById("bag");
-const gameArea = document.getElementById("gameArea");
+const playerName =
+    document.getElementById("playerName");
 
-const scoreElement = document.getElementById("score");
-const hitsElement = document.getElementById("hits");
-const comboElement = document.getElementById("comboValue");
-const bestElement = document.getElementById("best");
+const nameScreen =
+    document.getElementById("nameScreen");
 
-const comboText = document.getElementById("comboText");
-const leaderboardRows = document.getElementById("leaderboardRows");
+const nameStatus =
+    document.getElementById("nameStatus");
+
+const finishButton =
+    document.getElementById("finishButton");
+
+const overlay =
+    document.getElementById("overlay");
+
+const newGameButton =
+    document.getElementById("newGameButton");
+
+const target =
+    document.getElementById("target");
+
+const gameArea =
+    document.getElementById("gameArea");
+
+const scoreElement =
+    document.getElementById("score");
+
+const hitsElement =
+    document.getElementById("hits");
+
+const comboElement =
+    document.getElementById("comboValue");
+
+const bestElement =
+    document.getElementById("best");
+
+const comboText =
+    document.getElementById("comboText");
+
+const leaderboardRows =
+    document.getElementById("leaderboardRows");
+
+const refreshScores =
+    document.getElementById("refreshScores");
+
+const soundButton =
+    document.getElementById("soundButton");
 
 
 /* =========================================================
@@ -1176,12 +947,16 @@ const leaderboardRows = document.getElementById("leaderboardRows");
 
 let gameStarted = false;
 
+let currentPlayerName = "";
+
 let score = 0;
 let hits = 0;
 let combo = 0;
 let highestCombo = 0;
 
 let lastHitTime = 0;
+
+let nameInputTimer = null;
 
 const COMBO_TIMEOUT = 900;
 
@@ -1196,19 +971,28 @@ let soundEnabled = true;
 function initAudio() {
 
     if (!audioContext) {
+
         audioContext =
-            new (window.AudioContext ||
-                window.webkitAudioContext)();
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
     }
 
-    if (audioContext.state === "suspended") {
+    if (
+        audioContext.state === "suspended"
+    ) {
+
         audioContext.resume();
     }
 }
 
+
 function punchSound(critical = false) {
 
-    if (!soundEnabled) return;
+    if (!soundEnabled) {
+        return;
+    }
 
     initAudio();
 
@@ -1219,10 +1003,15 @@ function punchSound(critical = false) {
         audioContext.createGain();
 
     oscillator.connect(gain);
-    gain.connect(audioContext.destination);
+
+    gain.connect(
+        audioContext.destination
+    );
 
     oscillator.type =
-        critical ? "square" : "sine";
+        critical
+            ? "square"
+            : "sine";
 
     oscillator.frequency.setValueAtTime(
         critical ? 180 : 110,
@@ -1256,76 +1045,72 @@ function punchSound(critical = false) {
    SES BUTONU
 ========================================================= */
 
-const soundButton =
-    document.createElement("button");
+soundButton.addEventListener(
+    "click",
+    () => {
 
-soundButton.id = "soundButton";
+        soundEnabled =
+            !soundEnabled;
 
-soundButton.innerHTML = "🔊";
+        soundButton.textContent =
+            soundEnabled
+                ? "🔊"
+                : "🔇";
 
-soundButton.title = "Sesi aç / kapat";
-
-soundButton.style.position = "fixed";
-soundButton.style.top = "15px";
-soundButton.style.right = "15px";
-soundButton.style.width = "48px";
-soundButton.style.height = "48px";
-soundButton.style.padding = "0";
-soundButton.style.borderRadius = "50%";
-soundButton.style.background = "rgba(15,23,42,.9)";
-soundButton.style.border =
-    "1px solid rgba(255,255,255,.15)";
-soundButton.style.fontSize = "21px";
-soundButton.style.zIndex = "9999";
-soundButton.style.cursor = "pointer";
-
-document.body.appendChild(soundButton);
-
-soundButton.addEventListener("click", () => {
-
-    soundEnabled = !soundEnabled;
-
-    soundButton.innerHTML =
-        soundEnabled ? "🔊" : "🔇";
-
-    if (soundEnabled) {
-        initAudio();
+        if (soundEnabled) {
+            initAudio();
+        }
     }
-});
+);
 
 
 /* =========================================================
    SUPABASE İSTEĞİ
 ========================================================= */
 
-async function supabaseRequest(action, data = {}) {
+async function supabaseRequest(
+    action,
+    data = {}
+) {
 
-    const response = await fetch(
-        SUPABASE_FUNCTION_URL,
-        {
-            method: "POST",
+    const response =
+        await fetch(
+            SUPABASE_FUNCTION_URL,
+            {
+                method: "POST",
 
-            headers: {
-                "Content-Type": "application/json",
-                "apikey": SUPABASE_KEY,
-                "Authorization":
-                    "Bearer " + SUPABASE_KEY
-            },
+                headers: {
+                    "Content-Type":
+                        "application/json",
 
-            body: JSON.stringify({
-                action,
-                ...data
-            })
-        }
-    );
+                    "apikey":
+                        SUPABASE_KEY,
 
-    const text = await response.text();
+                    "Authorization":
+                        "Bearer " +
+                        SUPABASE_KEY
+                },
+
+                body:
+                    JSON.stringify({
+                        action,
+                        ...data
+                    })
+            }
+        );
+
+    const text =
+        await response.text();
 
     let result;
 
     try {
-        result = JSON.parse(text);
+
+        result =
+            JSON.parse(text);
+
     } catch {
+
         throw new Error(
             "Sunucudan geçersiz cevap geldi: " +
             text
@@ -1333,8 +1118,10 @@ async function supabaseRequest(action, data = {}) {
     }
 
     if (!response.ok) {
+
         throw new Error(
             result.error ||
+            result.message ||
             "Sunucu isteği başarısız."
         );
     }
@@ -1347,7 +1134,9 @@ async function supabaseRequest(action, data = {}) {
    İSİM KONTROLÜ
 ========================================================= */
 
-async function checkPlayerName(name) {
+async function checkPlayerName(
+    name
+) {
 
     try {
 
@@ -1355,23 +1144,37 @@ async function checkPlayerName(name) {
             await supabaseRequest(
                 "check_name",
                 {
-                    name
+                    name: name
                 }
             );
 
-        return result.available === true;
+        if (
+            result.available === true
+        ) {
+
+            return true;
+        }
+
+        nameStatus.textContent =
+            "❌ Bu isim daha önce kullanılmış.";
+
+        nameStatus.className =
+            "name-status error";
+
+        return false;
 
     } catch (error) {
 
         console.error(
-            "İsim kontrolü:",
+            "İsim kontrol hatası:",
             error
         );
 
-        alert(
-            "⚠️ Sunucuya bağlanılamadı.\n\n" +
-            "Supabase bağlantısını kontrol et."
-        );
+        nameStatus.textContent =
+            "⚠️ Sunucuya bağlanılamadı.";
+
+        nameStatus.className =
+            "name-status error";
 
         return false;
     }
@@ -1384,59 +1187,58 @@ async function checkPlayerName(name) {
 
 async function startGame() {
 
+    if (gameStarted) {
+        return;
+    }
+
     const name =
         playerName.value.trim();
 
     if (!name) {
-
-        playerName.focus();
-
         return;
     }
 
     if (name.length < 2) {
 
-        alert(
-            "İsim en az 2 karakter olmalı."
-        );
+        nameStatus.textContent =
+            "İsim en az 2 karakter olmalı.";
+
+        nameStatus.className =
+            "name-status error";
 
         return;
     }
 
     if (name.length > 20) {
 
-        alert(
-            "İsim en fazla 20 karakter olabilir."
-        );
+        nameStatus.textContent =
+            "İsim en fazla 20 karakter olabilir.";
+
+        nameStatus.className =
+            "name-status error";
 
         return;
     }
 
+    nameStatus.textContent =
+        "İsim kontrol ediliyor...";
 
-    startBtn.disabled = true;
-    startBtn.textContent = "KONTROL EDİLİYOR...";
+    nameStatus.className =
+        "name-status loading";
 
+    playerName.disabled = true;
 
     const available =
         await checkPlayerName(name);
 
-
-    startBtn.disabled = false;
-    startBtn.textContent = "OYUNA BAŞLA";
-
-
     if (!available) {
 
-        alert(
-            "❌ Bu isim daha önce kullanılmış.\n\n" +
-            "Başka bir isim seç."
-        );
-
-        playerName.focus();
+        playerName.disabled = false;
 
         return;
     }
 
+    currentPlayerName = name;
 
     initAudio();
 
@@ -1450,20 +1252,26 @@ async function startGame() {
 
     updateStats();
 
-    /*
-       İsim alanı ve başlatma butonu kayboluyor.
-    */
+    nameStatus.textContent =
+        "✓ Hazır!";
 
-    playerName.style.display = "none";
-    startBtn.style.display = "none";
+    nameStatus.className =
+        "name-status success";
 
-    finishBtn.style.display = "inline-block";
+    setTimeout(() => {
 
-    overlay.classList.add("hidden");
+        nameScreen.classList.add(
+            "hidden"
+        );
 
-    /*
-       Üst başlığa oyuncunun ismini göster.
-    */
+    }, 200);
+
+    finishButton.style.display =
+        "inline-block";
+
+    overlay.classList.add(
+        "hidden"
+    );
 
     const oldPlayer =
         document.getElementById(
@@ -1475,7 +1283,9 @@ async function startGame() {
     }
 
     const playerLabel =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
     playerLabel.id =
         "currentPlayer";
@@ -1516,30 +1326,29 @@ async function startGame() {
 
 async function finishGame() {
 
-    if (!gameStarted) return;
+    if (!gameStarted) {
+        return;
+    }
 
     gameStarted = false;
 
-    finishBtn.style.display = "none";
+    finishButton.disabled =
+        true;
 
-    playerName.style.display = "block";
-    startBtn.style.display = "inline-block";
-
-    playerName.disabled = false;
+    finishButton.textContent =
+        "KAYDEDİLİYOR...";
 
     try {
-
-        finishBtn.textContent =
-            "KAYDEDİLİYOR...";
-
-        finishBtn.disabled = true;
 
         const result =
             await supabaseRequest(
                 "submit_score",
                 {
                     name:
-                        playerName.value.trim(),
+                        currentPlayerName,
+
+                    score:
+                        score,
 
                     hits:
                         hits,
@@ -1557,7 +1366,7 @@ async function finishGame() {
     } catch (error) {
 
         console.error(
-            "Skor kaydetme:",
+            "Skor kaydetme hatası:",
             error
         );
 
@@ -1567,11 +1376,14 @@ async function finishGame() {
         );
     }
 
-    finishBtn.disabled = false;
-    finishBtn.textContent =
+    finishButton.disabled =
+        false;
+
+    finishButton.textContent =
         "OYUNU BİTİR";
 
-    playerName.value = "";
+    finishButton.style.display =
+        "none";
 
     combo = 0;
 
@@ -1579,37 +1391,53 @@ async function finishGame() {
 
     await renderLeaderboard();
 
-    overlay.classList.remove(
-        "hidden"
-    );
+    const finalScore =
+        score.toLocaleString(
+            "tr-TR"
+        );
 
     overlay.innerHTML = `
+
         <div class="overlay-box">
 
-            <h2>🏆 Oyun Bitti!</h2>
+            <h2>
+                🏆 Oyun Bitti!
+            </h2>
 
             <p>
                 Toplam skor:
                 <strong>
-                    ${score.toLocaleString("tr-TR")}
+                    ${finalScore}
                 </strong>
             </p>
 
             <p>
                 Vuruş:
-                <strong>${hits}</strong>
+                <strong>
+                    ${hits}
+                </strong>
+
                 <br>
+
                 En yüksek combo:
-                <strong>x${highestCombo}</strong>
+                <strong>
+                    x${highestCombo}
+                </strong>
             </p>
 
-            <p>
-                Yeni oyun için yukarıdan
-                yeni bir isim gir.
-            </p>
+            <button
+                id="newGameButton"
+                class="new-game-button"
+            >
+                YENİ OYUNCU
+            </button>
 
         </div>
     `;
+
+    overlay.classList.remove(
+        "hidden"
+    );
 
     const currentPlayer =
         document.getElementById(
@@ -1619,6 +1447,53 @@ async function finishGame() {
     if (currentPlayer) {
         currentPlayer.remove();
     }
+
+    currentPlayerName = "";
+
+    playerName.disabled =
+        false;
+
+    playerName.value = "";
+
+    nameStatus.textContent =
+        "";
+
+    const newButton =
+        document.getElementById(
+            "newGameButton"
+        );
+
+    newButton.addEventListener(
+        "click",
+        newGame
+    );
+}
+
+
+/* =========================================================
+   YENİ OYUNCU
+========================================================= */
+
+function newGame() {
+
+    overlay.classList.add(
+        "hidden"
+    );
+
+    nameScreen.classList.remove(
+        "hidden"
+    );
+
+    playerName.disabled =
+        false;
+
+    playerName.value =
+        "";
+
+    nameStatus.textContent =
+        "";
+
+    playerName.focus();
 }
 
 
@@ -1626,9 +1501,11 @@ async function finishGame() {
    TORBAYA VURMA
 ========================================================= */
 
-function hitBag(event) {
+function hitTarget(event) {
 
-    if (!gameStarted) return;
+    if (!gameStarted) {
+        return;
+    }
 
     event.preventDefault();
 
@@ -1639,8 +1516,11 @@ function hitBag(event) {
         now - lastHitTime <=
         COMBO_TIMEOUT
     ) {
+
         combo++;
+
     } else {
+
         combo = 1;
     }
 
@@ -1648,26 +1528,33 @@ function hitBag(event) {
 
     hits++;
 
-    if (combo > highestCombo) {
-        highestCombo = combo;
-    }
+    if (
+        combo >
+        highestCombo
+    ) {
 
+        highestCombo =
+            combo;
+    }
 
     let multiplier = 1;
 
     if (combo >= 30) {
+
         multiplier = 5;
-    }
-    else if (combo >= 20) {
+
+    } else if (combo >= 20) {
+
         multiplier = 4;
-    }
-    else if (combo >= 10) {
+
+    } else if (combo >= 10) {
+
         multiplier = 3;
-    }
-    else if (combo >= 5) {
+
+    } else if (combo >= 5) {
+
         multiplier = 2;
     }
-
 
     const critical =
         Math.random() < 0.07;
@@ -1683,9 +1570,11 @@ function hitBag(event) {
 
     updateStats();
 
-    animateBag();
+    animateTarget();
 
-    punchSound(critical);
+    punchSound(
+        critical
+    );
 
     showFloatingScore(
         event,
@@ -1703,13 +1592,17 @@ function hitBag(event) {
    ANİMASYON
 ========================================================= */
 
-function animateBag() {
+function animateTarget() {
 
-    bag.classList.remove("hit");
+    target.classList.remove(
+        "hit"
+    );
 
-    void bag.offsetWidth;
+    void target.offsetWidth;
 
-    bag.classList.add("hit");
+    target.classList.add(
+        "hit"
+    );
 
     gameArea.classList.remove(
         "shake"
@@ -1740,6 +1633,10 @@ function showCombo() {
 }
 
 
+/* =========================================================
+   FLOATING SCORE
+========================================================= */
+
 function showFloatingScore(
     event,
     points,
@@ -1766,7 +1663,8 @@ function showFloatingScore(
     let y;
 
     if (
-        event.clientX !== undefined
+        event.clientX !== undefined &&
+        event.clientX !== 0
     ) {
 
         x =
@@ -1779,18 +1677,18 @@ function showFloatingScore(
 
     } else {
 
-        const bagRect =
-            bag.getBoundingClientRect();
+        const targetRect =
+            target.getBoundingClientRect();
 
         x =
-            bagRect.left -
+            targetRect.left -
             rect.left +
-            bagRect.width / 2;
+            targetRect.width / 2;
 
         y =
-            bagRect.top -
+            targetRect.top -
             rect.top +
-            bagRect.height / 2;
+            targetRect.height / 2;
     }
 
     floating.style.left =
@@ -1800,6 +1698,7 @@ function showFloatingScore(
         `${y}px`;
 
     if (critical) {
+
         floating.style.color =
             "#fbbf24";
     }
@@ -1809,7 +1708,13 @@ function showFloatingScore(
     );
 
     setTimeout(
-        () => floating.remove(),
+        () => {
+
+            if (floating.parentNode) {
+                floating.remove();
+            }
+
+        },
         800
     );
 }
@@ -1822,7 +1727,9 @@ function showFloatingScore(
 function updateStats() {
 
     scoreElement.textContent =
-        score.toLocaleString("tr-TR");
+        score.toLocaleString(
+            "tr-TR"
+        );
 
     hitsElement.textContent =
         hits;
@@ -1865,14 +1772,12 @@ async function renderLeaderboard() {
             return;
         }
 
-
         bestElement.textContent =
             Number(
                 scores[0].score
             ).toLocaleString(
                 "tr-TR"
             );
-
 
         scores.forEach(
             (item, index) => {
@@ -1887,17 +1792,20 @@ async function renderLeaderboard() {
 
                 let medal = "";
 
-                if (index === 0)
+                if (index === 0) {
                     medal = "🥇";
+                }
 
-                if (index === 1)
+                if (index === 1) {
                     medal = "🥈";
+                }
 
-                if (index === 2)
+                if (index === 2) {
                     medal = "🥉";
-
+                }
 
                 row.innerHTML = `
+
                     <div class="rank">
                         ${medal || index + 1}
                     </div>
@@ -1917,8 +1825,11 @@ async function renderLeaderboard() {
                     </div>
 
                     <div class="combo-score">
-                        x${item.highest_combo}
+                        x${Number(
+                            item.highest_combo || 0
+                        )}
                     </div>
+
                 `;
 
                 leaderboardRows.appendChild(
@@ -1930,14 +1841,20 @@ async function renderLeaderboard() {
     } catch (error) {
 
         console.error(
-            "Leaderboard:",
+            "Leaderboard hatası:",
             error
         );
 
         leaderboardRows.innerHTML = `
+
             <div class="empty">
                 ⚠️ Skor tablosuna bağlanılamadı.
+                <br><br>
+                ${escapeHtml(
+                    error.message
+                )}
             </div>
+
         `;
     }
 }
@@ -1977,25 +1894,25 @@ function escapeHtml(text) {
    EVENTLER
 ========================================================= */
 
-startBtn.addEventListener(
-    "click",
-    startGame
-);
-
-finishBtn.addEventListener(
+finishButton.addEventListener(
     "click",
     finishGame
 );
 
-bag.addEventListener(
+target.addEventListener(
     "pointerdown",
-    hitBag
+    hitTarget
+);
+
+refreshScores.addEventListener(
+    "click",
+    renderLeaderboard
 );
 
 
-/*
-   Enter ile başla
-*/
+/* =========================================================
+   ENTER İLE BAŞLAT
+========================================================= */
 
 playerName.addEventListener(
     "keydown",
@@ -2004,34 +1921,77 @@ playerName.addEventListener(
         if (
             event.key === "Enter"
         ) {
+
+            clearTimeout(
+                nameInputTimer
+            );
+
             startGame();
         }
     }
 );
 
 
-/*
-   Combo sıfırlama
-*/
+/* =========================================================
+   İSİM YAZILDIKTAN SONRA OTOMATİK BAŞLAT
+========================================================= */
 
-setInterval(() => {
+playerName.addEventListener(
+    "input",
+    () => {
 
-    if (!gameStarted) return;
+        clearTimeout(
+            nameInputTimer
+        );
 
-    if (
-        lastHitTime &&
-        performance.now() -
-            lastHitTime >
-            COMBO_TIMEOUT
-    ) {
+        nameStatus.textContent =
+            "";
 
-        combo = 0;
+        if (
+            playerName.value.trim().length >= 2
+        ) {
 
-        comboElement.textContent =
-            "x0";
+            nameInputTimer =
+                setTimeout(
+                    () => {
+
+                        startGame();
+
+                    },
+                    700
+                );
+        }
     }
+);
 
-}, 100);
+
+/* =========================================================
+   COMBO SIFIRLAMA
+========================================================= */
+
+setInterval(
+    () => {
+
+        if (!gameStarted) {
+            return;
+        }
+
+        if (
+            lastHitTime &&
+            performance.now() -
+                lastHitTime >
+                COMBO_TIMEOUT
+        ) {
+
+            combo = 0;
+
+            comboElement.textContent =
+                "x0";
+        }
+
+    },
+    100
+);
 
 
 /* =========================================================
@@ -2046,3 +2006,4 @@ updateStats();
 
 </body>
 </html>
+```
