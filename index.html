@@ -8,6 +8,7 @@
 <title>APOYU GİYDİRMECE</title>
 
 <style>
+
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
@@ -19,14 +20,21 @@ body {
     padding: 0;
     min-height: 100%;
     font-family: Arial, Helvetica, sans-serif;
+
     background:
-        radial-gradient(circle at top, #26344d 0%, #111827 45%, #070b12 100%);
+        radial-gradient(
+            circle at top,
+            #26344d 0%,
+            #111827 45%,
+            #070b12 100%
+        );
+
     color: white;
-    overflow-x: hidden;
 }
 
 body {
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 button,
@@ -34,130 +42,329 @@ input {
     font-family: inherit;
 }
 
-.container {
-    width: min(1100px, 94%);
-    margin: auto;
-    padding: 25px 0 40px;
+button {
+    cursor: pointer;
 }
 
-/* HEADER */
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container {
+
+    width: min(1100px, 94%);
+
+    margin: auto;
+
+    padding:
+        25px
+        0
+        40px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
 
 .header {
+
     text-align: center;
+
     margin-bottom: 20px;
 }
 
 .header h1 {
+
     margin: 0;
-    font-size: clamp(30px, 6vw, 54px);
+
+    font-size:
+        clamp(30px, 6vw, 54px);
+
     font-weight: 900;
+
     letter-spacing: -2px;
 }
 
 .header p {
-    margin: 8px 0 0;
+
+    margin:
+        8px
+        0
+        0;
+
     color: #aeb9ca;
+
     font-size: 15px;
 }
 
-/* SOUND */
+
+/* =========================================================
+   SOUND BUTTON
+========================================================= */
 
 .sound-button {
+
     position: fixed;
+
     top: 18px;
     right: 18px;
+
     width: 52px;
     height: 52px;
+
     border-radius: 50%;
-    border: 1px solid rgba(255,255,255,.15);
-    background: rgba(15,23,42,.9);
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    background:
+        rgba(15,23,42,.9);
+
     color: white;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     font-size: 24px;
-    cursor: pointer;
+
     z-index: 100;
-    box-shadow: 0 8px 30px rgba(0,0,0,.35);
-    backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 8px 30px
+        rgba(0,0,0,.35);
+
+    backdrop-filter:
+        blur(10px);
+
     padding: 0;
 }
 
-.sound-button:hover {
-    filter: brightness(1.15);
-}
-
 .sound-button:active {
+
     transform: scale(.92);
 }
 
-/* NAME SCREEN */
+
+/* =========================================================
+   NAME SCREEN
+========================================================= */
 
 .name-screen {
+
     position: fixed;
+
     inset: 0;
+
     background:
+
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(59,130,246,.13),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(168,85,247,.12),
+            transparent 35%
+        ),
+
         radial-gradient(
             circle at center,
-            rgba(38,52,77,.95),
-            rgba(3,7,18,.98)
+            #26344d 0%,
+            #080d18 75%
         );
+
     display: flex;
-    align-items: center;
+
+    align-items: flex-start;
+
     justify-content: center;
+
+    overflow-y: auto;
+
     z-index: 90;
-    padding: 20px;
-    transition: opacity .3s ease, visibility .3s ease;
+
+    padding:
+        35px
+        20px;
+
+    transition:
+        opacity .3s ease,
+        visibility .3s ease;
 }
 
 .name-screen.hidden {
+
     opacity: 0;
+
     visibility: hidden;
+
     pointer-events: none;
 }
 
+
+/* =========================================================
+   NAME PAGE
+========================================================= */
+
+.name-page {
+
+    width:
+        min(1050px, 100%);
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(320px, 430px)
+        1fr;
+
+    gap: 25px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   NAME BOX
+========================================================= */
+
 .name-box {
-    width: min(460px, 94vw);
+
     text-align: center;
-    padding: 35px 25px;
-    border-radius: 24px;
-    background: rgba(15,23,42,.9);
-    border: 1px solid rgba(255,255,255,.1);
-    box-shadow: 0 30px 100px rgba(0,0,0,.55);
+
+    padding:
+        35px 28px;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30,41,59,.96),
+            rgba(15,23,42,.94)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.10);
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.55);
+
+    backdrop-filter:
+        blur(20px);
+
+    position: sticky;
+
+    top: 20px;
+}
+
+.name-logo {
+
+    font-size: 65px;
+
+    margin-bottom: 5px;
+
+    filter:
+        drop-shadow(
+            0 10px 20px
+            rgba(0,0,0,.35)
+        );
 }
 
 .name-box h2 {
-    margin: 0 0 10px;
-    font-size: clamp(32px, 8vw, 52px);
+
+    margin:
+        0 0 12px;
+
+    font-size:
+        clamp(30px, 7vw, 48px);
+
+    line-height: .95;
+
     font-weight: 1000;
+
+    letter-spacing:
+        -2px;
 }
 
-.name-box p {
+.name-box .subtitle {
+
     color: #aeb9ca;
+
     line-height: 1.6;
-    margin-bottom: 25px;
+
+    margin:
+        0 0 25px;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.input-wrapper {
+
+    position: relative;
 }
 
 .name-input {
+
     width: 100%;
-    padding: 16px 18px;
-    border: 1px solid #374151;
-    border-radius: 14px;
-    background: #111827;
+
+    padding:
+        17px 18px;
+
+    border:
+        1px solid
+        #374151;
+
+    border-radius: 15px;
+
+    background:
+        #0b1220;
+
     color: white;
+
     outline: none;
+
     font-size: 18px;
+
     text-align: center;
+
+    transition:
+        .2s;
+}
+
+.name-input::placeholder {
+
+    color:
+        #64748b;
 }
 
 .name-input:focus {
-    border-color: #60a5fa;
-    box-shadow: 0 0 0 3px rgba(96,165,250,.12);
+
+    border-color:
+        #60a5fa;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(96,165,250,.10);
 }
 
 .name-status {
+
     min-height: 24px;
+
     margin-top: 12px;
+
     font-size: 14px;
 }
 
@@ -173,112 +380,635 @@ input {
     color: #fbbf24;
 }
 
-/* GAME */
+
+/* =========================================================
+   START INFO
+========================================================= */
+
+.start-info {
+
+    margin-top: 22px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 8px;
+}
+
+.info-card {
+
+    padding:
+        11px 6px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+}
+
+.info-card strong {
+
+    display: block;
+
+    font-size: 18px;
+}
+
+.info-card span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   WELCOME MESSAGE
+========================================================= */
+
+.welcome-message {
+
+    margin-top: 18px;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   LOGIN LEADERBOARD
+========================================================= */
+
+.start-leaderboard {
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30,41,59,.94),
+            rgba(15,23,42,.94)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.09);
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.45);
+
+    overflow: hidden;
+
+    backdrop-filter:
+        blur(20px);
+}
+
+
+/* =========================================================
+   LEADERBOARD TOP
+========================================================= */
+
+.start-leaderboard-header {
+
+    padding:
+        22px 24px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.07);
+}
+
+.start-leaderboard-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.start-leaderboard-title .cup {
+
+    font-size: 28px;
+}
+
+.start-leaderboard-title h2 {
+
+    margin: 0;
+
+    font-size: 21px;
+}
+
+.start-leaderboard-title span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: #64748b;
+
+    font-size: 11px;
+}
+
+.refresh-start {
+
+    border: 0;
+
+    padding:
+        9px 13px;
+
+    border-radius: 10px;
+
+    background:
+        #263449;
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    transition: .2s;
+}
+
+.refresh-start:hover {
+
+    background:
+        #334155;
+}
+
+.refresh-start:active {
+
+    transform:
+        scale(.94);
+}
+
+
+/* =========================================================
+   TOP 3
+========================================================= */
+
+.top-three {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1.15fr
+        1fr;
+
+    align-items: end;
+
+    gap: 10px;
+
+    padding:
+        20px 18px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255,255,255,.04),
+            transparent 60%
+        );
+}
+
+.top-player {
+
+    text-align: center;
+
+    padding:
+        16px 8px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+
+    min-height: 125px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    transition:
+        transform .2s;
+}
+
+.top-player:hover {
+
+    transform:
+        translateY(-3px);
+}
+
+.top-player.first {
+
+    min-height: 150px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(251,191,36,.13),
+            rgba(255,255,255,.035)
+        );
+
+    border-color:
+        rgba(251,191,36,.25);
+}
+
+.top-player.second {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(203,213,225,.10),
+            rgba(255,255,255,.035)
+        );
+}
+
+.top-player.third {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(180,83,9,.10),
+            rgba(255,255,255,.035)
+        );
+}
+
+.top-medal {
+
+    font-size: 30px;
+
+    margin-bottom: 5px;
+}
+
+.top-name {
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    padding:
+        0 4px;
+}
+
+.top-score {
+
+    margin-top: 5px;
+
+    font-size: 20px;
+
+    font-weight: 1000;
+}
+
+.top-combo {
+
+    margin-top: 4px;
+
+    font-size: 10px;
+
+    color: #fbbf24;
+}
+
+
+/* =========================================================
+   SCORE LIST
+========================================================= */
+
+.start-score-list {
+
+    max-height: 330px;
+
+    overflow-y: auto;
+}
+
+.start-score-row {
+
+    display: grid;
+
+    grid-template-columns:
+        50px
+        1fr
+        100px
+        75px;
+
+    align-items: center;
+
+    padding:
+        13px 20px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.05);
+
+    transition:
+        background .15s;
+}
+
+.start-score-row:hover {
+
+    background:
+        rgba(255,255,255,.025);
+}
+
+.start-rank {
+
+    font-weight: 900;
+
+    color: #94a3b8;
+}
+
+.start-player {
+
+    font-weight: 700;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+}
+
+.start-score {
+
+    text-align: right;
+
+    font-weight: 900;
+}
+
+.start-combo {
+
+    text-align: right;
+
+    color: #fbbf24;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   EMPTY / LOADING
+========================================================= */
+
+.start-empty {
+
+    padding:
+        45px 20px;
+
+    text-align: center;
+
+    color: #64748b;
+
+    line-height: 1.7;
+}
+
+.start-loading {
+
+    padding:
+        40px 20px;
+
+    text-align: center;
+
+    color: #94a3b8;
+}
+
+
+/* =========================================================
+   GAME AREA
+========================================================= */
 
 .game-area {
+
     position: relative;
+
     min-height: 560px;
-    border: 1px solid rgba(255,255,255,.08);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
     border-radius: 24px;
+
     background:
         linear-gradient(
             rgba(255,255,255,.025),
             rgba(255,255,255,.01)
         );
-    box-shadow: 0 25px 80px rgba(0,0,0,.4);
+
+    box-shadow:
+        0 25px 80px
+        rgba(0,0,0,.4);
+
     overflow: hidden;
 }
 
-/* STATS */
+
+/* =========================================================
+   STATS
+========================================================= */
 
 .stats {
+
     position: absolute;
+
     left: 20px;
     right: 20px;
+
     top: 18px;
+
     display: flex;
+
     justify-content: center;
+
     gap: 12px;
+
     flex-wrap: wrap;
+
     z-index: 5;
 }
 
 .stat {
+
     min-width: 120px;
-    padding: 10px 15px;
+
+    padding:
+        10px 15px;
+
     text-align: center;
+
     border-radius: 12px;
-    background: rgba(15,23,42,.85);
-    border: 1px solid rgba(255,255,255,.08);
-    backdrop-filter: blur(10px);
+
+    background:
+        rgba(15,23,42,.85);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    backdrop-filter:
+        blur(10px);
 }
 
 .stat-label {
+
     display: block;
+
     font-size: 11px;
+
     color: #9ca3af;
+
     text-transform: uppercase;
+
     letter-spacing: 1px;
 }
 
 .stat-value {
+
     display: block;
+
     margin-top: 3px;
+
     font-size: 22px;
+
     font-weight: 900;
 }
 
-/* TARGET */
+
+/* =========================================================
+   TARGET
+========================================================= */
 
 .target-zone {
+
     position: absolute;
+
     left: 50%;
     top: 58%;
-    transform: translate(-50%, -50%);
-    width: min(380px, 80vw);
+
+    transform:
+        translate(-50%, -50%);
+
+    width:
+        min(380px, 80vw);
+
     height: 400px;
+
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 }
 
 .target {
+
     position: relative;
-    width: min(330px, 72vw);
-    height: min(330px, 72vw);
+
+    width:
+        min(330px, 72vw);
+
+    height:
+        min(330px, 72vw);
+
     border-radius: 50%;
+
     overflow: hidden;
+
     cursor: pointer;
+
     user-select: none;
+
     touch-action: manipulation;
+
     background:
-        radial-gradient(circle, #374151, #111827);
-    border: 5px solid #374151;
+        radial-gradient(
+            circle,
+            #374151,
+            #111827
+        );
+
+    border:
+        5px solid
+        #374151;
+
     box-shadow:
-        0 30px 60px rgba(0,0,0,.5),
-        inset 0 0 30px rgba(255,255,255,.08);
-    transition: transform .07s;
+        0 30px 60px
+        rgba(0,0,0,.5),
+
+        inset 0 0 30px
+        rgba(255,255,255,.08);
+
+    transition:
+        transform .07s;
 }
 
 .target img {
+
     position: absolute;
+
     inset: 0;
+
     width: 100%;
     height: 100%;
+
     object-fit: cover;
+
     pointer-events: none;
-    user-select: none;
 }
 
 .target-placeholder {
+
     position: absolute;
+
     inset: 0;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     flex-direction: column;
+
     text-align: center;
+
     pointer-events: none;
+
     background:
         radial-gradient(
             circle at 35% 25%,
@@ -289,395 +1019,791 @@ input {
 }
 
 .target-placeholder strong {
-    font-size: clamp(28px, 7vw, 45px);
+
+    font-size:
+        clamp(28px, 7vw, 45px);
+
     font-weight: 1000;
 }
 
 .target-placeholder span {
+
     margin-top: 8px;
+
     font-size: 12px;
-    color: rgba(255,255,255,.55);
+
+    color:
+        rgba(255,255,255,.55);
 }
 
 .target.hit {
-    animation: punch .12s linear;
+
+    animation:
+        punch .12s linear;
 }
 
 @keyframes punch {
+
     0% {
-        transform: scale(1) rotate(0deg);
+        transform:
+            scale(1)
+            rotate(0deg);
     }
 
     35% {
-        transform: scale(.94) rotate(-3deg);
+        transform:
+            scale(.94)
+            rotate(-3deg);
     }
 
     70% {
-        transform: scale(1.05) rotate(3deg);
+        transform:
+            scale(1.05)
+            rotate(3deg);
     }
 
     100% {
-        transform: scale(1) rotate(0deg);
+        transform:
+            scale(1)
+            rotate(0deg);
     }
 }
 
-/* COMBO */
+
+/* =========================================================
+   COMBO
+========================================================= */
 
 .combo {
+
     position: absolute;
+
     left: 50%;
     top: 34%;
-    transform: translate(-50%, -50%) scale(.8);
-    font-size: clamp(28px, 7vw, 55px);
+
+    transform:
+        translate(-50%, -50%)
+        scale(.8);
+
+    font-size:
+        clamp(28px, 7vw, 55px);
+
     font-weight: 1000;
+
     color: #fbbf24;
-    text-shadow: 0 0 25px rgba(251,191,36,.45);
+
+    text-shadow:
+        0 0 25px
+        rgba(251,191,36,.45);
+
     opacity: 0;
+
     pointer-events: none;
+
     z-index: 10;
 }
 
 .combo.show {
-    animation: comboPop .25s ease-out forwards;
+
+    animation:
+        comboPop .25s
+        ease-out forwards;
 }
 
 @keyframes comboPop {
+
     0% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(.5);
+
+        transform:
+            translate(-50%, -50%)
+            scale(.5);
     }
 
     60% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1.15);
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.15);
     }
 
     100% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
     }
 }
 
-/* FLOATING SCORE */
+
+/* =========================================================
+   FLOATING SCORE
+========================================================= */
 
 .floating-score {
+
     position: absolute;
+
     font-size: 24px;
+
     font-weight: 1000;
+
     color: #86efac;
+
     pointer-events: none;
+
     z-index: 20;
-    animation: floatScore .8s ease-out forwards;
+
+    animation:
+        floatScore .8s
+        ease-out forwards;
 }
 
 @keyframes floatScore {
+
     0% {
         opacity: 1;
-        transform: translate(-50%, 0) scale(1);
+
+        transform:
+            translate(-50%, 0)
+            scale(1);
     }
 
     100% {
         opacity: 0;
-        transform: translate(-50%, -90px) scale(1.3);
+
+        transform:
+            translate(-50%, -90px)
+            scale(1.3);
     }
 }
 
-/* LEADERBOARD */
+
+/* =========================================================
+   LEADERBOARD GAME
+========================================================= */
 
 .leaderboard {
+
     margin-top: 22px;
+
     border-radius: 20px;
-    background: rgba(15,23,42,.85);
-    border: 1px solid rgba(255,255,255,.08);
+
+    background:
+        rgba(15,23,42,.85);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
     overflow: hidden;
 }
 
 .leaderboard-header {
+
     padding: 20px;
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
-    gap: 10px;
 }
 
 .leaderboard-header h2 {
+
     margin: 0;
+
     font-size: 22px;
 }
 
-.refresh-button {
-    background: #374151;
-    font-size: 12px;
-    padding: 9px 12px;
-    border: 0;
-    border-radius: 10px;
-    color: white;
-    font-weight: 800;
-    cursor: pointer;
-}
 
-.table {
-    width: 100%;
-}
-
-.row {
-    display: grid;
-    grid-template-columns: 60px 1fr 120px 100px;
-    padding: 13px 20px;
-    border-top: 1px solid rgba(255,255,255,.06);
-    align-items: center;
-}
-
-.header-row {
-    color: #9ca3af;
-    font-size: 12px;
-    text-transform: uppercase;
-}
-
-.rank {
-    font-weight: 900;
-}
-
-.score {
-    font-weight: 900;
-    text-align: right;
-}
-
-.combo-score {
-    text-align: right;
-    color: #fbbf24;
-    font-weight: 800;
-}
-
-.empty {
-    padding: 30px;
-    text-align: center;
-    color: #9ca3af;
-}
-
-/* OVERLAY */
+/* =========================================================
+   OVERLAY
+========================================================= */
 
 .overlay {
+
     position: absolute;
+
     inset: 0;
-    background: rgba(3,7,18,.78);
-    backdrop-filter: blur(7px);
+
+    background:
+        rgba(3,7,18,.78);
+
+    backdrop-filter:
+        blur(7px);
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     z-index: 30;
+
     text-align: center;
+
     padding: 20px;
 }
 
 .overlay.hidden {
+
     display: none;
 }
 
 .overlay-box {
+
     max-width: 500px;
 }
 
 .overlay h2 {
-    font-size: clamp(28px, 7vw, 48px);
-    margin: 0 0 10px;
+
+    font-size:
+        clamp(28px, 7vw, 48px);
+
+    margin:
+        0 0 10px;
 }
 
 .overlay p {
+
     color: #aeb9ca;
+
     line-height: 1.6;
 }
 
 .new-game-button {
+
     border: 0;
+
     border-radius: 12px;
-    padding: 14px 22px;
+
+    padding:
+        14px 22px;
+
     font-size: 16px;
+
     font-weight: 800;
-    cursor: pointer;
+
     color: white;
-    background: #16a34a;
+
+    background:
+        #16a34a;
 }
 
-/* FINISH */
+
+/* =========================================================
+   FINISH
+========================================================= */
 
 .finish-button {
+
     position: absolute;
+
     bottom: 18px;
+
     left: 50%;
-    transform: translateX(-50%);
+
+    transform:
+        translateX(-50%);
+
     z-index: 20;
-    padding: 12px 20px;
+
+    padding:
+        12px 20px;
+
     border: 0;
+
     border-radius: 12px;
-    background: #dc2626;
+
+    background:
+        #dc2626;
+
     color: white;
+
     font-size: 14px;
+
     font-weight: 900;
-    cursor: pointer;
+
     display: none;
 }
 
-/* SHAKE */
+
+/* =========================================================
+   SHAKE
+========================================================= */
 
 .shake {
-    animation: shake .16s linear;
+
+    animation:
+        shake .16s linear;
 }
 
 @keyframes shake {
+
     0%,100% {
-        transform: translate(0);
+        transform:
+            translate(0);
     }
 
     25% {
-        transform: translate(-5px,3px);
+        transform:
+            translate(-5px,3px);
     }
 
     50% {
-        transform: translate(5px,-3px);
+        transform:
+            translate(5px,-3px);
     }
 
     75% {
-        transform: translate(-3px,-2px);
+        transform:
+            translate(-3px,-2px);
     }
 }
 
-/* MOBILE */
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .name-screen {
+
+        padding:
+            20px 12px;
+    }
+
+    .name-page {
+
+        grid-template-columns:
+            1fr;
+
+        width:
+            min(520px, 100%);
+    }
+
+    .name-box {
+
+        position:
+            relative;
+
+        top: auto;
+    }
+
+    .start-leaderboard {
+
+        width: 100%;
+    }
+}
+
 
 @media (max-width: 600px) {
 
     .container {
+
         width: 96%;
+
         padding-top: 15px;
     }
 
     .header h1 {
+
         font-size: 32px;
     }
 
     .game-area {
+
         min-height: 570px;
+
         border-radius: 18px;
     }
 
     .stats {
+
         top: 12px;
+
         left: 8px;
         right: 8px;
+
         gap: 6px;
     }
 
     .stat {
+
         min-width: 78px;
+
         padding: 8px;
     }
 
     .stat-value {
+
         font-size: 18px;
     }
 
     .target-zone {
+
         top: 57%;
     }
 
-    .row {
-        grid-template-columns: 45px 1fr 90px;
-        padding: 12px;
+    .top-three {
+
+        gap: 6px;
+
+        padding:
+            15px 10px;
     }
 
-    .row .combo-score,
-    .header-row .combo-score {
+    .top-player {
+
+        min-height: 110px;
+
+        padding:
+            12px 4px;
+    }
+
+    .top-player.first {
+
+        min-height: 130px;
+    }
+
+    .top-medal {
+
+        font-size: 25px;
+    }
+
+    .top-name {
+
+        font-size: 11px;
+    }
+
+    .top-score {
+
+        font-size: 16px;
+    }
+
+    .start-score-row {
+
+        grid-template-columns:
+            40px
+            1fr
+            80px;
+
+        padding:
+            12px;
+    }
+
+    .start-combo {
+
         display: none;
     }
 
     .sound-button {
+
         width: 46px;
         height: 46px;
+
         top: 12px;
         right: 12px;
+
         font-size: 21px;
     }
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- SES -->
+
+<!-- =====================================================
+     SES
+===================================================== -->
 
 <button
     class="sound-button"
     id="soundButton"
-    aria-label="Sesi aç veya kapat"
-    title="Sesi aç/kapat"
 >
     🔊
 </button>
 
 
-<!-- İSİM EKRANI -->
+<!-- =====================================================
+     ZENGİN İSİM EKRANI
+===================================================== -->
 
 <div
     class="name-screen"
     id="nameScreen"
 >
 
-    <div class="name-box">
+    <div class="name-page">
 
-        <h2>🥊</h2>
 
-        <h2>
-            APOYU<br>
-            GİYDİRMECE
-        </h2>
+        <!-- SOL TARAF -->
 
-        <p>
-            Oyuna başlamak için ismini gir.
-            <br>
-            İsmini yazdığında oyun başlayacak.
-        </p>
+        <div class="name-box">
 
-        <input
-            class="name-input"
-            id="playerName"
-            type="text"
-            maxlength="20"
-            placeholder="İsmini yaz..."
-            autocomplete="off"
-            spellcheck="false"
-        >
+            <div class="name-logo">
+                🥊
+            </div>
 
-        <div
-            class="name-status"
-            id="nameStatus"
-        ></div>
+            <h2>
+                APOYU<br>
+                GİYDİRMECE
+            </h2>
+
+            <p class="subtitle">
+                En hızlı yumrukları at,
+                <br>
+                zirveye adını yazdır!
+            </p>
+
+
+            <div class="input-wrapper">
+
+                <input
+                    class="name-input"
+                    id="playerName"
+                    type="text"
+                    maxlength="20"
+                    placeholder="İsmini yaz..."
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+
+            </div>
+
+
+            <div
+                class="name-status"
+                id="nameStatus"
+            ></div>
+
+
+            <div class="start-info">
+
+                <div class="info-card">
+
+                    <strong>
+                        ⚡
+                    </strong>
+
+                    <span>
+                        Hız
+                    </span>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <strong>
+                        🔥
+                    </strong>
+
+                    <span>
+                        Combo
+                    </span>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <strong>
+                        🏆
+                    </strong>
+
+                    <span>
+                        Zirve
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="welcome-message">
+
+                İsmini yazdığın anda isim kontrol edilir.
+                <br>
+                Benzersizse oyun otomatik başlar.
+
+            </div>
+
+        </div>
+
+
+        <!-- SAĞ TARAF -->
+
+        <div class="start-leaderboard">
+
+
+            <div class="start-leaderboard-header">
+
+                <div class="start-leaderboard-title">
+
+                    <div class="cup">
+                        🏆
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            CANLI SKOR TABLOSU
+                        </h2>
+
+                        <span>
+                            En iyi oyuncular
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="refresh-start"
+                    id="refreshStartScores"
+                >
+                    🔄 YENİLE
+                </button>
+
+            </div>
+
+
+            <!-- İLK 3 -->
+
+            <div
+                class="top-three"
+                id="startTopThree"
+            >
+
+                <div class="top-player second">
+
+                    <div class="top-medal">
+                        🥈
+                    </div>
+
+                    <div class="top-name">
+                        -
+                    </div>
+
+                    <div class="top-score">
+                        0
+                    </div>
+
+                    <div class="top-combo">
+                        x0 combo
+                    </div>
+
+                </div>
+
+
+                <div class="top-player first">
+
+                    <div class="top-medal">
+                        🥇
+                    </div>
+
+                    <div class="top-name">
+                        -
+                    </div>
+
+                    <div class="top-score">
+                        0
+                    </div>
+
+                    <div class="top-combo">
+                        x0 combo
+                    </div>
+
+                </div>
+
+
+                <div class="top-player third">
+
+                    <div class="top-medal">
+                        🥉
+                    </div>
+
+                    <div class="top-name">
+                        -
+                    </div>
+
+                    <div class="top-score">
+                        0
+                    </div>
+
+                    <div class="top-combo">
+                        x0 combo
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LİSTE -->
+
+            <div
+                class="start-score-list"
+                id="startScoreList"
+            >
+
+                <div class="start-loading">
+                    Skorlar yükleniyor...
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
 </div>
 
 
+<!-- =====================================================
+     ANA SAYFA
+===================================================== -->
+
 <div class="container">
+
 
     <div class="header">
 
-        <h1>🥊 APOYU GİYDİRMECE</h1>
+        <h1>
+            🥊 APOYU GİYDİRMECE
+        </h1>
 
         <p>
-            Ne kadar hızlı vurursan o kadar yüksek combo!
+            Ne kadar hızlı vurursan
+            o kadar yüksek combo!
         </p>
 
     </div>
 
+
+    <!-- =================================================
+         OYUN
+    ================================================= -->
 
     <div
         class="game-area"
         id="gameArea"
     >
 
-        <!-- İSTATİSTİKLER -->
+
+        <!-- STATS -->
 
         <div class="stats">
+
 
             <div class="stat">
 
@@ -755,23 +1881,29 @@ input {
         </div>
 
 
-        <!-- HEDEF -->
+        <!-- TARGET -->
 
         <div class="target-zone">
 
             <div
                 class="target"
                 id="target"
-                aria-label="Oyunun hedefi"
             >
 
-                <!-- Fotoğraf eklemek istersen:
-                <img src="apo.jpg" alt="Apo">
+                <!-- FOTOĞRAF EKLEMEK İÇİN:
+                <img
+                    src="apo.jpg"
+                    alt="Apo"
+                >
                 -->
 
-                <div class="target-placeholder">
+                <div
+                    class="target-placeholder"
+                >
 
-                    <strong>APO</strong>
+                    <strong>
+                        APO
+                    </strong>
 
                     <span>
                         VUR!
@@ -784,7 +1916,7 @@ input {
         </div>
 
 
-        <!-- OYUNU BİTİR -->
+        <!-- FINISH -->
 
         <button
             class="finish-button"
@@ -794,7 +1926,7 @@ input {
         </button>
 
 
-        <!-- OYUN BİTİŞ -->
+        <!-- OVERLAY -->
 
         <div
             class="overlay hidden"
@@ -807,15 +1939,6 @@ input {
                     🏆 Oyun Bitti!
                 </h2>
 
-                <p id="finishMessage"></p>
-
-                <button
-                    id="newGameButton"
-                    class="new-game-button"
-                >
-                    YENİ OYUNCU
-                </button>
-
             </div>
 
         </div>
@@ -823,7 +1946,9 @@ input {
     </div>
 
 
-    <!-- SKOR TABLOSU -->
+    <!-- =================================================
+         SKOR TABLOSU
+    ================================================= -->
 
     <div class="leaderboard">
 
@@ -835,40 +1960,17 @@ input {
 
             <button
                 id="refreshScores"
-                class="refresh-button"
+                class="refresh-start"
             >
-                YENİLE
+                🔄 YENİLE
             </button>
 
         </div>
 
 
-        <div class="table">
-
-            <div class="row header-row">
-
-                <div>
-                    #
-                </div>
-
-                <div>
-                    Oyuncu
-                </div>
-
-                <div class="score">
-                    Skor
-                </div>
-
-                <div class="combo-score">
-                    Combo
-                </div>
-
-            </div>
-
-
-            <div id="leaderboardRows"></div>
-
-        </div>
+        <div
+            id="leaderboardRows"
+        ></div>
 
     </div>
 
@@ -876,6 +1978,7 @@ input {
 
 
 <script>
+
 
 /* =========================================================
    SUPABASE
@@ -893,56 +1996,98 @@ const SUPABASE_KEY =
 ========================================================= */
 
 const playerName =
-    document.getElementById("playerName");
+    document.getElementById(
+        "playerName"
+    );
 
 const nameScreen =
-    document.getElementById("nameScreen");
+    document.getElementById(
+        "nameScreen"
+    );
 
 const nameStatus =
-    document.getElementById("nameStatus");
+    document.getElementById(
+        "nameStatus"
+    );
 
 const finishButton =
-    document.getElementById("finishButton");
+    document.getElementById(
+        "finishButton"
+    );
 
 const overlay =
-    document.getElementById("overlay");
-
-const newGameButton =
-    document.getElementById("newGameButton");
+    document.getElementById(
+        "overlay"
+    );
 
 const target =
-    document.getElementById("target");
+    document.getElementById(
+        "target"
+    );
 
 const gameArea =
-    document.getElementById("gameArea");
+    document.getElementById(
+        "gameArea"
+    );
 
 const scoreElement =
-    document.getElementById("score");
+    document.getElementById(
+        "score"
+    );
 
 const hitsElement =
-    document.getElementById("hits");
+    document.getElementById(
+        "hits"
+    );
 
 const comboElement =
-    document.getElementById("comboValue");
+    document.getElementById(
+        "comboValue"
+    );
 
 const bestElement =
-    document.getElementById("best");
+    document.getElementById(
+        "best"
+    );
 
 const comboText =
-    document.getElementById("comboText");
+    document.getElementById(
+        "comboText"
+    );
 
 const leaderboardRows =
-    document.getElementById("leaderboardRows");
+    document.getElementById(
+        "leaderboardRows"
+    );
 
 const refreshScores =
-    document.getElementById("refreshScores");
+    document.getElementById(
+        "refreshScores"
+    );
+
+const refreshStartScores =
+    document.getElementById(
+        "refreshStartScores"
+    );
+
+const startTopThree =
+    document.getElementById(
+        "startTopThree"
+    );
+
+const startScoreList =
+    document.getElementById(
+        "startScoreList"
+    );
 
 const soundButton =
-    document.getElementById("soundButton");
+    document.getElementById(
+        "soundButton"
+    );
 
 
 /* =========================================================
-   OYUN DEĞİŞKENLERİ
+   OYUN
 ========================================================= */
 
 let gameStarted = false;
@@ -950,8 +2095,11 @@ let gameStarted = false;
 let currentPlayerName = "";
 
 let score = 0;
+
 let hits = 0;
+
 let combo = 0;
+
 let highestCombo = 0;
 
 let lastHitTime = 0;
@@ -966,7 +2114,9 @@ const COMBO_TIMEOUT = 900;
 ========================================================= */
 
 let audioContext = null;
+
 let soundEnabled = true;
+
 
 function initAudio() {
 
@@ -980,7 +2130,8 @@ function initAudio() {
     }
 
     if (
-        audioContext.state === "suspended"
+        audioContext.state ===
+        "suspended"
     ) {
 
         audioContext.resume();
@@ -988,7 +2139,9 @@ function initAudio() {
 }
 
 
-function punchSound(critical = false) {
+function punchSound(
+    critical = false
+) {
 
     if (!soundEnabled) {
         return;
@@ -1020,30 +2173,26 @@ function punchSound(critical = false) {
 
     oscillator.frequency.exponentialRampToValueAtTime(
         critical ? 80 : 55,
-        audioContext.currentTime + 0.08
+        audioContext.currentTime + .08
     );
 
     gain.gain.setValueAtTime(
-        critical ? 0.13 : 0.08,
+        critical ? .13 : .08,
         audioContext.currentTime
     );
 
     gain.gain.exponentialRampToValueAtTime(
-        0.001,
-        audioContext.currentTime + 0.09
+        .001,
+        audioContext.currentTime + .09
     );
 
     oscillator.start();
 
     oscillator.stop(
-        audioContext.currentTime + 0.1
+        audioContext.currentTime + .1
     );
 }
 
-
-/* =========================================================
-   SES BUTONU
-========================================================= */
 
 soundButton.addEventListener(
     "click",
@@ -1065,7 +2214,7 @@ soundButton.addEventListener(
 
 
 /* =========================================================
-   SUPABASE İSTEĞİ
+   SUPABASE REQUEST
 ========================================================= */
 
 async function supabaseRequest(
@@ -1077,9 +2226,11 @@ async function supabaseRequest(
         await fetch(
             SUPABASE_FUNCTION_URL,
             {
+
                 method: "POST",
 
                 headers: {
+
                     "Content-Type":
                         "application/json",
 
@@ -1131,7 +2282,7 @@ async function supabaseRequest(
 
 
 /* =========================================================
-   İSİM KONTROLÜ
+   İSİM KONTROL
 ========================================================= */
 
 async function checkPlayerName(
@@ -1144,7 +2295,7 @@ async function checkPlayerName(
             await supabaseRequest(
                 "check_name",
                 {
-                    name: name
+                    name
                 }
             );
 
@@ -1166,7 +2317,6 @@ async function checkPlayerName(
     } catch (error) {
 
         console.error(
-            "İsim kontrol hatası:",
             error
         );
 
@@ -1182,7 +2332,7 @@ async function checkPlayerName(
 
 
 /* =========================================================
-   OYUNU BAŞLAT
+   START GAME
 ========================================================= */
 
 async function startGame() {
@@ -1221,33 +2371,42 @@ async function startGame() {
     }
 
     nameStatus.textContent =
-        "İsim kontrol ediliyor...";
+        "🔍 İsim kontrol ediliyor...";
 
     nameStatus.className =
         "name-status loading";
 
-    playerName.disabled = true;
+    playerName.disabled =
+        true;
 
     const available =
-        await checkPlayerName(name);
+        await checkPlayerName(
+            name
+        );
 
     if (!available) {
 
-        playerName.disabled = false;
+        playerName.disabled =
+            false;
 
         return;
     }
 
-    currentPlayerName = name;
+    currentPlayerName =
+        name;
 
     initAudio();
 
     gameStarted = true;
 
     score = 0;
+
     hits = 0;
+
     combo = 0;
+
     highestCombo = 0;
+
     lastHitTime = 0;
 
     updateStats();
@@ -1258,13 +2417,16 @@ async function startGame() {
     nameStatus.className =
         "name-status success";
 
-    setTimeout(() => {
+    setTimeout(
+        () => {
 
-        nameScreen.classList.add(
-            "hidden"
-        );
+            nameScreen.classList.add(
+                "hidden"
+            );
 
-    }, 200);
+        },
+        200
+    );
 
     finishButton.style.display =
         "inline-block";
@@ -1321,7 +2483,7 @@ async function startGame() {
 
 
 /* =========================================================
-   OYUNU BİTİR
+   FINISH
 ========================================================= */
 
 async function finishGame() {
@@ -1340,38 +2502,28 @@ async function finishGame() {
 
     try {
 
-        const result =
-            await supabaseRequest(
-                "submit_score",
-                {
-                    name:
-                        currentPlayerName,
+        await supabaseRequest(
+            "submit_score",
+            {
 
-                    score:
-                        score,
+                name:
+                    currentPlayerName,
 
-                    hits:
-                        hits,
+                score:
+                    score,
 
-                    highestCombo:
-                        highestCombo
-                }
-            );
+                hits:
+                    hits,
 
-        console.log(
-            "Skor kaydedildi:",
-            result
+                highestCombo:
+                    highestCombo
+            }
         );
 
     } catch (error) {
 
-        console.error(
-            "Skor kaydetme hatası:",
-            error
-        );
-
         alert(
-            "⚠️ Skor sunucuya kaydedilemedi.\n\n" +
+            "⚠️ Skor kaydedilemedi.\n\n" +
             error.message
         );
     }
@@ -1391,11 +2543,6 @@ async function finishGame() {
 
     await renderLeaderboard();
 
-    const finalScore =
-        score.toLocaleString(
-            "tr-TR"
-        );
-
     overlay.innerHTML = `
 
         <div class="overlay-box">
@@ -1407,7 +2554,7 @@ async function finishGame() {
             <p>
                 Toplam skor:
                 <strong>
-                    ${finalScore}
+                    ${score.toLocaleString("tr-TR")}
                 </strong>
             </p>
 
@@ -1426,8 +2573,8 @@ async function finishGame() {
             </p>
 
             <button
-                id="newGameButton"
                 class="new-game-button"
+                id="newGameButton"
             >
                 YENİ OYUNCU
             </button>
@@ -1453,25 +2600,22 @@ async function finishGame() {
     playerName.disabled =
         false;
 
-    playerName.value = "";
-
-    nameStatus.textContent =
+    playerName.value =
         "";
 
-    const newButton =
-        document.getElementById(
+    document
+        .getElementById(
             "newGameButton"
+        )
+        .addEventListener(
+            "click",
+            newGame
         );
-
-    newButton.addEventListener(
-        "click",
-        newGame
-    );
 }
 
 
 /* =========================================================
-   YENİ OYUNCU
+   NEW GAME
 ========================================================= */
 
 function newGame() {
@@ -1493,12 +2637,14 @@ function newGame() {
     nameStatus.textContent =
         "";
 
+    renderStartLeaderboard();
+
     playerName.focus();
 }
 
 
 /* =========================================================
-   TORBAYA VURMA
+   HIT
 ========================================================= */
 
 function hitTarget(event) {
@@ -1557,7 +2703,7 @@ function hitTarget(event) {
     }
 
     const critical =
-        Math.random() < 0.07;
+        Math.random() < .07;
 
     let points =
         10 * multiplier;
@@ -1589,7 +2735,7 @@ function hitTarget(event) {
 
 
 /* =========================================================
-   ANİMASYON
+   ANIMATION
 ========================================================= */
 
 function animateTarget() {
@@ -1634,7 +2780,7 @@ function showCombo() {
 
 
 /* =========================================================
-   FLOATING SCORE
+   FLOAT SCORE
 ========================================================= */
 
 function showFloatingScore(
@@ -1659,37 +2805,13 @@ function showFloatingScore(
     const rect =
         gameArea.getBoundingClientRect();
 
-    let x;
-    let y;
+    let x =
+        event.clientX -
+        rect.left;
 
-    if (
-        event.clientX !== undefined &&
-        event.clientX !== 0
-    ) {
-
-        x =
-            event.clientX -
-            rect.left;
-
-        y =
-            event.clientY -
-            rect.top;
-
-    } else {
-
-        const targetRect =
-            target.getBoundingClientRect();
-
-        x =
-            targetRect.left -
-            rect.left +
-            targetRect.width / 2;
-
-        y =
-            targetRect.top -
-            rect.top +
-            targetRect.height / 2;
-    }
+    let y =
+        event.clientY -
+        rect.top;
 
     floating.style.left =
         `${x}px`;
@@ -1710,7 +2832,10 @@ function showFloatingScore(
     setTimeout(
         () => {
 
-            if (floating.parentNode) {
+            if (
+                floating.parentNode
+            ) {
+
                 floating.remove();
             }
 
@@ -1721,7 +2846,7 @@ function showFloatingScore(
 
 
 /* =========================================================
-   İSTATİSTİK
+   STATS
 ========================================================= */
 
 function updateStats() {
@@ -1740,7 +2865,22 @@ function updateStats() {
 
 
 /* =========================================================
-   LİDERLİK TABLOSU
+   ESCAPE
+========================================================= */
+
+function escapeHtml(text) {
+
+    return String(text)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+}
+
+
+/* =========================================================
+   ANA LEADERBOARD
 ========================================================= */
 
 async function renderLeaderboard() {
@@ -1761,7 +2901,7 @@ async function renderLeaderboard() {
         if (!scores.length) {
 
             leaderboardRows.innerHTML = `
-                <div class="empty">
+                <div class="start-empty">
                     Henüz skor yok.
                 </div>
             `;
@@ -1780,7 +2920,7 @@ async function renderLeaderboard() {
             );
 
         scores.forEach(
-            (item, index) => {
+            (item,index) => {
 
                 const row =
                     document.createElement(
@@ -1788,35 +2928,29 @@ async function renderLeaderboard() {
                     );
 
                 row.className =
-                    "row";
-
-                let medal = "";
-
-                if (index === 0) {
-                    medal = "🥇";
-                }
-
-                if (index === 1) {
-                    medal = "🥈";
-                }
-
-                if (index === 2) {
-                    medal = "🥉";
-                }
+                    "start-score-row";
 
                 row.innerHTML = `
 
-                    <div class="rank">
-                        ${medal || index + 1}
+                    <div class="start-rank">
+                        ${
+                            index === 0
+                                ? "🥇"
+                                : index === 1
+                                ? "🥈"
+                                : index === 2
+                                ? "🥉"
+                                : index + 1
+                        }
                     </div>
 
-                    <div>
+                    <div class="start-player">
                         ${escapeHtml(
                             item.player_name
                         )}
                     </div>
 
-                    <div class="score">
+                    <div class="start-score">
                         ${Number(
                             item.score
                         ).toLocaleString(
@@ -1824,7 +2958,7 @@ async function renderLeaderboard() {
                         )}
                     </div>
 
-                    <div class="combo-score">
+                    <div class="start-combo">
                         x${Number(
                             item.highest_combo || 0
                         )}
@@ -1840,53 +2974,321 @@ async function renderLeaderboard() {
 
     } catch (error) {
 
-        console.error(
-            "Leaderboard hatası:",
-            error
-        );
-
         leaderboardRows.innerHTML = `
 
-            <div class="empty">
-                ⚠️ Skor tablosuna bağlanılamadı.
-                <br><br>
-                ${escapeHtml(
-                    error.message
-                )}
-            </div>
+            <div class="start-empty">
 
+                ⚠️ Skor tablosuna
+                bağlanılamadı.
+
+            </div>
         `;
     }
 }
 
 
 /* =========================================================
-   GÜVENLİ HTML
+   BAŞLANGIÇ LEADERBOARD
 ========================================================= */
 
-function escapeHtml(text) {
+async function renderStartLeaderboard() {
 
-    return String(text)
-        .replaceAll(
-            "&",
-            "&amp;"
-        )
-        .replaceAll(
-            "<",
-            "&lt;"
-        )
-        .replaceAll(
-            ">",
-            "&gt;"
-        )
-        .replaceAll(
-            '"',
-            "&quot;"
-        )
-        .replaceAll(
-            "'",
-            "&#039;"
+    startScoreList.innerHTML = `
+
+        <div class="start-loading">
+            🔄 Skorlar yükleniyor...
+        </div>
+
+    `;
+
+    try {
+
+        const result =
+            await supabaseRequest(
+                "leaderboard"
+            );
+
+        const scores =
+            result.scores || [];
+
+        if (!scores.length) {
+
+            startScoreList.innerHTML = `
+
+                <div class="start-empty">
+
+                    🏆
+
+                    <br>
+
+                    Henüz skor bulunmuyor.
+
+                    <br>
+
+                    İlk skoru sen yap!
+
+                </div>
+            `;
+
+            startTopThree.innerHTML = `
+
+                <div class="top-player second">
+                    <div class="top-medal">🥈</div>
+                    <div class="top-name">-</div>
+                    <div class="top-score">0</div>
+                    <div class="top-combo">x0 combo</div>
+                </div>
+
+                <div class="top-player first">
+                    <div class="top-medal">🥇</div>
+                    <div class="top-name">-</div>
+                    <div class="top-score">0</div>
+                    <div class="top-combo">x0 combo</div>
+                </div>
+
+                <div class="top-player third">
+                    <div class="top-medal">🥉</div>
+                    <div class="top-name">-</div>
+                    <div class="top-score">0</div>
+                    <div class="top-combo">x0 combo</div>
+                </div>
+
+            `;
+
+            return;
+        }
+
+
+        /* TOP 3 */
+
+        const first =
+            scores[0];
+
+        const second =
+            scores[1];
+
+        const third =
+            scores[2];
+
+
+        function topCard(
+            item,
+            medal,
+            className
+        ) {
+
+            if (!item) {
+
+                return `
+
+                    <div class="
+                        top-player
+                        ${className}
+                    ">
+
+                        <div class="top-medal">
+                            ${medal}
+                        </div>
+
+                        <div class="top-name">
+                            -
+                        </div>
+
+                        <div class="top-score">
+                            0
+                        </div>
+
+                        <div class="top-combo">
+                            x0 combo
+                        </div>
+
+                    </div>
+                `;
+            }
+
+
+            return `
+
+                <div class="
+                    top-player
+                    ${className}
+                ">
+
+                    <div class="top-medal">
+                        ${medal}
+                    </div>
+
+                    <div
+                        class="top-name"
+                        title="${escapeHtml(
+                            item.player_name
+                        )}"
+                    >
+                        ${escapeHtml(
+                            item.player_name
+                        )}
+                    </div>
+
+                    <div class="top-score">
+
+                        ${Number(
+                            item.score
+                        ).toLocaleString(
+                            "tr-TR"
+                        )}
+
+                    </div>
+
+                    <div class="top-combo">
+
+                        x${Number(
+                            item.highest_combo || 0
+                        )}
+                        combo
+
+                    </div>
+
+                </div>
+            `;
+        }
+
+
+        startTopThree.innerHTML =
+
+            topCard(
+                second,
+                "🥈",
+                "second"
+            )
+
+            +
+
+            topCard(
+                first,
+                "🥇",
+                "first"
+            )
+
+            +
+
+            topCard(
+                third,
+                "🥉",
+                "third"
+            );
+
+
+        /* LİSTE */
+
+        if (scores.length <= 3) {
+
+            startScoreList.innerHTML = `
+
+                <div class="start-empty">
+
+                    ✨ İlk 3 oyuncu burada!
+
+                    <br>
+
+                    Daha yüksek skor yaparak
+                    zirveyi ele geçir.
+
+                </div>
+
+            `;
+
+            return;
+        }
+
+
+        startScoreList.innerHTML =
+            "";
+
+        scores.forEach(
+            (item,index) => {
+
+                if (index < 3) {
+                    return;
+                }
+
+                const row =
+                    document.createElement(
+                        "div"
+                    );
+
+                row.className =
+                    "start-score-row";
+
+                row.innerHTML = `
+
+                    <div class="start-rank">
+
+                        ${index + 1}
+
+                    </div>
+
+                    <div
+                        class="start-player"
+                        title="${escapeHtml(
+                            item.player_name
+                        )}"
+                    >
+
+                        ${escapeHtml(
+                            item.player_name
+                        )}
+
+                    </div>
+
+                    <div class="start-score">
+
+                        ${Number(
+                            item.score
+                        ).toLocaleString(
+                            "tr-TR"
+                        )}
+
+                    </div>
+
+                    <div class="start-combo">
+
+                        x${Number(
+                            item.highest_combo || 0
+                        )}
+
+                    </div>
+
+                `;
+
+                startScoreList.appendChild(
+                    row
+                );
+            }
         );
+
+    } catch (error) {
+
+        console.error(
+            "Başlangıç leaderboard:",
+            error
+        );
+
+        startScoreList.innerHTML = `
+
+            <div class="start-empty">
+
+                ⚠️ Skor tablosuna
+                bağlanılamadı.
+
+                <br><br>
+
+                İnternet bağlantısını
+                kontrol et.
+
+            </div>
+
+        `;
+    }
 }
 
 
@@ -1909,9 +3311,14 @@ refreshScores.addEventListener(
     renderLeaderboard
 );
 
+refreshStartScores.addEventListener(
+    "click",
+    renderStartLeaderboard
+);
+
 
 /* =========================================================
-   ENTER İLE BAŞLAT
+   ENTER
 ========================================================= */
 
 playerName.addEventListener(
@@ -1933,7 +3340,7 @@ playerName.addEventListener(
 
 
 /* =========================================================
-   İSİM YAZILDIKTAN SONRA OTOMATİK BAŞLAT
+   OTOMATİK BAŞLAT
 ========================================================= */
 
 playerName.addEventListener(
@@ -1948,7 +3355,9 @@ playerName.addEventListener(
             "";
 
         if (
-            playerName.value.trim().length >= 2
+            playerName.value
+                .trim()
+                .length >= 2
         ) {
 
             nameInputTimer =
@@ -1966,7 +3375,7 @@ playerName.addEventListener(
 
 
 /* =========================================================
-   COMBO SIFIRLAMA
+   COMBO RESET
 ========================================================= */
 
 setInterval(
@@ -1999,6 +3408,8 @@ setInterval(
 ========================================================= */
 
 renderLeaderboard();
+
+renderStartLeaderboard();
 
 updateStats();
 
