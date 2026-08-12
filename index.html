@@ -7,7 +7,6 @@
 <title>APOYU GİYDİRMECE</title>
 
 <style>
-
 *{
     box-sizing:border-box;
     -webkit-tap-highlight-color:transparent;
@@ -71,11 +70,9 @@ button{
     align-items:center;
     padding:20px;
     background:
-        radial-gradient(
-            circle at center,
-            rgba(38,52,77,.96),
-            rgba(3,7,18,.99)
-        );
+        radial-gradient(circle at center,
+        rgba(38,52,77,.96),
+        rgba(3,7,18,.99));
     overflow:auto;
 }
 
@@ -232,7 +229,7 @@ button{
     color:#9ca3af;
 }
 
-/* USER BAR */
+/* USER */
 
 .user-bar{
     display:flex;
@@ -343,12 +340,8 @@ button{
     justify-content:center;
     flex-direction:column;
     background:
-        radial-gradient(
-            circle at 35% 25%,
-            #64748b,
-            #1e293b 65%,
-            #0f172a
-        );
+        radial-gradient(circle at 35% 25%,
+        #64748b,#1e293b 65%,#0f172a);
 }
 
 .target-placeholder strong{
@@ -366,21 +359,10 @@ button{
 }
 
 @keyframes punch{
-    0%{
-        transform:scale(1) rotate(0);
-    }
-
-    35%{
-        transform:scale(.94) rotate(-3deg);
-    }
-
-    70%{
-        transform:scale(1.05) rotate(3deg);
-    }
-
-    100%{
-        transform:scale(1) rotate(0);
-    }
+    0%{transform:scale(1) rotate(0)}
+    35%{transform:scale(.94) rotate(-3deg)}
+    70%{transform:scale(1.05) rotate(3deg)}
+    100%{transform:scale(1) rotate(0)}
 }
 
 .combo{
@@ -439,20 +421,6 @@ button{
     }
 }
 
-.finish-button{
-    position:absolute;
-    bottom:18px;
-    left:50%;
-    transform:translateX(-50%);
-    z-index:20;
-    padding:12px 20px;
-    border:0;
-    border-radius:12px;
-    background:#dc2626;
-    color:white;
-    font-weight:900;
-}
-
 /* LEADERBOARD */
 
 .leaderboard{
@@ -508,6 +476,35 @@ button{
     color:#9ca3af;
 }
 
+.save-status{
+    position:absolute;
+    left:50%;
+    bottom:18px;
+    transform:translateX(-50%);
+    z-index:20;
+    padding:9px 15px;
+    border-radius:10px;
+    background:rgba(15,23,42,.9);
+    color:#9ca3af;
+    font-size:13px;
+    font-weight:700;
+    opacity:0;
+    transition:.2s;
+    pointer-events:none;
+}
+
+.save-status.show{
+    opacity:1;
+}
+
+.save-status.success{
+    color:#86efac;
+}
+
+.save-status.error{
+    color:#f87171;
+}
+
 @media(max-width:600px){
 
     .auth-box{
@@ -552,15 +549,10 @@ button{
         align-items:stretch;
     }
 }
-
 </style>
 </head>
 
 <body>
-
-<!-- =====================================================
-     AUTH
-===================================================== -->
 
 <div class="auth-screen" id="authScreen">
 
@@ -637,13 +629,9 @@ button{
 
             <div class="login-board-title">
 
-                <span>
-                    🏆 EN İYİ OYUNCULAR
-                </span>
+                <span>🏆 EN İYİ OYUNCULAR</span>
 
-                <span>
-                    TOP 10
-                </span>
+                <span>TOP 10</span>
 
             </div>
 
@@ -651,11 +639,9 @@ button{
                 class="mini-board"
                 id="loginLeaderboard"
             >
-
                 <div class="board-loading">
                     Skor tablosu yükleniyor...
                 </div>
-
             </div>
 
         </div>
@@ -665,17 +651,11 @@ button{
 </div>
 
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
 <div class="container">
 
     <div class="header">
 
-        <h1>
-            🥊 APOYU GİYDİRMECE
-        </h1>
+        <h1>🥊 APOYU GİYDİRMECE</h1>
 
         <p>
             Ne kadar hızlı vurursan o kadar yüksek combo!
@@ -691,10 +671,7 @@ button{
     >
 
         <div class="user-info">
-
-            👤
-            <strong id="currentUsername"></strong>
-
+            👤 <strong id="currentUsername"></strong>
         </div>
 
         <button
@@ -707,10 +684,6 @@ button{
     </div>
 
 
-    <!-- =================================================
-         GAME
-    ================================================= -->
-
     <div
         class="game-area"
         id="gameArea"
@@ -719,63 +692,23 @@ button{
         <div class="stats">
 
             <div class="stat">
-
-                <span class="stat-label">
-                    Skor
-                </span>
-
-                <span
-                    class="stat-value"
-                    id="score"
-                >
-                    0
-                </span>
-
+                <span class="stat-label">Skor</span>
+                <span class="stat-value" id="score">0</span>
             </div>
 
             <div class="stat">
-
-                <span class="stat-label">
-                    Vuruş
-                </span>
-
-                <span
-                    class="stat-value"
-                    id="hits"
-                >
-                    0
-                </span>
-
+                <span class="stat-label">Vuruş</span>
+                <span class="stat-value" id="hits">0</span>
             </div>
 
             <div class="stat">
-
-                <span class="stat-label">
-                    Combo
-                </span>
-
-                <span
-                    class="stat-value"
-                    id="comboValue"
-                >
-                    x0
-                </span>
-
+                <span class="stat-label">Combo</span>
+                <span class="stat-value" id="comboValue">x0</span>
             </div>
 
             <div class="stat">
-
-                <span class="stat-label">
-                    En yüksek
-                </span>
-
-                <span
-                    class="stat-value"
-                    id="best"
-                >
-                    0
-                </span>
-
+                <span class="stat-label">En yüksek</span>
+                <span class="stat-value" id="best">0</span>
             </div>
 
         </div>
@@ -798,13 +731,9 @@ button{
 
                 <div class="target-placeholder">
 
-                    <strong>
-                        APO
-                    </strong>
+                    <strong>APO</strong>
 
-                    <span>
-                        VUR!
-                    </span>
+                    <span>VUR!</span>
 
                 </div>
 
@@ -813,28 +742,19 @@ button{
         </div>
 
 
-        <button
-            class="finish-button"
-            id="finishButton"
-            style="display:none;"
-        >
-            OYUNU BİTİR
-        </button>
+        <div
+            class="save-status"
+            id="saveStatus"
+        ></div>
 
     </div>
 
-
-    <!-- =================================================
-         LEADERBOARD
-    ================================================= -->
 
     <div class="leaderboard">
 
         <div class="leaderboard-header">
 
-            <h2>
-                🏆 Skor Tablosu
-            </h2>
+            <h2>🏆 Skor Tablosu</h2>
 
             <button
                 class="refresh-btn"
@@ -845,25 +765,17 @@ button{
 
         </div>
 
-
         <div class="row">
 
             <div>#</div>
 
-            <div>
-                Oyuncu
-            </div>
+            <div>Oyuncu</div>
 
-            <div class="score">
-                Skor
-            </div>
+            <div class="score">Skor</div>
 
-            <div class="combo-score">
-                Combo
-            </div>
+            <div class="combo-score">Combo</div>
 
         </div>
-
 
         <div id="leaderboardRows">
 
@@ -934,9 +846,6 @@ const target =
 const gameArea =
     document.getElementById("gameArea");
 
-const finishButton =
-    document.getElementById("finishButton");
-
 const scoreElement =
     document.getElementById("score");
 
@@ -952,9 +861,12 @@ const bestElement =
 const comboText =
     document.getElementById("comboText");
 
+const saveStatus =
+    document.getElementById("saveStatus");
+
 
 /* =========================================================
-   PLAYER
+   OYUNCU / OYUN
 ========================================================= */
 
 let currentUser = null;
@@ -962,11 +874,8 @@ let currentUser = null;
 let gameStarted = false;
 
 let score = 0;
-
 let hits = 0;
-
 let combo = 0;
-
 let highestCombo = 0;
 
 let lastHitTime = 0;
@@ -974,14 +883,26 @@ let lastHitTime = 0;
 const COMBO_TIMEOUT = 900;
 
 
+/*
+    SKOR OTOMATİK KAYIT
+
+    Her vuruşta değil.
+
+    Belirli aralıklarla sunucuya gönderiyoruz.
+*/
+
+let saveTimer = null;
+
+let saveInProgress = false;
+
+let pendingSave = false;
+
+
 /* =========================================================
    API
 ========================================================= */
 
-async function api(
-    action,
-    data = {}
-){
+async function api(action,data = {}){
 
     const response =
         await fetch(
@@ -990,22 +911,16 @@ async function api(
                 method:"POST",
 
                 headers:{
-                    "Content-Type":
-                        "application/json",
-
-                    "apikey":
-                        SUPABASE_KEY,
-
+                    "Content-Type":"application/json",
+                    "apikey":SUPABASE_KEY,
                     "Authorization":
-                        "Bearer " +
-                        SUPABASE_KEY
+                        "Bearer " + SUPABASE_KEY
                 },
 
-                body:
-                    JSON.stringify({
-                        action,
-                        ...data
-                    })
+                body:JSON.stringify({
+                    action,
+                    ...data
+                })
             }
         );
 
@@ -1025,6 +940,7 @@ async function api(
         throw new Error(
             "Sunucudan geçersiz cevap geldi."
         );
+
     }
 
     if(!response.ok){
@@ -1033,6 +949,7 @@ async function api(
             result.error ||
             "Sunucu isteği başarısız."
         );
+
     }
 
     return result;
@@ -1045,15 +962,14 @@ async function api(
 
 function setAuthStatus(
     message,
-    type = ""
+    type=""
 ){
 
     authStatus.textContent =
         message;
 
     authStatus.className =
-        "auth-status " +
-        type;
+        "auth-status " + type;
 }
 
 
@@ -1074,6 +990,7 @@ function getCredentials(){
         throw new Error(
             "Kullanıcı adı en az 3 karakter olmalı."
         );
+
     }
 
     if(username.length > 20){
@@ -1081,15 +998,15 @@ function getCredentials(){
         throw new Error(
             "Kullanıcı adı en fazla 20 karakter olabilir."
         );
+
     }
 
-    if(
-        !/^[a-zA-Z0-9_]+$/.test(username)
-    ){
+    if(!/^[a-zA-Z0-9_]+$/.test(username)){
 
         throw new Error(
             "Kullanıcı adı sadece harf, rakam ve _ içerebilir."
         );
+
     }
 
     if(password.length < 6){
@@ -1097,6 +1014,7 @@ function getCredentials(){
         throw new Error(
             "Şifre en az 6 karakter olmalı."
         );
+
     }
 
     return {
@@ -1117,14 +1035,10 @@ async function register(){
         const {
             username,
             password
-        } =
-            getCredentials();
+        } = getCredentials();
 
-        registerButton.disabled =
-            true;
-
-        loginButton.disabled =
-            true;
+        registerButton.disabled = true;
+        loginButton.disabled = true;
 
         setAuthStatus(
             "Hesap oluşturuluyor...",
@@ -1146,6 +1060,7 @@ async function register(){
                 result.error ||
                 "Kayıt başarısız."
             );
+
         }
 
         setAuthStatus(
@@ -1159,19 +1074,16 @@ async function register(){
     catch(error){
 
         setAuthStatus(
-            "❌ " +
-            error.message,
+            "❌ " + error.message,
             "error"
         );
 
     }
     finally{
 
-        registerButton.disabled =
-            false;
+        registerButton.disabled = false;
+        loginButton.disabled = false;
 
-        loginButton.disabled =
-            false;
     }
 }
 
@@ -1187,14 +1099,10 @@ async function login(){
         const {
             username,
             password
-        } =
-            getCredentials();
+        } = getCredentials();
 
-        registerButton.disabled =
-            true;
-
-        loginButton.disabled =
-            true;
+        registerButton.disabled = true;
+        loginButton.disabled = true;
 
         setAuthStatus(
             "Giriş yapılıyor...",
@@ -1216,37 +1124,17 @@ async function login(){
                 result.error ||
                 "Giriş başarısız."
             );
+
         }
 
-        /*
-         * SESSION TOKEN
-         */
-
         currentUser = {
-
-            username:
-                result.username,
-
-            token:
-                result.token
+            username:result.username
         };
-
-
-        /*
-         * TOKEN VE KULLANICI
-         * TARAYICIYA KAYDEDİLİYOR
-         */
 
         localStorage.setItem(
             "apoyu_username",
             result.username
         );
-
-        localStorage.setItem(
-            "apoyu_token",
-            result.token
-        );
-
 
         enterGame();
 
@@ -1254,19 +1142,16 @@ async function login(){
     catch(error){
 
         setAuthStatus(
-            "❌ " +
-            error.message,
+            "❌ " + error.message,
             "error"
         );
 
     }
     finally{
 
-        registerButton.disabled =
-            false;
+        registerButton.disabled = false;
+        loginButton.disabled = false;
 
-        loginButton.disabled =
-            false;
     }
 }
 
@@ -1277,17 +1162,7 @@ async function login(){
 
 function enterGame(){
 
-    if(
-        !currentUser ||
-        !currentUser.token
-    ){
-
-        return;
-    }
-
-    authScreen.classList.add(
-        "hidden"
-    );
+    authScreen.classList.add("hidden");
 
     userBar.style.display =
         "flex";
@@ -1296,7 +1171,6 @@ function enterGame(){
         currentUser.username;
 
     usernameInput.value = "";
-
     passwordInput.value = "";
 
     setAuthStatus("");
@@ -1313,31 +1187,12 @@ function enterGame(){
 
 async function logout(){
 
-    const token =
-        currentUser
-            ? currentUser.token
-            : null;
+    /*
+        Çıkış yaparken mevcut skoru
+        bir kez daha göndermeyi deniyoruz.
+    */
 
-    if(token){
-
-        try{
-
-            await api(
-                "logout",
-                {
-                    token
-                }
-            );
-
-        }
-        catch(error){
-
-            console.error(
-                "Logout:",
-                error
-            );
-        }
-    }
+    await saveScore(true);
 
     gameStarted = false;
 
@@ -1346,13 +1201,6 @@ async function logout(){
     localStorage.removeItem(
         "apoyu_username"
     );
-
-    localStorage.removeItem(
-        "apoyu_token"
-    );
-
-    finishButton.style.display =
-        "none";
 
     userBar.style.display =
         "none";
@@ -1374,21 +1222,17 @@ async function logout(){
 function resetGame(){
 
     score = 0;
-
     hits = 0;
-
     combo = 0;
-
     highestCombo = 0;
-
     lastHitTime = 0;
 
     gameStarted = true;
 
-    finishButton.style.display =
-        "block";
-
     updateStats();
+
+    clearSaveTimer();
+
 }
 
 
@@ -1400,14 +1244,6 @@ function hit(){
 
     if(!gameStarted)
         return;
-
-    if(
-        !currentUser ||
-        !currentUser.token
-    ){
-
-        return;
-    }
 
     const now =
         performance.now();
@@ -1423,10 +1259,10 @@ function hit(){
     else{
 
         combo = 1;
+
     }
 
-    lastHitTime =
-        now;
+    lastHitTime = now;
 
     hits++;
 
@@ -1438,25 +1274,17 @@ function hit(){
 
     let multiplier = 1;
 
-    if(combo >= 30){
-
+    if(combo >= 30)
         multiplier = 5;
 
-    }
-    else if(combo >= 20){
-
+    else if(combo >= 20)
         multiplier = 4;
 
-    }
-    else if(combo >= 10){
-
+    else if(combo >= 10)
         multiplier = 3;
 
-    }
-    else if(combo >= 5){
-
+    else if(combo >= 5)
         multiplier = 2;
-    }
 
     const critical =
         Math.random() < 0.07;
@@ -1480,6 +1308,210 @@ function hit(){
 
     if(combo >= 2)
         showCombo();
+
+
+    /*
+        BURASI ÖNEMLİ
+
+        Skor artık oyun bitince değil,
+        oyun sırasında otomatik kaydedilecek.
+
+        Her vuruşta veritabanına gitmiyoruz.
+        1 saniyelik gecikmeyle son durum gönderiliyor.
+    */
+
+    scheduleAutoSave();
+}
+
+
+/* =========================================================
+   OTOMATİK SKOR KAYDI
+========================================================= */
+
+function scheduleAutoSave(){
+
+    if(!currentUser)
+        return;
+
+    clearTimeout(saveTimer);
+
+    saveTimer =
+        setTimeout(
+            () => {
+
+                saveScore(false);
+
+            },
+            1000
+        );
+}
+
+
+function clearSaveTimer(){
+
+    if(saveTimer){
+
+        clearTimeout(saveTimer);
+
+        saveTimer = null;
+
+    }
+}
+
+
+/* =========================================================
+   SKORU SUNUCUYA GÖNDER
+========================================================= */
+
+async function saveScore(finalSave=false){
+
+    if(!currentUser)
+        return false;
+
+    /*
+        Aynı anda iki kayıt isteği gönderilmesini
+        engelliyoruz.
+    */
+
+    if(saveInProgress){
+
+        pendingSave = true;
+
+        return false;
+
+    }
+
+    /*
+        Henüz hiç vuruş yoksa kayıt yapma.
+    */
+
+    if(hits <= 0)
+        return false;
+
+    saveInProgress = true;
+
+    pendingSave = false;
+
+    if(finalSave){
+
+        showSaveStatus(
+            "Skor kaydediliyor...",
+            ""
+        );
+
+    }
+
+    try{
+
+        const result =
+            await api(
+                "submit_score",
+                {
+                    username:
+                        currentUser.username,
+
+                    score:
+                        score,
+
+                    hits:
+                        hits,
+
+                    highestCombo:
+                        highestCombo
+                }
+            );
+
+        if(!result.success){
+
+            throw new Error(
+                result.error ||
+                "Skor kaydedilemedi."
+            );
+
+        }
+
+        showSaveStatus(
+            "✓ Skor otomatik kaydedildi",
+            "success"
+        );
+
+        /*
+            Skor tablosunu güncelle.
+        */
+
+        await renderLeaderboard();
+
+        /*
+            Giriş ekranındaki tabloyu da
+            güncel tut.
+        */
+
+        await renderLoginLeaderboard();
+
+        return true;
+
+    }
+    catch(error){
+
+        console.error(
+            "AUTO SAVE ERROR:",
+            error
+        );
+
+        showSaveStatus(
+            "⚠ Skor kaydedilemedi",
+            "error"
+        );
+
+        return false;
+
+    }
+    finally{
+
+        saveInProgress = false;
+
+        /*
+            Kaydetme sırasında yeni bir skor
+            oluştuysa tekrar kaydet.
+        */
+
+        if(pendingSave){
+
+            pendingSave = false;
+
+            scheduleAutoSave();
+
+        }
+
+    }
+}
+
+
+/* =========================================================
+   SAVE STATUS
+========================================================= */
+
+function showSaveStatus(
+    message,
+    type=""
+){
+
+    saveStatus.textContent =
+        message;
+
+    saveStatus.className =
+        "save-status show " + type;
+
+    setTimeout(
+        () => {
+
+            saveStatus.classList.remove(
+                "show"
+            );
+
+        },
+        1800
+    );
 }
 
 
@@ -1498,14 +1530,14 @@ function animateTarget(){
     target.classList.add(
         "hit"
     );
+
 }
 
 
 function showCombo(){
 
     comboText.textContent =
-        "COMBO x" +
-        combo;
+        "COMBO x" + combo;
 
     comboText.classList.remove(
         "show"
@@ -1516,6 +1548,7 @@ function showCombo(){
     comboText.classList.add(
         "show"
     );
+
 }
 
 
@@ -1534,10 +1567,8 @@ function showFloatingScore(
 
     floating.textContent =
         critical
-            ? "CRITICAL +" +
-              points
-            : "+" +
-              points;
+            ? "CRITICAL +" + points
+            : "+" + points;
 
     floating.style.left =
         "50%";
@@ -1549,6 +1580,7 @@ function showFloatingScore(
 
         floating.style.color =
             "#fbbf24";
+
     }
 
     gameArea.appendChild(
@@ -1556,10 +1588,10 @@ function showFloatingScore(
     );
 
     setTimeout(
-        () =>
-            floating.remove(),
+        () => floating.remove(),
         800
     );
+
 }
 
 
@@ -1578,121 +1610,13 @@ function updateStats(){
         hits;
 
     comboElement.textContent =
-        "x" +
-        combo;
+        "x" + combo;
+
 }
 
 
 /* =========================================================
-   FINISH GAME
-========================================================= */
-
-async function finishGame(){
-
-    if(!gameStarted)
-        return;
-
-    if(
-        !currentUser ||
-        !currentUser.token
-    ){
-
-        alert(
-            "❌ Oturum bulunamadı. Lütfen tekrar giriş yap."
-        );
-
-        logout();
-
-        return;
-    }
-
-    gameStarted = false;
-
-    finishButton.disabled =
-        true;
-
-    finishButton.textContent =
-        "KAYDEDİLİYOR...";
-
-    try{
-
-        const result =
-            await api(
-                "submit_score",
-                {
-                    token:
-                        currentUser.token,
-
-                    score,
-
-                    hits,
-
-                    highestCombo
-                }
-            );
-
-        if(!result.success){
-
-            throw new Error(
-                result.error ||
-                "Skor kaydedilemedi."
-            );
-        }
-
-        /*
-         * BAŞARILI
-         */
-
-        await renderLeaderboard();
-
-        alert(
-            "🏆 SKOR KAYDEDİLDİ!\n\n" +
-            "Skor: " +
-            score.toLocaleString(
-                "tr-TR"
-            ) +
-            "\nVuruş: " +
-            hits +
-            "\nEn yüksek combo: x" +
-            highestCombo
-        );
-
-        resetGame();
-
-    }
-    catch(error){
-
-        console.error(
-            "SKOR KAYDETME HATASI:",
-            error
-        );
-
-        /*
-         * SKOR KAYDEDİLEMEDİYSE
-         * OYUNU SIFIRLAMIYORUZ
-         */
-
-        gameStarted = true;
-
-        alert(
-            "❌ Skor kaydedilemedi.\n\n" +
-            error.message
-        );
-
-    }
-    finally{
-
-        finishButton.disabled =
-            false;
-
-        finishButton.textContent =
-            "OYUNU BİTİR";
-    }
-}
-
-
-/* =========================================================
-   LEADERBOARD API
+   LEADERBOARD
 ========================================================= */
 
 async function getLeaderboard(){
@@ -1707,7 +1631,7 @@ async function getLeaderboard(){
 
 
 /* =========================================================
-   MINI ROW
+   LOGIN BOARD
 ========================================================= */
 
 function createMiniRow(
@@ -1737,17 +1661,11 @@ function createMiniRow(
         </div>
 
         <div>
-            ${escapeHtml(
-                item.username
-            )}
+            ${escapeHtml(item.username)}
         </div>
 
         <div class="mini-score">
-            ${Number(
-                item.score
-            ).toLocaleString(
-                "tr-TR"
-            )}
+            ${Number(item.score).toLocaleString("tr-TR")}
         </div>
 
     `;
@@ -1755,10 +1673,6 @@ function createMiniRow(
     return row;
 }
 
-
-/* =========================================================
-   LOGIN LEADERBOARD
-========================================================= */
 
 async function renderLoginLeaderboard(){
 
@@ -1775,8 +1689,7 @@ async function renderLoginLeaderboard(){
         const scores =
             await getLeaderboard();
 
-        loginLeaderboard.innerHTML =
-            "";
+        loginLeaderboard.innerHTML = "";
 
         if(!scores.length){
 
@@ -1789,15 +1702,13 @@ async function renderLoginLeaderboard(){
             `;
 
             return;
+
         }
 
         scores
             .slice(0,10)
             .forEach(
-                (
-                    item,
-                    index
-                ) => {
+                (item,index)=>{
 
                     loginLeaderboard.appendChild(
                         createMiniRow(
@@ -1805,16 +1716,14 @@ async function renderLoginLeaderboard(){
                             index
                         )
                     );
+
                 }
             );
 
     }
     catch(error){
 
-        console.error(
-            "LOGIN LEADERBOARD:",
-            error
-        );
+        console.error(error);
 
         loginLeaderboard.innerHTML = `
 
@@ -1823,6 +1732,7 @@ async function renderLoginLeaderboard(){
             </div>
 
         `;
+
     }
 }
 
@@ -1846,8 +1756,7 @@ async function renderLeaderboard(){
         const scores =
             await getLeaderboard();
 
-        leaderboardRows.innerHTML =
-            "";
+        leaderboardRows.innerHTML = "";
 
         if(!scores.length){
 
@@ -1863,7 +1772,12 @@ async function renderLeaderboard(){
                 "0";
 
             return;
+
         }
+
+        /*
+            En yüksek skor
+        */
 
         bestElement.textContent =
             Number(
@@ -1872,11 +1786,9 @@ async function renderLeaderboard(){
                 "tr-TR"
             );
 
+
         scores.forEach(
-            (
-                item,
-                index
-            ) => {
+            (item,index)=>{
 
                 const row =
                     document.createElement(
@@ -1896,32 +1808,20 @@ async function renderLeaderboard(){
                 row.innerHTML = `
 
                     <div>
-                        ${
-                            medals[index] ||
-                            index + 1
-                        }
+                        ${medals[index] || index + 1}
                     </div>
 
                     <div>
-                        ${escapeHtml(
-                            item.username
-                        )}
+                        ${escapeHtml(item.username)}
                     </div>
 
                     <div class="score">
-                        ${Number(
-                            item.score
-                        ).toLocaleString(
-                            "tr-TR"
-                        )}
+                        ${Number(item.score)
+                            .toLocaleString("tr-TR")}
                     </div>
 
                     <div class="combo-score">
-                        x${
-                            Number(
-                                item.highest_combo
-                            )
-                        }
+                        x${item.highest_combo}
                     </div>
 
                 `;
@@ -1929,16 +1829,14 @@ async function renderLeaderboard(){
                 leaderboardRows.appendChild(
                     row
                 );
+
             }
         );
 
     }
     catch(error){
 
-        console.error(
-            "LEADERBOARD:",
-            error
-        );
+        console.error(error);
 
         leaderboardRows.innerHTML = `
 
@@ -1947,6 +1845,7 @@ async function renderLeaderboard(){
             </div>
 
         `;
+
     }
 }
 
@@ -1983,11 +1882,12 @@ function escapeHtml(text){
             "'",
             "&#039;"
         );
+
 }
 
 
 /* =========================================================
-   EVENTS
+   EVENTLER
 ========================================================= */
 
 registerButton.addEventListener(
@@ -2005,41 +1905,34 @@ logoutButton.addEventListener(
     logout
 );
 
-finishButton.addEventListener(
-    "click",
-    finishGame
-);
 
 target.addEventListener(
     "pointerdown",
-    event => {
+    event=>{
 
         event.preventDefault();
 
         hit();
+
     }
 );
 
+
 document
-    .getElementById(
-        "refreshScores"
-    )
+    .getElementById("refreshScores")
     .addEventListener(
         "click",
         renderLeaderboard
     );
 
+
 passwordInput.addEventListener(
     "keydown",
-    event => {
+    event=>{
 
-        if(
-            event.key ===
-            "Enter"
-        ){
-
+        if(event.key === "Enter")
             login();
-        }
+
     }
 );
 
@@ -2049,7 +1942,7 @@ passwordInput.addEventListener(
 ========================================================= */
 
 setInterval(
-    () => {
+    ()=>{
 
         if(!gameStarted)
             return;
@@ -2065,6 +1958,7 @@ setInterval(
 
             comboElement.textContent =
                 "x0";
+
         }
 
     },
@@ -2073,67 +1967,84 @@ setInterval(
 
 
 /* =========================================================
-   STARTUP
+   SAYFA KAPATILIRKEN
 ========================================================= */
 
-async function startup(){
+window.addEventListener(
+    "beforeunload",
+    ()=>{
 
-    /*
-     * Önce leaderboard
-     */
+        /*
+            Tarayıcı kapanırken normal fetch
+            her zaman tamamlanmayabilir.
 
-    renderLoginLeaderboard();
+            Bu nedenle burada sadece son kayıt
+            tetikleniyor.
+        */
 
-    /*
-     * Daha önce giriş yapılmış mı?
-     */
+        if(
+            currentUser &&
+            hits > 0
+        ){
 
-    const savedUsername =
-        localStorage.getItem(
-            "apoyu_username"
-        );
+            const body =
+                JSON.stringify({
+                    action:
+                        "submit_score",
 
-    const savedToken =
-        localStorage.getItem(
-            "apoyu_token"
-        );
+                    username:
+                        currentUser.username,
 
-    if(
-        savedUsername &&
-        savedToken
-    ){
+                    score,
+                    hits,
 
-        currentUser = {
+                    highestCombo
+                });
 
-            username:
-                savedUsername,
+            try{
 
-            token:
-                savedToken
-        };
+                navigator.sendBeacon(
+                    FUNCTION_URL,
+                    new Blob(
+                        [body],
+                        {
+                            type:
+                                "application/json"
+                        }
+                    )
+                );
 
-        enterGame();
+            }
+            catch{}
+
+        }
 
     }
-    else if(savedUsername){
+);
 
-        usernameInput.value =
-            savedUsername;
 
-        passwordInput.focus();
+/* =========================================================
+   BAŞLANGIÇ
+========================================================= */
 
-        renderLeaderboard();
+renderLoginLeaderboard();
 
-    }
-    else{
+renderLeaderboard();
 
-        usernameInput.focus();
 
-        renderLeaderboard();
-    }
+const savedUsername =
+    localStorage.getItem(
+        "apoyu_username"
+    );
+
+if(savedUsername){
+
+    usernameInput.value =
+        savedUsername;
+
+    passwordInput.focus();
+
 }
-
-startup();
 
 </script>
 
