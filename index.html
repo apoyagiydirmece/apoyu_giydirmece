@@ -1,370 +1,2278 @@
-import "jsr:@supabase/functions-js/edge-runtime.d.ts";
-import { createClient } from "jsr:@supabase/supabase-js@2";
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+<title>APOYU GİYDİRMECE</title>
 
-const secretKeysRaw =
-  Deno.env.get("SUPABASE_SECRET_KEYS");
-
-if (!secretKeysRaw) {
-  throw new Error("SUPABASE_SECRET_KEYS bulunamadı.");
+<style>
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
-const secretKeys = JSON.parse(secretKeysRaw);
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at top, #26344d 0%, #111827 45%, #070b12 100%);
+    color: white;
+    overflow-x: hidden;
+}
 
-const secretKey =
-  Object.values(secretKeys)[0] as string;
+body {
+    min-height: 100vh;
+}
 
-const supabase = createClient(
-  supabaseUrl,
-  secretKey
+button,
+input {
+    font-family: inherit;
+}
+
+.container {
+    width: min(1100px, 94%);
+    margin: auto;
+    padding: 25px 0 40px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: clamp(30px, 6vw, 54px);
+    font-weight: 900;
+    letter-spacing: -2px;
+}
+
+.header p {
+    margin: 8px 0 0;
+    color: #aeb9ca;
+    font-size: 15px;
+}
+
+/* =========================
+   SOUND BUTTON
+========================= */
+
+.sound-button {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+
+    width: 52px;
+    height: 52px;
+
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.15);
+
+    background: rgba(15,23,42,.9);
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+
+    cursor: pointer;
+
+    z-index: 100;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.35);
+
+    backdrop-filter: blur(10px);
+
+    padding: 0;
+}
+
+.sound-button:hover {
+    filter: brightness(1.15);
+}
+
+.sound-button:active {
+    transform: scale(.92);
+}
+
+/* =========================
+   NAME SCREEN
+========================= */
+
+.name-screen {
+    position: fixed;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(38,52,77,.95),
+            rgba(3,7,18,.98)
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 90;
+
+    padding: 20px;
+
+    transition:
+        opacity .3s ease,
+        visibility .3s ease;
+}
+
+.name-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.name-box {
+    width: min(460px, 94vw);
+
+    text-align: center;
+
+    padding: 35px 25px;
+
+    border-radius: 24px;
+
+    background: rgba(15,23,42,.9);
+
+    border:
+        1px solid rgba(255,255,255,.1);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.55);
+}
+
+.name-box h2 {
+    margin: 0 0 10px;
+
+    font-size:
+        clamp(32px, 8vw, 52px);
+
+    font-weight: 1000;
+}
+
+.name-box p {
+    color: #aeb9ca;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.name-input {
+    width: 100%;
+
+    padding: 16px 18px;
+
+    border:
+        1px solid #374151;
+
+    border-radius: 14px;
+
+    background: #111827;
+
+    color: white;
+
+    outline: none;
+
+    font-size: 18px;
+
+    text-align: center;
+}
+
+.name-input:focus {
+    border-color: #60a5fa;
+    box-shadow:
+        0 0 0 3px rgba(96,165,250,.12);
+}
+
+.name-status {
+    min-height: 24px;
+
+    margin-top: 12px;
+
+    font-size: 14px;
+}
+
+.name-status.error {
+    color: #f87171;
+}
+
+.name-status.success {
+    color: #86efac;
+}
+
+.name-status.loading {
+    color: #fbbf24;
+}
+
+/* =========================
+   GAME AREA
+========================= */
+
+.game-area {
+    position: relative;
+
+    min-height: 560px;
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            rgba(255,255,255,.025),
+            rgba(255,255,255,.01)
+        );
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.4);
+
+    overflow: hidden;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats {
+    position: absolute;
+
+    left: 20px;
+    right: 20px;
+    top: 18px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    z-index: 5;
+}
+
+.stat {
+    min-width: 120px;
+
+    padding: 10px 15px;
+
+    text-align: center;
+
+    border-radius: 12px;
+
+    background:
+        rgba(15,23,42,.85);
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    backdrop-filter: blur(10px);
+}
+
+.stat-label {
+    display: block;
+
+    font-size: 11px;
+
+    color: #9ca3af;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+.stat-value {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 22px;
+
+    font-weight: 900;
+}
+
+/* =========================
+   TARGET
+========================= */
+
+.target-zone {
+    position: absolute;
+
+    left: 50%;
+    top: 58%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width:
+        min(380px, 80vw);
+
+    height:
+        400px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.target {
+    position: relative;
+
+    width:
+        min(330px, 72vw);
+
+    height:
+        min(330px, 72vw);
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    user-select: none;
+
+    touch-action: manipulation;
+
+    background:
+        radial-gradient(
+            circle,
+            #374151,
+            #111827
+        );
+
+    border:
+        5px solid #374151;
+
+    box-shadow:
+        0 30px 60px rgba(0,0,0,.5),
+        inset 0 0 30px rgba(255,255,255,.08);
+
+    transition:
+        transform .07s;
+}
+
+.target img {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    pointer-events: none;
+
+    user-select: none;
+}
+
+.target-placeholder {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    text-align: center;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 35% 25%,
+            #64748b,
+            #1e293b 65%,
+            #0f172a
+        );
+}
+
+.target-placeholder strong {
+    font-size:
+        clamp(28px, 7vw, 45px);
+
+    font-weight: 1000;
+}
+
+.target-placeholder span {
+    margin-top: 8px;
+
+    font-size: 12px;
+
+    color: rgba(255,255,255,.55);
+}
+
+.target.hit {
+    animation:
+        punch .12s linear;
+}
+
+@keyframes punch {
+
+    0% {
+        transform:
+            scale(1)
+            rotate(0deg);
+    }
+
+    35% {
+        transform:
+            scale(.94)
+            rotate(-3deg);
+    }
+
+    70% {
+        transform:
+            scale(1.05)
+            rotate(3deg);
+    }
+
+    100% {
+        transform:
+            scale(1)
+            rotate(0deg);
+    }
+}
+
+/* =========================
+   COMBO
+========================= */
+
+.combo {
+    position: absolute;
+
+    left: 50%;
+    top: 34%;
+
+    transform:
+        translate(-50%, -50%)
+        scale(.8);
+
+    font-size:
+        clamp(28px, 7vw, 55px);
+
+    font-weight: 1000;
+
+    color: #fbbf24;
+
+    text-shadow:
+        0 0 25px rgba(251,191,36,.45);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    z-index: 10;
+}
+
+.combo.show {
+    animation:
+        comboPop .25s ease-out forwards;
+}
+
+@keyframes comboPop {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(.5);
+    }
+
+    60% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.15);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+}
+
+/* =========================
+   FLOATING SCORE
+========================= */
+
+.floating-score {
+    position: absolute;
+
+    font-size: 24px;
+
+    font-weight: 1000;
+
+    color: #86efac;
+
+    pointer-events: none;
+
+    z-index: 20;
+
+    animation:
+        floatScore .8s ease-out forwards;
+}
+
+@keyframes floatScore {
+
+    0% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, 0)
+            scale(1);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -90px)
+            scale(1.3);
+    }
+}
+
+/* =========================
+   LEADERBOARD
+========================= */
+
+.leaderboard {
+    margin-top: 22px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(15,23,42,.85);
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    overflow: hidden;
+}
+
+.leaderboard-header {
+    padding: 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.leaderboard-header h2 {
+    margin: 0;
+
+    font-size: 22px;
+}
+
+.table {
+    width: 100%;
+}
+
+.row {
+    display: grid;
+
+    grid-template-columns:
+        60px
+        1fr
+        120px
+        100px;
+
+    padding: 13px 20px;
+
+    border-top:
+        1px solid rgba(255,255,255,.06);
+
+    align-items: center;
+}
+
+.row.header-row {
+    color: #9ca3af;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+}
+
+.rank {
+    font-weight: 900;
+}
+
+.score {
+    font-weight: 900;
+
+    text-align: right;
+}
+
+.combo-score {
+    text-align: right;
+
+    color: #fbbf24;
+
+    font-weight: 800;
+}
+
+.empty {
+    padding: 30px;
+
+    text-align: center;
+
+    color: #9ca3af;
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        rgba(3,7,18,.78);
+
+    backdrop-filter:
+        blur(7px);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 30;
+
+    text-align: center;
+
+    padding: 20px;
+}
+
+.overlay.hidden {
+    display: none;
+}
+
+.overlay-box {
+    max-width: 500px;
+}
+
+.overlay h2 {
+    font-size:
+        clamp(28px, 7vw, 48px);
+
+    margin: 0 0 10px;
+}
+
+.overlay p {
+    color: #aeb9ca;
+
+    line-height: 1.6;
+}
+
+/* =========================
+   FINISH BUTTON
+========================= */
+
+.finish-button {
+    position: absolute;
+
+    bottom: 18px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 20;
+
+    padding:
+        12px 20px;
+
+    border: 0;
+
+    border-radius: 12px;
+
+    background: #dc2626;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    display: none;
+}
+
+/* =========================
+   SHAKE
+========================= */
+
+.shake {
+    animation:
+        shake .16s linear;
+}
+
+@keyframes shake {
+
+    0%,100% {
+        transform:
+            translate(0);
+    }
+
+    25% {
+        transform:
+            translate(-5px,3px);
+    }
+
+    50% {
+        transform:
+            translate(5px,-3px);
+    }
+
+    75% {
+        transform:
+            translate(-3px,-2px);
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 96%;
+
+        padding-top: 15px;
+    }
+
+    .header h1 {
+        font-size: 32px;
+    }
+
+    .game-area {
+        min-height: 570px;
+
+        border-radius: 18px;
+    }
+
+    .stats {
+        top: 12px;
+
+        left: 8px;
+        right: 8px;
+
+        gap: 6px;
+    }
+
+    .stat {
+        min-width: 78px;
+
+        padding: 8px;
+    }
+
+    .stat-value {
+        font-size: 18px;
+    }
+
+    .target-zone {
+        top: 57%;
+    }
+
+    .row {
+        grid-template-columns:
+            45px
+            1fr
+            90px;
+
+        padding: 12px;
+    }
+
+    .row .combo-score {
+        display: none;
+    }
+
+    .header-row .combo-score {
+        display: none;
+    }
+
+    .sound-button {
+        width: 46px;
+        height: 46px;
+
+        top: 12px;
+        right: 12px;
+
+        font-size: 21px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SES -->
+
+<button
+    class="sound-button"
+    id="soundButton"
+    aria-label="Sesi aç veya kapat"
+    title="Sesi aç/kapat"
+>
+    🔊
+</button>
+
+
+<!-- İSİM EKRANI -->
+
+<div
+    class="name-screen"
+    id="nameScreen"
+>
+
+    <div class="name-box">
+
+        <h2>🥊</h2>
+
+        <h2>APOYU<br>GİYDİRMECE</h2>
+
+        <p>
+            Oyuna başlamak için ismini gir.
+            <br>
+            İsmini yazdığın anda oyun başlayacak.
+        </p>
+
+        <input
+            class="name-input"
+            id="playerName"
+            type="text"
+            maxlength="20"
+            placeholder="İsmini yaz..."
+            autocomplete="off"
+            spellcheck="false"
+        >
+
+        <div
+            class="name-status"
+            id="nameStatus"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>🥊 APOYU GİYDİRMECE</h1>
+
+        <p>
+            Ne kadar hızlı vurursan o kadar yüksek combo!
+        </p>
+
+    </div>
+
+
+    <div
+        class="game-area"
+        id="gameArea"
+    >
+
+        <!-- İSTATİSTİKLER -->
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <span class="stat-label">
+                    Skor
+                </span>
+
+                <span
+                    class="stat-value"
+                    id="score"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span class="stat-label">
+                    Vuruş
+                </span>
+
+                <span
+                    class="stat-value"
+                    id="hits"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span class="stat-label">
+                    Combo
+                </span>
+
+                <span
+                    class="stat-value"
+                    id="comboValue"
+                >
+                    x0
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <span class="stat-label">
+                    En yüksek
+                </span>
+
+                <span
+                    class="stat-value"
+                    id="best"
+                >
+                    0
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- COMBO -->
+
+        <div
+            class="combo"
+            id="comboText"
+        >
+            COMBO x2
+        </div>
+
+
+        <!-- HEDEF -->
+
+        <div class="target-zone">
+
+            <div
+                class="target"
+                id="target"
+                aria-label="Oyunun hedefi"
+            >
+
+                <!--
+                    DAHA SONRA BURAYA FOTOĞRAF KOYABİLİRSİN.
+
+                    Örnek:
+
+                    <img src="apo.jpg">
+
+                    Şimdilik placeholder kullanılıyor.
+                -->
+
+                <div class="target-placeholder">
+
+                    <strong>APO</strong>
+
+                    <span>
+                        VUR!
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- OYUNU BİTİR -->
+
+        <button
+            class="finish-button"
+            id="finishButton"
+        >
+            OYUNU BİTİR
+        </button>
+
+
+        <!-- OYUN BİTİŞ -->
+
+        <div
+            class="overlay hidden"
+            id="overlay"
+        >
+
+            <div class="overlay-box">
+
+                <h2>
+                    🏆 Oyun Bitti!
+                </h2>
+
+                <p id="finishMessage"></p>
+
+                <button
+                    id="newGameButton"
+                    style="
+                        border:0;
+                        border-radius:12px;
+                        padding:14px 22px;
+                        font-size:16px;
+                        font-weight:800;
+                        cursor:pointer;
+                        color:white;
+                        background:#16a34a;
+                    "
+                >
+                    YENİ OYUNCU
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SKOR TABLOSU -->
+
+    <div class="leaderboard">
+
+        <div class="leaderboard-header">
+
+            <h2>
+                🏆 Skor Tablosu
+            </h2>
+
+            <button
+                id="refreshScores"
+                style="
+                    background:#374151;
+                    font-size:12px;
+                    padding:9px 12px;
+                    border:0;
+                    border-radius:10px;
+                    color:white;
+                    font-weight:800;
+                    cursor:pointer;
+                "
+            >
+                YENİLE
+            </button>
+
+        </div>
+
+
+        <div class="table">
+
+            <div class="row header-row">
+
+                <div>
+                    #
+                </div>
+
+                <div>
+                    Oyuncu
+                </div>
+
+                <div class="score">
+                    Skor
+                </div>
+
+                <div class="combo-score">
+                    Combo
+                </div>
+
+            </div>
+
+
+            <div id="leaderboardRows"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   SUPABASE
+========================================================= */
+
+const SUPABASE_FUNCTION_URL =
+    "https://sqotorneqppbwsmnyxmy.supabase.co/functions/v1/swift-service";
+
+
+/* =========================================================
+   ELEMENTLER
+========================================================= */
+
+const nameScreen =
+    document.getElementById("nameScreen");
+
+const playerName =
+    document.getElementById("playerName");
+
+const nameStatus =
+    document.getElementById("nameStatus");
+
+const target =
+    document.getElementById("target");
+
+const gameArea =
+    document.getElementById("gameArea");
+
+const scoreElement =
+    document.getElementById("score");
+
+const hitsElement =
+    document.getElementById("hits");
+
+const comboElement =
+    document.getElementById("comboValue");
+
+const bestElement =
+    document.getElementById("best");
+
+const comboText =
+    document.getElementById("comboText");
+
+const leaderboardRows =
+    document.getElementById("leaderboardRows");
+
+const finishButton =
+    document.getElementById("finishButton");
+
+const overlay =
+    document.getElementById("overlay");
+
+const finishMessage =
+    document.getElementById("finishMessage");
+
+const newGameButton =
+    document.getElementById("newGameButton");
+
+const refreshScores =
+    document.getElementById("refreshScores");
+
+const soundButton =
+    document.getElementById("soundButton");
+
+
+/* =========================================================
+   OYUN DEĞİŞKENLERİ
+========================================================= */
+
+let gameStarted = false;
+
+let score = 0;
+
+let hits = 0;
+
+let combo = 0;
+
+let highestCombo = 0;
+
+let lastHitTime = 0;
+
+let playerCurrentName = "";
+
+let submittingScore = false;
+
+const COMBO_TIMEOUT = 900;
+
+
+/* =========================================================
+   SES
+========================================================= */
+
+let audioContext = null;
+
+let soundEnabled = true;
+
+
+function initAudio() {
+
+    if (!soundEnabled) {
+        return;
+    }
+
+    if (!audioContext) {
+
+        audioContext =
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
+
+    }
+
+    if (
+        audioContext.state ===
+        "suspended"
+    ) {
+
+        audioContext.resume();
+
+    }
+}
+
+
+function punchSound(critical = false) {
+
+    if (!soundEnabled) {
+        return;
+    }
+
+    if (!audioContext) {
+        return;
+    }
+
+    const oscillator =
+        audioContext.createOscillator();
+
+    const gain =
+        audioContext.createGain();
+
+    oscillator.connect(gain);
+
+    gain.connect(
+        audioContext.destination
+    );
+
+    oscillator.type =
+        critical
+            ? "square"
+            : "sine";
+
+    oscillator.frequency.setValueAtTime(
+        critical ? 180 : 110,
+        audioContext.currentTime
+    );
+
+    oscillator.frequency.exponentialRampToValueAtTime(
+        critical ? 80 : 55,
+        audioContext.currentTime + .08
+    );
+
+    gain.gain.setValueAtTime(
+        critical ? .13 : .08,
+        audioContext.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+        .001,
+        audioContext.currentTime + .09
+    );
+
+    oscillator.start();
+
+    oscillator.stop(
+        audioContext.currentTime + .1
+    );
+}
+
+
+soundButton.addEventListener(
+    "click",
+    () => {
+
+        soundEnabled =
+            !soundEnabled;
+
+        if (soundEnabled) {
+
+            soundButton.textContent =
+                "🔊";
+
+            initAudio();
+
+        } else {
+
+            soundButton.textContent =
+                "🔇";
+
+        }
+
+    }
 );
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type",
-  "Access-Control-Allow-Methods":
-    "POST, OPTIONS",
-};
 
-function response(
-  data: unknown,
-  status = 200
-) {
-  return new Response(
-    JSON.stringify(data),
-    {
-      status,
-      headers: {
-        ...corsHeaders,
-        "Content-Type":
-          "application/json",
-      },
-    }
-  );
-}
+/* =========================================================
+   SUPABASE İSTEĞİ
+========================================================= */
 
-function cleanName(name: string) {
-  return name
-    .trim()
-    .replace(/\s+/g, " ")
-    .slice(0, 20);
-}
+async function callFunction(payload) {
 
-Deno.serve(async (req) => {
-
-  if (req.method === "OPTIONS") {
-    return new Response("ok", {
-      headers: corsHeaders,
-    });
-  }
-
-  if (req.method !== "POST") {
-    return response(
-      {
-        error:
-          "Sadece POST kabul edilir."
-      },
-      405
-    );
-  }
-
-  try {
-
-    const body = await req.json();
-
-    const action =
-      String(body.action || "");
-
-    /*
-     * ==========================
-     * LİDERLİK TABLOSU
-     * ==========================
-     */
-
-    if (action === "leaderboard") {
-
-      const { data, error } =
-        await supabase
-          .from("scores")
-          .select(
-            "player_name, score, highest_combo, hits, created_at"
-          )
-          .order(
-            "score",
+    const response =
+        await fetch(
+            SUPABASE_FUNCTION_URL,
             {
-              ascending: false
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body:
+                    JSON.stringify(payload)
             }
-          )
-          .limit(50);
+        );
 
-      if (error) {
+    let data;
+
+    try {
+
+        data =
+            await response.json();
+
+    } catch {
+
+        throw new Error(
+            "Sunucudan geçersiz cevap geldi."
+        );
+
+    }
+
+    if (!response.ok) {
+
+        throw new Error(
+            data.error ||
+            "Sunucu isteği başarısız."
+        );
+
+    }
+
+    return data;
+}
+
+
+/* =========================================================
+   İSİM KONTROLÜ
+========================================================= */
+
+let nameCheckTimer = null;
+
+
+playerName.addEventListener(
+    "input",
+    () => {
+
+        clearTimeout(
+            nameCheckTimer
+        );
+
+        const name =
+            playerName.value.trim();
+
+        nameStatus.textContent = "";
+
+        nameStatus.className =
+            "name-status";
+
+        if (name.length < 2) {
+            return;
+        }
+
+        nameCheckTimer =
+            setTimeout(
+                () => checkName(name),
+                400
+            );
+
+    }
+);
+
+
+async function checkName(name) {
+
+    nameStatus.textContent =
+        "İsim kontrol ediliyor...";
+
+    nameStatus.className =
+        "name-status loading";
+
+    try {
+
+        const result =
+            await callFunction({
+                action: "check_name",
+                name: name
+            });
+
+        if (!result.available) {
+
+            nameStatus.textContent =
+                "❌ Bu isim daha önce kullanılmış.";
+
+            nameStatus.className =
+                "name-status error";
+
+            return;
+        }
+
+        nameStatus.textContent =
+            "✓ İsim uygun. Oyun başlıyor...";
+
+        nameStatus.className =
+            "name-status success";
+
+        /*
+         * İsim uygunsa otomatik başlat.
+         */
+
+        setTimeout(
+            () => startGame(name),
+            250
+        );
+
+    } catch (error) {
 
         console.error(error);
 
-        return response(
-          {
-            error:
-              "Skor tablosu alınamadı."
-          },
-          500
-        );
-      }
+        nameStatus.textContent =
+            "⚠️ Sunucuya bağlanılamadı.";
 
-      return response({
-        scores: data || []
-      });
+        nameStatus.className =
+            "name-status error";
+
+    }
+
+}
+
+
+/* =========================================================
+   OYUNU BAŞLAT
+========================================================= */
+
+function startGame(name) {
+
+    if (gameStarted) {
+        return;
+    }
+
+    playerCurrentName =
+        name.trim();
+
+    if (
+        playerCurrentName.length < 2
+    ) {
+        return;
+    }
+
+    initAudio();
+
+    gameStarted = true;
+
+    score = 0;
+
+    hits = 0;
+
+    combo = 0;
+
+    highestCombo = 0;
+
+    lastHitTime = 0;
+
+    submittingScore = false;
+
+    updateStats();
+
+    nameScreen.classList.add(
+        "hidden"
+    );
+
+    finishButton.style.display =
+        "block";
+
+    overlay.classList.add(
+        "hidden"
+    );
+
+}
+
+
+/* =========================================================
+   VURUŞ
+========================================================= */
+
+function hitTarget(event) {
+
+    if (!gameStarted) {
+        return;
+    }
+
+    event.preventDefault();
+
+    const now =
+        performance.now();
+
+    if (
+        now - lastHitTime <=
+        COMBO_TIMEOUT
+    ) {
+
+        combo++;
+
+    } else {
+
+        combo = 1;
+
+    }
+
+    lastHitTime = now;
+
+    hits++;
+
+    if (
+        combo > highestCombo
+    ) {
+
+        highestCombo =
+            combo;
+
     }
 
 
     /*
-     * ==========================
-     * İSİM KONTROLÜ
-     * ==========================
+     * Sunucudaki hesapla aynı:
+     *
+     * 1-4   x1
+     * 5-9   x2
+     * 10-19 x3
+     * 20-29 x4
+     * 30+   x5
      */
 
-    if (action === "check_name") {
+    let multiplier = 1;
 
-      const name =
-        cleanName(
-          String(
-            body.name || ""
-          )
-        );
+    if (combo >= 30) {
 
-      if (name.length < 2) {
+        multiplier = 5;
 
-        return response(
-          {
-            available: false,
-            error:
-              "İsim en az 2 karakter olmalı."
-          },
-          400
-        );
-      }
+    } else if (combo >= 20) {
 
-      const { data, error } =
-        await supabase
-          .from("scores")
-          .select("id")
-          .ilike(
-            "player_name",
-            name
-          )
-          .limit(1);
+        multiplier = 4;
 
-      if (error) {
+    } else if (combo >= 10) {
 
-        console.error(error);
+        multiplier = 3;
 
-        return response(
-          {
-            error:
-              "İsim kontrol edilemedi."
-          },
-          500
-        );
-      }
+    } else if (combo >= 5) {
 
-      return response({
-        available:
-          !data ||
-          data.length === 0
-      });
+        multiplier = 2;
+
+    }
+
+
+    const critical =
+        Math.random() < 0.07;
+
+
+    let points =
+        10 * multiplier;
+
+
+    if (critical) {
+
+        points *= 3;
+
     }
 
 
     /*
-     * ==========================
-     * SKOR KAYDET
-     * ==========================
+     * Bu skor sadece ekranda gösteriliyor.
+     *
+     * Supabase'e score göndermiyoruz.
      */
 
-    if (action === "submit_score") {
+    score += points;
 
-      const name =
-        cleanName(
-          String(
-            body.name || ""
-          )
+    updateStats();
+
+    animateTarget();
+
+    punchSound(
+        critical
+    );
+
+    showFloatingScore(
+        event,
+        points,
+        critical
+    );
+
+    if (combo >= 2) {
+        showCombo();
+    }
+
+}
+
+
+/* =========================================================
+   HEDEF ANİMASYONU
+========================================================= */
+
+function animateTarget() {
+
+    target.classList.remove(
+        "hit"
+    );
+
+    void target.offsetWidth;
+
+    target.classList.add(
+        "hit"
+    );
+
+    gameArea.classList.remove(
+        "shake"
+    );
+
+    void gameArea.offsetWidth;
+
+    gameArea.classList.add(
+        "shake"
+    );
+
+}
+
+
+/* =========================================================
+   COMBO
+========================================================= */
+
+function showCombo() {
+
+    comboText.textContent =
+        `COMBO x${combo}`;
+
+    comboText.classList.remove(
+        "show"
+    );
+
+    void comboText.offsetWidth;
+
+    comboText.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================================================
+   YÜZEN SKOR
+========================================================= */
+
+function showFloatingScore(
+    event,
+    points,
+    critical
+) {
+
+    const floating =
+        document.createElement(
+            "div"
         );
 
-      const hits =
-        Number(body.hits);
+    floating.className =
+        "floating-score";
 
-      const highestCombo =
-        Number(
-          body.highestCombo
-        );
-
-      if (name.length < 2) {
-
-        return response(
-          {
-            error:
-              "Geçersiz oyuncu adı."
-          },
-          400
-        );
-      }
-
-      if (
-        !Number.isInteger(hits) ||
-        hits < 1 ||
-        hits > 200000
-      ) {
-
-        return response(
-          {
-            error:
-              "Geçersiz vuruş sayısı."
-          },
-          400
-        );
-      }
-
-      if (
-        !Number.isInteger(
-          highestCombo
-        ) ||
-        highestCombo < 1 ||
-        highestCombo > hits
-      ) {
-
-        return response(
-          {
-            error:
-              "Geçersiz combo."
-          },
-          400
-        );
-      }
+    floating.textContent =
+        critical
+            ? `CRITICAL +${points}`
+            : `+${points}`;
 
 
-      /*
-       * Aynı isim kontrolü.
-       */
-
-      const { data: existing } =
-        await supabase
-          .from("scores")
-          .select("id")
-          .ilike(
-            "player_name",
-            name
-          )
-          .limit(1);
-
-      if (
-        existing &&
-        existing.length > 0
-      ) {
-
-        return response(
-          {
-            error:
-              "Bu isim daha önce kullanılmış."
-          },
-          409
-        );
-      }
+    const rect =
+        gameArea.getBoundingClientRect();
 
 
-      /*
-       * SUNUCU TARAFINDA SKOR HESABI
-       *
-       * Tarayıcıdan score almıyoruz.
-       */
-
-      let calculatedScore = 0;
-
-      for (
-        let i = 1;
-        i <= hits;
-        i++
-      ) {
-
-        let multiplier = 1;
-
-        if (i >= 30) {
-          multiplier = 5;
-        }
-        else if (i >= 20) {
-          multiplier = 4;
-        }
-        else if (i >= 10) {
-          multiplier = 3;
-        }
-        else if (i >= 5) {
-          multiplier = 2;
-        }
-
-        calculatedScore +=
-          10 * multiplier;
-      }
+    let x;
+    let y;
 
 
-      /*
-       * Veritabanına kaydet.
-       */
+    if (
+        event &&
+        event.clientX !== undefined
+    ) {
 
-      const { data, error } =
-        await supabase
-          .from("scores")
-          .insert({
-            player_name: name,
-            score: calculatedScore,
-            highest_combo:
-              highestCombo,
-            hits: hits
-          })
-          .select()
-          .single();
+        x =
+            event.clientX -
+            rect.left;
 
-      if (error) {
+        y =
+            event.clientY -
+            rect.top;
 
-        console.error(error);
+    } else {
 
-        return response(
-          {
-            error:
-              "Skor kaydedilemedi."
-          },
-          500
-        );
-      }
+        const targetRect =
+            target.getBoundingClientRect();
 
-      return response({
-        success: true,
-        score: data.score,
-        highestCombo:
-          data.highest_combo,
-        hits: data.hits
-      });
+        x =
+            targetRect.left -
+            rect.left +
+            targetRect.width / 2;
+
+        y =
+            targetRect.top -
+            rect.top +
+            targetRect.height / 2;
+
     }
 
 
-    return response(
-      {
-        error:
-          "Geçersiz işlem."
-      },
-      400
+    floating.style.left =
+        `${x}px`;
+
+    floating.style.top =
+        `${y}px`;
+
+
+    if (critical) {
+
+        floating.style.color =
+            "#fbbf24";
+
+    }
+
+
+    gameArea.appendChild(
+        floating
     );
 
-  }
-  catch (error) {
 
-    console.error(error);
-
-    return response(
-      {
-        error:
-          "Sunucu hatası."
-      },
-      500
+    setTimeout(
+        () => floating.remove(),
+        800
     );
-  }
-});
+
+}
+
+
+/* =========================================================
+   İSTATİSTİKLER
+========================================================= */
+
+function updateStats() {
+
+    scoreElement.textContent =
+        score.toLocaleString(
+            "tr-TR"
+        );
+
+    hitsElement.textContent =
+        hits;
+
+    comboElement.textContent =
+        `x${combo}`;
+
+}
+
+
+/* =========================================================
+   SKOR TABLOSU
+========================================================= */
+
+async function loadLeaderboard() {
+
+    try {
+
+        const result =
+            await callFunction({
+                action:
+                    "leaderboard"
+            });
+
+        renderLeaderboard(
+            result.scores || []
+        );
+
+
+        const scores =
+            result.scores || [];
+
+
+        const best =
+            scores.length
+                ? Math.max(
+                    ...scores.map(
+                        item =>
+                            Number(
+                                item.score
+                            ) || 0
+                    )
+                )
+                : 0;
+
+
+        bestElement.textContent =
+            best.toLocaleString(
+                "tr-TR"
+            );
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        leaderboardRows.innerHTML = `
+            <div class="empty">
+                Skor tablosu yüklenemedi.
+            </div>
+        `;
+
+    }
+
+}
+
+
+function renderLeaderboard(
+    scores
+) {
+
+    leaderboardRows.innerHTML = "";
+
+
+    if (!scores.length) {
+
+        leaderboardRows.innerHTML = `
+            <div class="empty">
+                Henüz skor yok.
+                İlk skor senin olsun! 🥊
+            </div>
+        `;
+
+        return;
+    }
+
+
+    scores.forEach(
+        (item, index) => {
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+            row.className =
+                "row";
+
+
+            let medal = "";
+
+            if (index === 0) {
+                medal = "🥇";
+            }
+
+            if (index === 1) {
+                medal = "🥈";
+            }
+
+            if (index === 2) {
+                medal = "🥉";
+            }
+
+
+            const name =
+                escapeHtml(
+                    String(
+                        item.player_name ||
+                        "Oyuncu"
+                    )
+                );
+
+
+            const scoreValue =
+                Number(
+                    item.score
+                ) || 0;
+
+
+            const comboValue =
+                Number(
+                    item.highest_combo
+                ) || 0;
+
+
+            row.innerHTML = `
+
+                <div class="rank">
+                    ${medal || index + 1}
+                </div>
+
+                <div>
+                    ${name}
+                </div>
+
+                <div class="score">
+                    ${scoreValue.toLocaleString("tr-TR")}
+                </div>
+
+                <div class="combo-score">
+                    x${comboValue}
+                </div>
+
+            `;
+
+
+            leaderboardRows.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   OYUNU BİTİR
+========================================================= */
+
+async function finishGame() {
+
+    if (!gameStarted) {
+        return;
+    }
+
+    if (submittingScore) {
+        return;
+    }
+
+    submittingScore = true;
+
+    gameStarted = false;
+
+    finishButton.style.display =
+        "none";
+
+    combo = 0;
+
+    comboElement.textContent =
+        "x0";
+
+
+    finishButton.disabled = true;
+
+
+    try {
+
+        /*
+         * DİKKAT:
+         *
+         * score göndermiyoruz.
+         *
+         * Sunucu hits değerinden
+         * skoru kendi hesaplıyor.
+         */
+
+        const result =
+            await callFunction({
+
+                action:
+                    "submit_score",
+
+                name:
+                    playerCurrentName,
+
+                hits:
+                    hits,
+
+                highestCombo:
+                    highestCombo
+
+            });
+
+
+        finishMessage.innerHTML = `
+            <strong>
+                ${escapeHtml(playerCurrentName)}
+            </strong>
+            <br><br>
+
+            Skorun:
+            <strong>
+                ${Number(result.score).toLocaleString("tr-TR")}
+            </strong>
+
+            <br>
+
+            Toplam vuruş:
+            <strong>
+                ${hits}
+            </strong>
+
+            <br>
+
+            En yüksek combo:
+            <strong>
+                x${highestCombo}
+            </strong>
+        `;
+
+
+        overlay.classList.remove(
+            "hidden"
+        );
+
+
+        await loadLeaderboard();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        /*
+         * Skor kaydedilmediyse oyuncuya
+         * açıkça gösteriyoruz.
+         */
+
+        finishMessage.innerHTML = `
+            <strong style="color:#f87171;">
+                Skor kaydedilemedi.
+            </strong>
+
+            <br><br>
+
+            ${escapeHtml(error.message)}
+
+            <br><br>
+
+            Lütfen tekrar dene.
+        `;
+
+
+        overlay.classList.remove(
+            "hidden"
+        );
+
+    } finally {
+
+        submittingScore = false;
+
+        finishButton.disabled =
+            false;
+
+    }
+
+}
+
+
+/* =========================================================
+   YENİ OYUNCU
+========================================================= */
+
+newGameButton.addEventListener(
+    "click",
+    () => {
+
+        playerCurrentName = "";
+
+        playerName.value = "";
+
+        nameStatus.textContent = "";
+
+        nameStatus.className =
+            "name-status";
+
+        score = 0;
+
+        hits = 0;
+
+        combo = 0;
+
+        highestCombo = 0;
+
+        updateStats();
+
+        overlay.classList.add(
+            "hidden"
+        );
+
+        nameScreen.classList.remove(
+            "hidden"
+        );
+
+        playerName.focus();
+
+    }
+);
+
+
+/* =========================================================
+   EVENTLER
+========================================================= */
+
+target.addEventListener(
+    "pointerdown",
+    hitTarget
+);
+
+
+finishButton.addEventListener(
+    "click",
+    finishGame
+);
+
+
+refreshScores.addEventListener(
+    "click",
+    loadLeaderboard
+);
+
+
+/*
+ * Enter ile isim kontrolü.
+ */
+
+playerName.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Enter"
+        ) {
+
+            const name =
+                playerName.value.trim();
+
+            if (
+                name.length >= 2 &&
+                !gameStarted
+            ) {
+
+                clearTimeout(
+                    nameCheckTimer
+                );
+
+                checkName(name);
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   COMBO ZAMAN AŞIMI
+========================================================= */
+
+setInterval(
+    () => {
+
+        if (!gameStarted) {
+            return;
+        }
+
+        if (
+            lastHitTime &&
+            performance.now() -
+                lastHitTime >
+                COMBO_TIMEOUT
+        ) {
+
+            combo = 0;
+
+            comboElement.textContent =
+                "x0";
+
+        }
+
+    },
+    100
+);
+
+
+/* =========================================================
+   XSS KORUMASI
+========================================================= */
+
+function escapeHtml(text) {
+
+    return text
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
+   BAŞLANGIÇ
+========================================================= */
+
+loadLeaderboard();
+
+playerName.focus();
+
+</script>
+
+</body>
+</html>
