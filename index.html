@@ -1138,7 +1138,6 @@ input {
 
 
 <script>
-
 /* =========================================================
    SUPABASE
 ========================================================= */
@@ -1146,61 +1145,28 @@ input {
 const SUPABASE_FUNCTION_URL =
     "https://sqotorneqppbwsmnyxmy.supabase.co/functions/v1/swift-service";
 
+const SUPABASE_KEY =
+    "sb_publishable_wUBbPRmoS1SkvRM88SqWLw_yKoUx4Rf";
+
 
 /* =========================================================
    ELEMENTLER
 ========================================================= */
 
-const nameScreen =
-    document.getElementById("nameScreen");
+const playerName = document.getElementById("playerName");
+const startBtn = document.getElementById("startBtn");
+const finishBtn = document.getElementById("finishBtn");
+const overlay = document.getElementById("overlay");
+const bag = document.getElementById("bag");
+const gameArea = document.getElementById("gameArea");
 
-const playerName =
-    document.getElementById("playerName");
+const scoreElement = document.getElementById("score");
+const hitsElement = document.getElementById("hits");
+const comboElement = document.getElementById("comboValue");
+const bestElement = document.getElementById("best");
 
-const nameStatus =
-    document.getElementById("nameStatus");
-
-const target =
-    document.getElementById("target");
-
-const gameArea =
-    document.getElementById("gameArea");
-
-const scoreElement =
-    document.getElementById("score");
-
-const hitsElement =
-    document.getElementById("hits");
-
-const comboElement =
-    document.getElementById("comboValue");
-
-const bestElement =
-    document.getElementById("best");
-
-const comboText =
-    document.getElementById("comboText");
-
-const leaderboardRows =
-    document.getElementById("leaderboardRows");
-
-const finishButton =
-    document.getElementById("finishButton");
-
-const overlay =
-    document.getElementById("overlay");
-
-const finishMessage =
-    document.getElementById("finishMessage");
-
-const newGameButton =
-    document.getElementById("newGameButton");
-
-const refreshScores =
-    document.getElementById("refreshScores");
-
-const soundButton =
-    document.getElementById("soundButton");
+const comboText = document.getElementById("comboText");
+const leaderboardRows = document.getElementById("leaderboardRows");
 
 
 /* =========================================================
@@ -1210,18 +1176,11 @@ const soundButton =
 let gameStarted = false;
 
 let score = 0;
-
 let hits = 0;
-
 let combo = 0;
-
 let highestCombo = 0;
 
 let lastHitTime = 0;
-
-let playerCurrentName = "";
-
-let submittingScore = false;
 
 const COMBO_TIMEOUT = 900;
 
@@ -1231,46 +1190,26 @@ const COMBO_TIMEOUT = 900;
 ========================================================= */
 
 let audioContext = null;
-
 let soundEnabled = true;
-
 
 function initAudio() {
 
-    if (!soundEnabled) {
-        return;
-    }
-
     if (!audioContext) {
-
         audioContext =
-            new (
-                window.AudioContext ||
-                window.webkitAudioContext
-            )();
-
+            new (window.AudioContext ||
+                window.webkitAudioContext)();
     }
 
-    if (
-        audioContext.state ===
-        "suspended"
-    ) {
-
+    if (audioContext.state === "suspended") {
         audioContext.resume();
-
     }
 }
 
-
 function punchSound(critical = false) {
 
-    if (!soundEnabled) {
-        return;
-    }
+    if (!soundEnabled) return;
 
-    if (!audioContext) {
-        return;
-    }
+    initAudio();
 
     const oscillator =
         audioContext.createOscillator();
@@ -1279,15 +1218,10 @@ function punchSound(critical = false) {
         audioContext.createGain();
 
     oscillator.connect(gain);
-
-    gain.connect(
-        audioContext.destination
-    );
+    gain.connect(audioContext.destination);
 
     oscillator.type =
-        critical
-            ? "square"
-            : "sine";
+        critical ? "square" : "sine";
 
     oscillator.frequency.setValueAtTime(
         critical ? 180 : 110,
@@ -1296,99 +1230,115 @@ function punchSound(critical = false) {
 
     oscillator.frequency.exponentialRampToValueAtTime(
         critical ? 80 : 55,
-        audioContext.currentTime + .08
+        audioContext.currentTime + 0.08
     );
 
     gain.gain.setValueAtTime(
-        critical ? .13 : .08,
+        critical ? 0.13 : 0.08,
         audioContext.currentTime
     );
 
     gain.gain.exponentialRampToValueAtTime(
-        .001,
-        audioContext.currentTime + .09
+        0.001,
+        audioContext.currentTime + 0.09
     );
 
     oscillator.start();
 
     oscillator.stop(
-        audioContext.currentTime + .1
+        audioContext.currentTime + 0.1
     );
 }
 
 
-soundButton.addEventListener(
-    "click",
-    () => {
+/* =========================================================
+   SES BUTONU
+========================================================= */
 
-        soundEnabled =
-            !soundEnabled;
+const soundButton =
+    document.createElement("button");
 
-        if (soundEnabled) {
+soundButton.id = "soundButton";
 
-            soundButton.textContent =
-                "🔊";
+soundButton.innerHTML = "🔊";
 
-            initAudio();
+soundButton.title = "Sesi aç / kapat";
 
-        } else {
+soundButton.style.position = "fixed";
+soundButton.style.top = "15px";
+soundButton.style.right = "15px";
+soundButton.style.width = "48px";
+soundButton.style.height = "48px";
+soundButton.style.padding = "0";
+soundButton.style.borderRadius = "50%";
+soundButton.style.background = "rgba(15,23,42,.9)";
+soundButton.style.border =
+    "1px solid rgba(255,255,255,.15)";
+soundButton.style.fontSize = "21px";
+soundButton.style.zIndex = "9999";
+soundButton.style.cursor = "pointer";
 
-            soundButton.textContent =
-                "🔇";
+document.body.appendChild(soundButton);
 
-        }
+soundButton.addEventListener("click", () => {
 
+    soundEnabled = !soundEnabled;
+
+    soundButton.innerHTML =
+        soundEnabled ? "🔊" : "🔇";
+
+    if (soundEnabled) {
+        initAudio();
     }
-);
+});
 
 
 /* =========================================================
    SUPABASE İSTEĞİ
 ========================================================= */
 
-async function callFunction(payload) {
+async function supabaseRequest(action, data = {}) {
 
-    const response =
-        await fetch(
-            SUPABASE_FUNCTION_URL,
-            {
-                method: "POST",
+    const response = await fetch(
+        SUPABASE_FUNCTION_URL,
+        {
+            method: "POST",
 
-                headers: {
-                    "Content-Type":
-                        "application/json"
-                },
+            headers: {
+                "Content-Type": "application/json",
+                "apikey": SUPABASE_KEY,
+                "Authorization":
+                    "Bearer " + SUPABASE_KEY
+            },
 
-                body:
-                    JSON.stringify(payload)
-            }
-        );
+            body: JSON.stringify({
+                action,
+                ...data
+            })
+        }
+    );
 
-    let data;
+    const text = await response.text();
+
+    let result;
 
     try {
-
-        data =
-            await response.json();
-
+        result = JSON.parse(text);
     } catch {
-
         throw new Error(
-            "Sunucudan geçersiz cevap geldi."
+            "Sunucudan geçersiz cevap geldi: " +
+            text
         );
-
     }
 
     if (!response.ok) {
-
         throw new Error(
-            data.error ||
+            result.error ||
             "Sunucu isteği başarısız."
         );
-
     }
 
-    return data;
+    return result;
 }
 
 
@@ -1396,93 +1346,34 @@ async function callFunction(payload) {
    İSİM KONTROLÜ
 ========================================================= */
 
-let nameCheckTimer = null;
-
-
-playerName.addEventListener(
-    "input",
-    () => {
-
-        clearTimeout(
-            nameCheckTimer
-        );
-
-        const name =
-            playerName.value.trim();
-
-        nameStatus.textContent = "";
-
-        nameStatus.className =
-            "name-status";
-
-        if (name.length < 2) {
-            return;
-        }
-
-        nameCheckTimer =
-            setTimeout(
-                () => checkName(name),
-                400
-            );
-
-    }
-);
-
-
-async function checkName(name) {
-
-    nameStatus.textContent =
-        "İsim kontrol ediliyor...";
-
-    nameStatus.className =
-        "name-status loading";
+async function checkPlayerName(name) {
 
     try {
 
         const result =
-            await callFunction({
-                action: "check_name",
-                name: name
-            });
+            await supabaseRequest(
+                "check_name",
+                {
+                    name
+                }
+            );
 
-        if (!result.available) {
-
-            nameStatus.textContent =
-                "❌ Bu isim daha önce kullanılmış.";
-
-            nameStatus.className =
-                "name-status error";
-
-            return;
-        }
-
-        nameStatus.textContent =
-            "✓ İsim uygun. Oyun başlıyor...";
-
-        nameStatus.className =
-            "name-status success";
-
-        /*
-         * İsim uygunsa otomatik başlat.
-         */
-
-        setTimeout(
-            () => startGame(name),
-            250
-        );
+        return result.available === true;
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "İsim kontrolü:",
+            error
+        );
 
-        nameStatus.textContent =
-            "⚠️ Sunucuya bağlanılamadı.";
+        alert(
+            "⚠️ Sunucuya bağlanılamadı.\n\n" +
+            "Supabase bağlantısını kontrol et."
+        );
 
-        nameStatus.className =
-            "name-status error";
-
+        return false;
     }
-
 }
 
 
@@ -1490,62 +1381,253 @@ async function checkName(name) {
    OYUNU BAŞLAT
 ========================================================= */
 
-function startGame(name) {
+async function startGame() {
 
-    if (gameStarted) {
+    const name =
+        playerName.value.trim();
+
+    if (!name) {
+
+        playerName.focus();
+
         return;
     }
 
-    playerCurrentName =
-        name.trim();
+    if (name.length < 2) {
 
-    if (
-        playerCurrentName.length < 2
-    ) {
+        alert(
+            "İsim en az 2 karakter olmalı."
+        );
+
         return;
     }
+
+    if (name.length > 20) {
+
+        alert(
+            "İsim en fazla 20 karakter olabilir."
+        );
+
+        return;
+    }
+
+
+    startBtn.disabled = true;
+    startBtn.textContent = "KONTROL EDİLİYOR...";
+
+
+    const available =
+        await checkPlayerName(name);
+
+
+    startBtn.disabled = false;
+    startBtn.textContent = "OYUNA BAŞLA";
+
+
+    if (!available) {
+
+        alert(
+            "❌ Bu isim daha önce kullanılmış.\n\n" +
+            "Başka bir isim seç."
+        );
+
+        playerName.focus();
+
+        return;
+    }
+
 
     initAudio();
 
     gameStarted = true;
 
     score = 0;
-
     hits = 0;
-
     combo = 0;
-
     highestCombo = 0;
-
     lastHitTime = 0;
-
-    submittingScore = false;
 
     updateStats();
 
-    nameScreen.classList.add(
-        "hidden"
+    /*
+       İsim alanı ve başlatma butonu kayboluyor.
+    */
+
+    playerName.style.display = "none";
+    startBtn.style.display = "none";
+
+    finishBtn.style.display = "inline-block";
+
+    overlay.classList.add("hidden");
+
+    /*
+       Üst başlığa oyuncunun ismini göster.
+    */
+
+    const oldPlayer =
+        document.getElementById(
+            "currentPlayer"
+        );
+
+    if (oldPlayer) {
+        oldPlayer.remove();
+    }
+
+    const playerLabel =
+        document.createElement("div");
+
+    playerLabel.id =
+        "currentPlayer";
+
+    playerLabel.textContent =
+        "🥊 " + name;
+
+    playerLabel.style.position =
+        "fixed";
+
+    playerLabel.style.top =
+        "22px";
+
+    playerLabel.style.left =
+        "22px";
+
+    playerLabel.style.padding =
+        "8px 14px";
+
+    playerLabel.style.borderRadius =
+        "20px";
+
+    playerLabel.style.background =
+        "rgba(15,23,42,.85)";
+
+    playerLabel.style.zIndex =
+        "9998";
+
+    document.body.appendChild(
+        playerLabel
     );
-
-    finishButton.style.display =
-        "block";
-
-    overlay.classList.add(
-        "hidden"
-    );
-
 }
 
 
 /* =========================================================
-   VURUŞ
+   OYUNU BİTİR
 ========================================================= */
 
-function hitTarget(event) {
+async function finishGame() {
 
-    if (!gameStarted) {
-        return;
+    if (!gameStarted) return;
+
+    gameStarted = false;
+
+    finishBtn.style.display = "none";
+
+    playerName.style.display = "block";
+    startBtn.style.display = "inline-block";
+
+    playerName.disabled = false;
+
+    try {
+
+        finishBtn.textContent =
+            "KAYDEDİLİYOR...";
+
+        finishBtn.disabled = true;
+
+        const result =
+            await supabaseRequest(
+                "submit_score",
+                {
+                    name:
+                        playerName.value.trim(),
+
+                    hits:
+                        hits,
+
+                    highestCombo:
+                        highestCombo
+                }
+            );
+
+        console.log(
+            "Skor kaydedildi:",
+            result
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Skor kaydetme:",
+            error
+        );
+
+        alert(
+            "⚠️ Skor sunucuya kaydedilemedi.\n\n" +
+            error.message
+        );
     }
+
+    finishBtn.disabled = false;
+    finishBtn.textContent =
+        "OYUNU BİTİR";
+
+    playerName.value = "";
+
+    combo = 0;
+
+    updateStats();
+
+    await renderLeaderboard();
+
+    overlay.classList.remove(
+        "hidden"
+    );
+
+    overlay.innerHTML = `
+        <div class="overlay-box">
+
+            <h2>🏆 Oyun Bitti!</h2>
+
+            <p>
+                Toplam skor:
+                <strong>
+                    ${score.toLocaleString("tr-TR")}
+                </strong>
+            </p>
+
+            <p>
+                Vuruş:
+                <strong>${hits}</strong>
+                <br>
+                En yüksek combo:
+                <strong>x${highestCombo}</strong>
+            </p>
+
+            <p>
+                Yeni oyun için yukarıdan
+                yeni bir isim gir.
+            </p>
+
+        </div>
+    `;
+
+    const currentPlayer =
+        document.getElementById(
+            "currentPlayer"
+        );
+
+    if (currentPlayer) {
+        currentPlayer.remove();
+    }
+}
+
+
+/* =========================================================
+   TORBAYA VURMA
+========================================================= */
+
+function hitBag(event) {
+
+    if (!gameStarted) return;
 
     event.preventDefault();
 
@@ -1556,90 +1638,53 @@ function hitTarget(event) {
         now - lastHitTime <=
         COMBO_TIMEOUT
     ) {
-
         combo++;
-
     } else {
-
         combo = 1;
-
     }
 
     lastHitTime = now;
 
     hits++;
 
-    if (
-        combo > highestCombo
-    ) {
-
-        highestCombo =
-            combo;
-
+    if (combo > highestCombo) {
+        highestCombo = combo;
     }
 
-
-    /*
-     * Sunucudaki hesapla aynı:
-     *
-     * 1-4   x1
-     * 5-9   x2
-     * 10-19 x3
-     * 20-29 x4
-     * 30+   x5
-     */
 
     let multiplier = 1;
 
     if (combo >= 30) {
-
         multiplier = 5;
-
-    } else if (combo >= 20) {
-
+    }
+    else if (combo >= 20) {
         multiplier = 4;
-
-    } else if (combo >= 10) {
-
+    }
+    else if (combo >= 10) {
         multiplier = 3;
-
-    } else if (combo >= 5) {
-
+    }
+    else if (combo >= 5) {
         multiplier = 2;
-
     }
 
 
     const critical =
         Math.random() < 0.07;
 
-
     let points =
         10 * multiplier;
 
-
     if (critical) {
-
         points *= 3;
-
     }
-
-
-    /*
-     * Bu skor sadece ekranda gösteriliyor.
-     *
-     * Supabase'e score göndermiyoruz.
-     */
 
     score += points;
 
     updateStats();
 
-    animateTarget();
+    animateBag();
 
-    punchSound(
-        critical
-    );
+    punchSound(critical);
 
     showFloatingScore(
         event,
@@ -1650,25 +1695,20 @@ function hitTarget(event) {
     if (combo >= 2) {
         showCombo();
     }
-
 }
 
 
 /* =========================================================
-   HEDEF ANİMASYONU
+   ANİMASYON
 ========================================================= */
 
-function animateTarget() {
+function animateBag() {
 
-    target.classList.remove(
-        "hit"
-    );
+    bag.classList.remove("hit");
 
-    void target.offsetWidth;
+    void bag.offsetWidth;
 
-    target.classList.add(
-        "hit"
-    );
+    bag.classList.add("hit");
 
     gameArea.classList.remove(
         "shake"
@@ -1679,13 +1719,8 @@ function animateTarget() {
     gameArea.classList.add(
         "shake"
     );
-
 }
 
-
-/* =========================================================
-   COMBO
-========================================================= */
 
 function showCombo() {
 
@@ -1701,13 +1736,8 @@ function showCombo() {
     comboText.classList.add(
         "show"
     );
-
 }
 
-
-/* =========================================================
-   YÜZEN SKOR
-========================================================= */
 
 function showFloatingScore(
     event,
@@ -1728,17 +1758,13 @@ function showFloatingScore(
             ? `CRITICAL +${points}`
             : `+${points}`;
 
-
     const rect =
         gameArea.getBoundingClientRect();
-
 
     let x;
     let y;
 
-
     if (
-        event &&
         event.clientX !== undefined
     ) {
 
@@ -1752,21 +1778,19 @@ function showFloatingScore(
 
     } else {
 
-        const targetRect =
-            target.getBoundingClientRect();
+        const bagRect =
+            bag.getBoundingClientRect();
 
         x =
-            targetRect.left -
+            bagRect.left -
             rect.left +
-            targetRect.width / 2;
+            bagRect.width / 2;
 
         y =
-            targetRect.top -
+            bagRect.top -
             rect.top +
-            targetRect.height / 2;
-
+            bagRect.height / 2;
     }
-
 
     floating.style.left =
         `${x}px`;
@@ -1774,472 +1798,157 @@ function showFloatingScore(
     floating.style.top =
         `${y}px`;
 
-
     if (critical) {
-
         floating.style.color =
             "#fbbf24";
-
     }
-
 
     gameArea.appendChild(
         floating
     );
 
-
     setTimeout(
         () => floating.remove(),
         800
     );
-
 }
 
 
 /* =========================================================
-   İSTATİSTİKLER
+   İSTATİSTİK
 ========================================================= */
 
 function updateStats() {
 
     scoreElement.textContent =
-        score.toLocaleString(
-            "tr-TR"
-        );
+        score.toLocaleString("tr-TR");
 
     hitsElement.textContent =
         hits;
 
     comboElement.textContent =
         `x${combo}`;
-
 }
 
 
 /* =========================================================
-   SKOR TABLOSU
+   LİDERLİK TABLOSU
 ========================================================= */
 
-async function loadLeaderboard() {
+async function renderLeaderboard() {
 
     try {
 
         const result =
-            await callFunction({
-                action:
-                    "leaderboard"
-            });
-
-        renderLeaderboard(
-            result.scores || []
-        );
-
+            await supabaseRequest(
+                "leaderboard"
+            );
 
         const scores =
             result.scores || [];
 
+        leaderboardRows.innerHTML =
+            "";
 
-        const best =
-            scores.length
-                ? Math.max(
-                    ...scores.map(
-                        item =>
-                            Number(
-                                item.score
-                            ) || 0
-                    )
-                )
-                : 0;
+        if (!scores.length) {
+
+            leaderboardRows.innerHTML = `
+                <div class="empty">
+                    Henüz skor yok.
+                </div>
+            `;
+
+            bestElement.textContent =
+                "0";
+
+            return;
+        }
 
 
         bestElement.textContent =
-            best.toLocaleString(
+            Number(
+                scores[0].score
+            ).toLocaleString(
                 "tr-TR"
             );
 
 
-    } catch (error) {
+        scores.forEach(
+            (item, index) => {
 
-        console.error(error);
+                const row =
+                    document.createElement(
+                        "div"
+                    );
 
-        leaderboardRows.innerHTML = `
-            <div class="empty">
-                Skor tablosu yüklenemedi.
-            </div>
-        `;
+                row.className =
+                    "row";
 
-    }
+                let medal = "";
 
-}
+                if (index === 0)
+                    medal = "🥇";
 
+                if (index === 1)
+                    medal = "🥈";
 
-function renderLeaderboard(
-    scores
-) {
-
-    leaderboardRows.innerHTML = "";
-
-
-    if (!scores.length) {
-
-        leaderboardRows.innerHTML = `
-            <div class="empty">
-                Henüz skor yok.
-                İlk skor senin olsun! 🥊
-            </div>
-        `;
-
-        return;
-    }
+                if (index === 2)
+                    medal = "🥉";
 
 
-    scores.forEach(
-        (item, index) => {
+                row.innerHTML = `
+                    <div class="rank">
+                        ${medal || index + 1}
+                    </div>
 
-            const row =
-                document.createElement(
-                    "div"
+                    <div>
+                        ${escapeHtml(
+                            item.player_name
+                        )}
+                    </div>
+
+                    <div class="score">
+                        ${Number(
+                            item.score
+                        ).toLocaleString(
+                            "tr-TR"
+                        )}
+                    </div>
+
+                    <div class="combo-score">
+                        x${item.highest_combo}
+                    </div>
+                `;
+
+                leaderboardRows.appendChild(
+                    row
                 );
-
-            row.className =
-                "row";
-
-
-            let medal = "";
-
-            if (index === 0) {
-                medal = "🥇";
             }
-
-            if (index === 1) {
-                medal = "🥈";
-            }
-
-            if (index === 2) {
-                medal = "🥉";
-            }
-
-
-            const name =
-                escapeHtml(
-                    String(
-                        item.player_name ||
-                        "Oyuncu"
-                    )
-                );
-
-
-            const scoreValue =
-                Number(
-                    item.score
-                ) || 0;
-
-
-            const comboValue =
-                Number(
-                    item.highest_combo
-                ) || 0;
-
-
-            row.innerHTML = `
-
-                <div class="rank">
-                    ${medal || index + 1}
-                </div>
-
-                <div>
-                    ${name}
-                </div>
-
-                <div class="score">
-                    ${scoreValue.toLocaleString("tr-TR")}
-                </div>
-
-                <div class="combo-score">
-                    x${comboValue}
-                </div>
-
-            `;
-
-
-            leaderboardRows.appendChild(
-                row
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   OYUNU BİTİR
-========================================================= */
-
-async function finishGame() {
-
-    if (!gameStarted) {
-        return;
-    }
-
-    if (submittingScore) {
-        return;
-    }
-
-    submittingScore = true;
-
-    gameStarted = false;
-
-    finishButton.style.display =
-        "none";
-
-    combo = 0;
-
-    comboElement.textContent =
-        "x0";
-
-
-    finishButton.disabled = true;
-
-
-    try {
-
-        /*
-         * DİKKAT:
-         *
-         * score göndermiyoruz.
-         *
-         * Sunucu hits değerinden
-         * skoru kendi hesaplıyor.
-         */
-
-        const result =
-            await callFunction({
-
-                action:
-                    "submit_score",
-
-                name:
-                    playerCurrentName,
-
-                hits:
-                    hits,
-
-                highestCombo:
-                    highestCombo
-
-            });
-
-
-        finishMessage.innerHTML = `
-            <strong>
-                ${escapeHtml(playerCurrentName)}
-            </strong>
-            <br><br>
-
-            Skorun:
-            <strong>
-                ${Number(result.score).toLocaleString("tr-TR")}
-            </strong>
-
-            <br>
-
-            Toplam vuruş:
-            <strong>
-                ${hits}
-            </strong>
-
-            <br>
-
-            En yüksek combo:
-            <strong>
-                x${highestCombo}
-            </strong>
-        `;
-
-
-        overlay.classList.remove(
-            "hidden"
         );
-
-
-        await loadLeaderboard();
-
 
     } catch (error) {
 
-        console.error(error);
-
-        /*
-         * Skor kaydedilmediyse oyuncuya
-         * açıkça gösteriyoruz.
-         */
-
-        finishMessage.innerHTML = `
-            <strong style="color:#f87171;">
-                Skor kaydedilemedi.
-            </strong>
-
-            <br><br>
-
-            ${escapeHtml(error.message)}
-
-            <br><br>
-
-            Lütfen tekrar dene.
-        `;
-
-
-        overlay.classList.remove(
-            "hidden"
+        console.error(
+            "Leaderboard:",
+            error
         );
 
-    } finally {
-
-        submittingScore = false;
-
-        finishButton.disabled =
-            false;
-
+        leaderboardRows.innerHTML = `
+            <div class="empty">
+                ⚠️ Skor tablosuna bağlanılamadı.
+            </div>
+        `;
     }
-
 }
 
 
 /* =========================================================
-   YENİ OYUNCU
-========================================================= */
-
-newGameButton.addEventListener(
-    "click",
-    () => {
-
-        playerCurrentName = "";
-
-        playerName.value = "";
-
-        nameStatus.textContent = "";
-
-        nameStatus.className =
-            "name-status";
-
-        score = 0;
-
-        hits = 0;
-
-        combo = 0;
-
-        highestCombo = 0;
-
-        updateStats();
-
-        overlay.classList.add(
-            "hidden"
-        );
-
-        nameScreen.classList.remove(
-            "hidden"
-        );
-
-        playerName.focus();
-
-    }
-);
-
-
-/* =========================================================
-   EVENTLER
-========================================================= */
-
-target.addEventListener(
-    "pointerdown",
-    hitTarget
-);
-
-
-finishButton.addEventListener(
-    "click",
-    finishGame
-);
-
-
-refreshScores.addEventListener(
-    "click",
-    loadLeaderboard
-);
-
-
-/*
- * Enter ile isim kontrolü.
- */
-
-playerName.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key === "Enter"
-        ) {
-
-            const name =
-                playerName.value.trim();
-
-            if (
-                name.length >= 2 &&
-                !gameStarted
-            ) {
-
-                clearTimeout(
-                    nameCheckTimer
-                );
-
-                checkName(name);
-
-            }
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   COMBO ZAMAN AŞIMI
-========================================================= */
-
-setInterval(
-    () => {
-
-        if (!gameStarted) {
-            return;
-        }
-
-        if (
-            lastHitTime &&
-            performance.now() -
-                lastHitTime >
-                COMBO_TIMEOUT
-        ) {
-
-            combo = 0;
-
-            comboElement.textContent =
-                "x0";
-
-        }
-
-    },
-    100
-);
-
-
-/* =========================================================
-   XSS KORUMASI
+   GÜVENLİ HTML
 ========================================================= */
 
 function escapeHtml(text) {
 
-    return text
+    return String(text)
         .replaceAll(
             "&",
             "&amp;"
@@ -2260,17 +1969,77 @@ function escapeHtml(text) {
             "'",
             "&#039;"
         );
-
 }
+
+
+/* =========================================================
+   EVENTLER
+========================================================= */
+
+startBtn.addEventListener(
+    "click",
+    startGame
+);
+
+finishBtn.addEventListener(
+    "click",
+    finishGame
+);
+
+bag.addEventListener(
+    "pointerdown",
+    hitBag
+);
+
+
+/*
+   Enter ile başla
+*/
+
+playerName.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Enter"
+        ) {
+            startGame();
+        }
+    }
+);
+
+
+/*
+   Combo sıfırlama
+*/
+
+setInterval(() => {
+
+    if (!gameStarted) return;
+
+    if (
+        lastHitTime &&
+        performance.now() -
+            lastHitTime >
+            COMBO_TIMEOUT
+    ) {
+
+        combo = 0;
+
+        comboElement.textContent =
+            "x0";
+    }
+
+}, 100);
 
 
 /* =========================================================
    BAŞLANGIÇ
 ========================================================= */
 
-loadLeaderboard();
+renderLeaderboard();
 
-playerName.focus();
+updateStats();
 
 </script>
 
