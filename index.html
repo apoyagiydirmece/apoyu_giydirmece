@@ -1,11 +1,23 @@
-```html
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta
+    name="viewport"
+    content="width=device-width,
+             initial-scale=1.0,
+             maximum-scale=1.0,
+             user-scalable=no"
+>
 
 <title>APOYU GİYDİRMECE</title>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 <style>
 
@@ -16,10 +28,16 @@
 
 html,
 body {
+
     margin: 0;
     padding: 0;
+
     min-height: 100%;
-    font-family: Arial, Helvetica, sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
     background:
         radial-gradient(
@@ -30,43 +48,42 @@ body {
         );
 
     color: white;
+
+    overflow-x: hidden;
 }
+
 
 body {
     min-height: 100vh;
-    overflow-x: hidden;
 }
+
 
 button,
 input {
     font-family: inherit;
 }
 
+
 button {
     cursor: pointer;
 }
 
 
-/* =========================================================
-   CONTAINER
-========================================================= */
-
 .container {
 
-    width: min(1100px, 94%);
+    width:
+        min(1100px, 94%);
 
     margin: auto;
 
     padding:
-        25px
-        0
-        40px;
+        25px 0 50px;
 }
 
 
-/* =========================================================
+/* =====================================================
    HEADER
-========================================================= */
+===================================================== */
 
 .header {
 
@@ -74,6 +91,7 @@ button {
 
     margin-bottom: 20px;
 }
+
 
 .header h1 {
 
@@ -87,22 +105,560 @@ button {
     letter-spacing: -2px;
 }
 
+
 .header p {
 
     margin:
-        8px
-        0
-        0;
+        8px 0 0;
 
-    color: #aeb9ca;
+    color:
+        #aeb9ca;
 
     font-size: 15px;
 }
 
 
-/* =========================================================
-   SOUND BUTTON
-========================================================= */
+/* =====================================================
+   AUTH SCREEN
+===================================================== */
+
+.auth-screen {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    overflow-y: auto;
+
+    padding:
+        25px 15px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(38,52,77,.96),
+            rgba(3,7,18,.99)
+        );
+}
+
+
+.auth-wrapper {
+
+    width:
+        min(1050px, 100%);
+
+    margin:
+        0 auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        430px 1fr;
+
+    gap: 20px;
+
+    align-items:
+        start;
+}
+
+
+.auth-box {
+
+    background:
+        rgba(15,23,42,.94);
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    border-radius:
+        25px;
+
+    padding:
+        30px;
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.55);
+}
+
+
+.logo {
+
+    text-align: center;
+
+    font-size: 58px;
+
+    margin-bottom: 5px;
+}
+
+
+.auth-box h2 {
+
+    text-align: center;
+
+    margin:
+        0 0 8px;
+
+    font-size:
+        32px;
+
+    font-weight:
+        1000;
+}
+
+
+.auth-description {
+
+    text-align: center;
+
+    color:
+        #9ca3af;
+
+    line-height:
+        1.5;
+
+    margin-bottom:
+        25px;
+}
+
+
+.auth-tabs {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 5px;
+
+    padding: 5px;
+
+    background:
+        #0b1220;
+
+    border-radius:
+        13px;
+
+    margin-bottom:
+        20px;
+}
+
+
+.auth-tab {
+
+    border: 0;
+
+    padding:
+        11px;
+
+    border-radius:
+        9px;
+
+    color:
+        #9ca3af;
+
+    background:
+        transparent;
+
+    font-weight:
+        800;
+}
+
+
+.auth-tab.active {
+
+    background:
+        #2563eb;
+
+    color:
+        white;
+}
+
+
+.field {
+
+    margin-bottom:
+        15px;
+}
+
+
+.field label {
+
+    display: block;
+
+    margin-bottom:
+        7px;
+
+    font-size:
+        13px;
+
+    color:
+        #aeb9ca;
+
+    font-weight:
+        700;
+}
+
+
+.input {
+
+    width: 100%;
+
+    padding:
+        15px;
+
+    border-radius:
+        13px;
+
+    border:
+        1px solid
+        #374151;
+
+    outline: none;
+
+    background:
+        #0b1220;
+
+    color:
+        white;
+
+    font-size:
+        16px;
+}
+
+
+.input:focus {
+
+    border-color:
+        #60a5fa;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(96,165,250,.12);
+}
+
+
+.primary-button {
+
+    width: 100%;
+
+    border: 0;
+
+    border-radius:
+        13px;
+
+    padding:
+        15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
+
+    color: white;
+
+    font-size:
+        16px;
+
+    font-weight:
+        900;
+
+    margin-top:
+        5px;
+}
+
+
+.primary-button:disabled {
+
+    opacity:
+        .55;
+
+    cursor:
+        not-allowed;
+}
+
+
+.auth-status {
+
+    min-height:
+        24px;
+
+    margin-top:
+        13px;
+
+    text-align:
+        center;
+
+    font-size:
+        14px;
+
+    line-height:
+        1.4;
+}
+
+
+.auth-status.error {
+    color:
+        #f87171;
+}
+
+
+.auth-status.success {
+    color:
+        #86efac;
+}
+
+
+.auth-status.loading {
+    color:
+        #fbbf24;
+}
+
+
+/* =====================================================
+   AUTH LEADERBOARD
+===================================================== */
+
+.login-board {
+
+    background:
+        rgba(15,23,42,.9);
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    border-radius:
+        25px;
+
+    overflow:
+        hidden;
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.45);
+}
+
+
+.login-board-header {
+
+    padding:
+        22px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.07);
+}
+
+
+.login-board-header h3 {
+
+    margin: 0;
+
+    font-size:
+        22px;
+}
+
+
+.refresh {
+
+    border: 0;
+
+    background:
+        #374151;
+
+    color: white;
+
+    padding:
+        9px 12px;
+
+    border-radius:
+        9px;
+
+    font-weight:
+        800;
+
+    font-size:
+        12px;
+}
+
+
+.top-player {
+
+    padding:
+        25px;
+
+    text-align:
+        center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(37,99,235,.2),
+            transparent 70%
+        );
+}
+
+
+.top-player .crown {
+
+    font-size:
+        42px;
+}
+
+
+.top-player-name {
+
+    font-size:
+        25px;
+
+    font-weight:
+        1000;
+
+    margin-top:
+        5px;
+}
+
+
+.top-player-score {
+
+    color:
+        #fbbf24;
+
+    font-size:
+        18px;
+
+    font-weight:
+        900;
+
+    margin-top:
+        5px;
+}
+
+
+.auth-score-list {
+
+    max-height:
+        380px;
+
+    overflow-y:
+        auto;
+}
+
+
+.auth-score-row {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        55px 1fr 100px;
+
+    align-items:
+        center;
+
+    gap: 10px;
+
+    padding:
+        13px 18px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.05);
+}
+
+
+.auth-score-rank {
+
+    font-size:
+        18px;
+
+    font-weight:
+        900;
+}
+
+
+.auth-score-name {
+
+    font-weight:
+        800;
+
+    overflow:
+        hidden;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+}
+
+
+.auth-score-meta {
+
+    color:
+        #9ca3af;
+
+    font-size:
+        11px;
+
+    margin-top:
+        3px;
+}
+
+
+.auth-score-value {
+
+    text-align:
+        right;
+
+    font-weight:
+        1000;
+
+    color:
+        #86efac;
+}
+
+
+.empty {
+
+    padding:
+        35px;
+
+    text-align:
+        center;
+
+    color:
+        #9ca3af;
+}
+
+
+/* =====================================================
+   APP
+===================================================== */
+
+.app {
+
+    display:
+        none;
+}
+
 
 .sound-button {
 
@@ -114,7 +670,8 @@ button {
     width: 52px;
     height: 52px;
 
-    border-radius: 50%;
+    border-radius:
+        50%;
 
     border:
         1px solid
@@ -125,14 +682,20 @@ button {
 
     color: white;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
-    justify-content: center;
+    align-items:
+        center;
 
-    font-size: 24px;
+    justify-content:
+        center;
 
-    z-index: 100;
+    font-size:
+        23px;
+
+    z-index:
+        1000;
 
     box-shadow:
         0 8px 30px
@@ -140,689 +703,88 @@ button {
 
     backdrop-filter:
         blur(10px);
-
-    padding: 0;
-}
-
-.sound-button:active {
-
-    transform: scale(.92);
 }
 
 
-/* =========================================================
-   NAME SCREEN
-========================================================= */
-
-.name-screen {
+.user-badge {
 
     position: fixed;
 
-    inset: 0;
+    top: 25px;
+    left: 22px;
 
-    background:
-
-        radial-gradient(
-            circle at 20% 20%,
-            rgba(59,130,246,.13),
-            transparent 35%
-        ),
-
-        radial-gradient(
-            circle at 80% 80%,
-            rgba(168,85,247,.12),
-            transparent 35%
-        ),
-
-        radial-gradient(
-            circle at center,
-            #26344d 0%,
-            #080d18 75%
-        );
-
-    display: flex;
-
-    align-items: flex-start;
-
-    justify-content: center;
-
-    overflow-y: auto;
-
-    z-index: 90;
+    z-index:
+        1000;
 
     padding:
-        35px
+        9px 14px;
+
+    border-radius:
         20px;
 
-    transition:
-        opacity .3s ease,
-        visibility .3s ease;
-}
-
-.name-screen.hidden {
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    pointer-events: none;
-}
-
-
-/* =========================================================
-   NAME PAGE
-========================================================= */
-
-.name-page {
-
-    width:
-        min(1050px, 100%);
-
-    display: grid;
-
-    grid-template-columns:
-        minmax(320px, 430px)
-        1fr;
-
-    gap: 25px;
-
-    align-items: start;
-}
-
-
-/* =========================================================
-   NAME BOX
-========================================================= */
-
-.name-box {
-
-    text-align: center;
-
-    padding:
-        35px 28px;
-
-    border-radius: 28px;
-
     background:
-        linear-gradient(
-            145deg,
-            rgba(30,41,59,.96),
-            rgba(15,23,42,.94)
-        );
+        rgba(15,23,42,.9);
 
     border:
         1px solid
-        rgba(255,255,255,.10);
+        rgba(255,255,255,.1);
 
-    box-shadow:
-        0 30px 100px
-        rgba(0,0,0,.55);
-
-    backdrop-filter:
-        blur(20px);
-
-    position: sticky;
-
-    top: 20px;
-}
-
-.name-logo {
-
-    font-size: 65px;
-
-    margin-bottom: 5px;
-
-    filter:
-        drop-shadow(
-            0 10px 20px
-            rgba(0,0,0,.35)
-        );
-}
-
-.name-box h2 {
-
-    margin:
-        0 0 12px;
+    font-weight:
+        800;
 
     font-size:
-        clamp(30px, 7vw, 48px);
-
-    line-height: .95;
-
-    font-weight: 1000;
-
-    letter-spacing:
-        -2px;
-}
-
-.name-box .subtitle {
-
-    color: #aeb9ca;
-
-    line-height: 1.6;
-
-    margin:
-        0 0 25px;
+        13px;
 }
 
 
-/* =========================================================
-   INPUT
-========================================================= */
+.logout-button {
 
-.input-wrapper {
+    position: fixed;
 
-    position: relative;
-}
+    top: 68px;
+    left: 22px;
 
-.name-input {
-
-    width: 100%;
-
-    padding:
-        17px 18px;
-
-    border:
-        1px solid
-        #374151;
-
-    border-radius: 15px;
-
-    background:
-        #0b1220;
-
-    color: white;
-
-    outline: none;
-
-    font-size: 18px;
-
-    text-align: center;
-
-    transition:
-        .2s;
-}
-
-.name-input::placeholder {
-
-    color:
-        #64748b;
-}
-
-.name-input:focus {
-
-    border-color:
-        #60a5fa;
-
-    box-shadow:
-        0 0 0 4px
-        rgba(96,165,250,.10);
-}
-
-.name-status {
-
-    min-height: 24px;
-
-    margin-top: 12px;
-
-    font-size: 14px;
-}
-
-.name-status.error {
-    color: #f87171;
-}
-
-.name-status.success {
-    color: #86efac;
-}
-
-.name-status.loading {
-    color: #fbbf24;
-}
-
-
-/* =========================================================
-   START INFO
-========================================================= */
-
-.start-info {
-
-    margin-top: 22px;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 8px;
-}
-
-.info-card {
-
-    padding:
-        11px 6px;
-
-    border-radius: 12px;
-
-    background:
-        rgba(255,255,255,.035);
-
-    border:
-        1px solid
-        rgba(255,255,255,.06);
-}
-
-.info-card strong {
-
-    display: block;
-
-    font-size: 18px;
-}
-
-.info-card span {
-
-    display: block;
-
-    margin-top: 3px;
-
-    color: #94a3b8;
-
-    font-size: 10px;
-
-    text-transform: uppercase;
-}
-
-
-/* =========================================================
-   WELCOME MESSAGE
-========================================================= */
-
-.welcome-message {
-
-    margin-top: 18px;
-
-    color: #64748b;
-
-    font-size: 12px;
-
-    line-height: 1.5;
-}
-
-
-/* =========================================================
-   LOGIN LEADERBOARD
-========================================================= */
-
-.start-leaderboard {
-
-    border-radius: 28px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(30,41,59,.94),
-            rgba(15,23,42,.94)
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,.09);
-
-    box-shadow:
-        0 30px 100px
-        rgba(0,0,0,.45);
-
-    overflow: hidden;
-
-    backdrop-filter:
-        blur(20px);
-}
-
-
-/* =========================================================
-   LEADERBOARD TOP
-========================================================= */
-
-.start-leaderboard-header {
-
-    padding:
-        22px 24px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.07);
-}
-
-.start-leaderboard-title {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-}
-
-.start-leaderboard-title .cup {
-
-    font-size: 28px;
-}
-
-.start-leaderboard-title h2 {
-
-    margin: 0;
-
-    font-size: 21px;
-}
-
-.start-leaderboard-title span {
-
-    display: block;
-
-    margin-top: 3px;
-
-    color: #64748b;
-
-    font-size: 11px;
-}
-
-.refresh-start {
+    z-index:
+        1000;
 
     border: 0;
 
-    padding:
-        9px 13px;
-
-    border-radius: 10px;
-
     background:
-        #263449;
+        rgba(127,29,29,.9);
 
     color: white;
 
-    font-size: 12px;
-
-    font-weight: 800;
-
-    transition: .2s;
-}
-
-.refresh-start:hover {
-
-    background:
-        #334155;
-}
-
-.refresh-start:active {
-
-    transform:
-        scale(.94);
-}
-
-
-/* =========================================================
-   TOP 3
-========================================================= */
-
-.top-three {
-
-    display: grid;
-
-    grid-template-columns:
-        1fr
-        1.15fr
-        1fr;
-
-    align-items: end;
-
-    gap: 10px;
-
     padding:
-        20px 18px;
+        7px 12px;
 
-    background:
-        radial-gradient(
-            circle at 50% 0%,
-            rgba(255,255,255,.04),
-            transparent 60%
-        );
-}
+    border-radius:
+        10px;
 
-.top-player {
+    font-size:
+        11px;
 
-    text-align: center;
-
-    padding:
-        16px 8px;
-
-    border-radius: 18px;
-
-    background:
-        rgba(255,255,255,.035);
-
-    border:
-        1px solid
-        rgba(255,255,255,.06);
-
-    min-height: 125px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    transition:
-        transform .2s;
-}
-
-.top-player:hover {
-
-    transform:
-        translateY(-3px);
-}
-
-.top-player.first {
-
-    min-height: 150px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(251,191,36,.13),
-            rgba(255,255,255,.035)
-        );
-
-    border-color:
-        rgba(251,191,36,.25);
-}
-
-.top-player.second {
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(203,213,225,.10),
-            rgba(255,255,255,.035)
-        );
-}
-
-.top-player.third {
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(180,83,9,.10),
-            rgba(255,255,255,.035)
-        );
-}
-
-.top-medal {
-
-    font-size: 30px;
-
-    margin-bottom: 5px;
-}
-
-.top-name {
-
-    font-size: 13px;
-
-    font-weight: 800;
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
-    padding:
-        0 4px;
-}
-
-.top-score {
-
-    margin-top: 5px;
-
-    font-size: 20px;
-
-    font-weight: 1000;
-}
-
-.top-combo {
-
-    margin-top: 4px;
-
-    font-size: 10px;
-
-    color: #fbbf24;
+    font-weight:
+        800;
 }
 
 
-/* =========================================================
-   SCORE LIST
-========================================================= */
-
-.start-score-list {
-
-    max-height: 330px;
-
-    overflow-y: auto;
-}
-
-.start-score-row {
-
-    display: grid;
-
-    grid-template-columns:
-        50px
-        1fr
-        100px
-        75px;
-
-    align-items: center;
-
-    padding:
-        13px 20px;
-
-    border-top:
-        1px solid
-        rgba(255,255,255,.05);
-
-    transition:
-        background .15s;
-}
-
-.start-score-row:hover {
-
-    background:
-        rgba(255,255,255,.025);
-}
-
-.start-rank {
-
-    font-weight: 900;
-
-    color: #94a3b8;
-}
-
-.start-player {
-
-    font-weight: 700;
-
-    overflow: hidden;
-
-    white-space: nowrap;
-
-    text-overflow: ellipsis;
-}
-
-.start-score {
-
-    text-align: right;
-
-    font-weight: 900;
-}
-
-.start-combo {
-
-    text-align: right;
-
-    color: #fbbf24;
-
-    font-size: 12px;
-
-    font-weight: 800;
-}
-
-
-/* =========================================================
-   EMPTY / LOADING
-========================================================= */
-
-.start-empty {
-
-    padding:
-        45px 20px;
-
-    text-align: center;
-
-    color: #64748b;
-
-    line-height: 1.7;
-}
-
-.start-loading {
-
-    padding:
-        40px 20px;
-
-    text-align: center;
-
-    color: #94a3b8;
-}
-
-
-/* =========================================================
-   GAME AREA
-========================================================= */
+/* =====================================================
+   GAME
+===================================================== */
 
 .game-area {
 
     position: relative;
 
-    min-height: 560px;
+    min-height:
+        600px;
 
     border:
         1px solid
         rgba(255,255,255,.08);
 
-    border-radius: 24px;
+    border-radius:
+        24px;
 
     background:
         linear-gradient(
@@ -834,13 +796,10 @@ button {
         0 25px 80px
         rgba(0,0,0,.4);
 
-    overflow: hidden;
+    overflow:
+        hidden;
 }
 
-
-/* =========================================================
-   STATS
-========================================================= */
 
 .stats {
 
@@ -848,30 +807,36 @@ button {
 
     left: 20px;
     right: 20px;
-
     top: 18px;
 
-    display: flex;
+    display:
+        flex;
 
-    justify-content: center;
+    justify-content:
+        center;
 
     gap: 12px;
 
-    flex-wrap: wrap;
+    flex-wrap:
+        wrap;
 
     z-index: 5;
 }
 
+
 .stat {
 
-    min-width: 120px;
+    min-width:
+        120px;
 
     padding:
         10px 15px;
 
-    text-align: center;
+    text-align:
+        center;
 
-    border-radius: 12px;
+    border-radius:
+        12px;
 
     background:
         rgba(15,23,42,.85);
@@ -884,34 +849,39 @@ button {
         blur(10px);
 }
 
+
 .stat-label {
 
     display: block;
 
-    font-size: 11px;
+    font-size:
+        11px;
 
-    color: #9ca3af;
+    color:
+        #9ca3af;
 
-    text-transform: uppercase;
+    text-transform:
+        uppercase;
 
-    letter-spacing: 1px;
+    letter-spacing:
+        1px;
 }
+
 
 .stat-value {
 
     display: block;
 
-    margin-top: 3px;
+    margin-top:
+        3px;
 
-    font-size: 22px;
+    font-size:
+        22px;
 
-    font-weight: 900;
+    font-weight:
+        900;
 }
 
-
-/* =========================================================
-   TARGET
-========================================================= */
 
 .target-zone {
 
@@ -924,36 +894,46 @@ button {
         translate(-50%, -50%);
 
     width:
-        min(380px, 80vw);
+        min(380px,80vw);
 
-    height: 400px;
+    height:
+        400px;
 
-    display: flex;
+    display:
+        flex;
 
-    justify-content: center;
+    justify-content:
+        center;
 
-    align-items: center;
+    align-items:
+        center;
 }
+
 
 .target {
 
     position: relative;
 
     width:
-        min(330px, 72vw);
+        min(330px,72vw);
 
     height:
-        min(330px, 72vw);
+        min(330px,72vw);
 
-    border-radius: 50%;
+    border-radius:
+        50%;
 
-    overflow: hidden;
+    overflow:
+        hidden;
 
-    cursor: pointer;
+    cursor:
+        pointer;
 
-    user-select: none;
+    user-select:
+        none;
 
-    touch-action: manipulation;
+    touch-action:
+        manipulation;
 
     background:
         radial-gradient(
@@ -969,45 +949,35 @@ button {
     box-shadow:
         0 30px 60px
         rgba(0,0,0,.5),
-
         inset 0 0 30px
         rgba(255,255,255,.08);
-
-    transition:
-        transform .07s;
 }
 
-.target img {
-
-    position: absolute;
-
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    pointer-events: none;
-}
 
 .target-placeholder {
 
-    position: absolute;
+    position:
+        absolute;
 
     inset: 0;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    justify-content: center;
+    justify-content:
+        center;
 
-    flex-direction: column;
+    flex-direction:
+        column;
 
-    text-align: center;
+    text-align:
+        center;
 
-    pointer-events: none;
+    pointer-events:
+        none;
 
     background:
         radial-gradient(
@@ -1018,29 +988,36 @@ button {
         );
 }
 
+
 .target-placeholder strong {
 
     font-size:
-        clamp(28px, 7vw, 45px);
+        clamp(28px,7vw,45px);
 
-    font-weight: 1000;
+    font-weight:
+        1000;
 }
+
 
 .target-placeholder span {
 
-    margin-top: 8px;
+    margin-top:
+        8px;
 
-    font-size: 12px;
+    font-size:
+        12px;
 
     color:
         rgba(255,255,255,.55);
 }
+
 
 .target.hit {
 
     animation:
         punch .12s linear;
 }
+
 
 @keyframes punch {
 
@@ -1070,38 +1047,41 @@ button {
 }
 
 
-/* =========================================================
-   COMBO
-========================================================= */
-
 .combo {
 
-    position: absolute;
+    position:
+        absolute;
 
     left: 50%;
     top: 34%;
 
     transform:
-        translate(-50%, -50%)
+        translate(-50%,-50%)
         scale(.8);
 
     font-size:
-        clamp(28px, 7vw, 55px);
+        clamp(28px,7vw,55px);
 
-    font-weight: 1000;
+    font-weight:
+        1000;
 
-    color: #fbbf24;
+    color:
+        #fbbf24;
 
     text-shadow:
         0 0 25px
         rgba(251,191,36,.45);
 
-    opacity: 0;
+    opacity:
+        0;
 
-    pointer-events: none;
+    pointer-events:
+        none;
 
-    z-index: 10;
+    z-index:
+        10;
 }
+
 
 .combo.show {
 
@@ -1110,13 +1090,14 @@ button {
         ease-out forwards;
 }
 
+
 @keyframes comboPop {
 
     0% {
         opacity: 0;
 
         transform:
-            translate(-50%, -50%)
+            translate(-50%,-50%)
             scale(.5);
     }
 
@@ -1124,7 +1105,7 @@ button {
         opacity: 1;
 
         transform:
-            translate(-50%, -50%)
+            translate(-50%,-50%)
             scale(1.15);
     }
 
@@ -1132,215 +1113,110 @@ button {
         opacity: 1;
 
         transform:
-            translate(-50%, -50%)
+            translate(-50%,-50%)
             scale(1);
     }
 }
 
 
-/* =========================================================
-   FLOATING SCORE
-========================================================= */
-
 .floating-score {
 
-    position: absolute;
+    position:
+        absolute;
 
-    font-size: 24px;
+    font-size:
+        24px;
 
-    font-weight: 1000;
+    font-weight:
+        1000;
 
-    color: #86efac;
+    color:
+        #86efac;
 
-    pointer-events: none;
+    pointer-events:
+        none;
 
-    z-index: 20;
+    z-index:
+        20;
 
     animation:
         floatScore .8s
         ease-out forwards;
 }
 
+
 @keyframes floatScore {
 
     0% {
+
         opacity: 1;
 
         transform:
-            translate(-50%, 0)
+            translate(-50%,0)
             scale(1);
     }
 
     100% {
+
         opacity: 0;
 
         transform:
-            translate(-50%, -90px)
+            translate(-50%,-90px)
             scale(1.3);
     }
 }
 
 
-/* =========================================================
-   LEADERBOARD GAME
-========================================================= */
-
-.leaderboard {
-
-    margin-top: 22px;
-
-    border-radius: 20px;
-
-    background:
-        rgba(15,23,42,.85);
-
-    border:
-        1px solid
-        rgba(255,255,255,.08);
-
-    overflow: hidden;
-}
-
-.leaderboard-header {
-
-    padding: 20px;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-}
-
-.leaderboard-header h2 {
-
-    margin: 0;
-
-    font-size: 22px;
-}
-
-
-/* =========================================================
-   OVERLAY
-========================================================= */
-
-.overlay {
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        rgba(3,7,18,.78);
-
-    backdrop-filter:
-        blur(7px);
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    z-index: 30;
-
-    text-align: center;
-
-    padding: 20px;
-}
-
-.overlay.hidden {
-
-    display: none;
-}
-
-.overlay-box {
-
-    max-width: 500px;
-}
-
-.overlay h2 {
-
-    font-size:
-        clamp(28px, 7vw, 48px);
-
-    margin:
-        0 0 10px;
-}
-
-.overlay p {
-
-    color: #aeb9ca;
-
-    line-height: 1.6;
-}
-
-.new-game-button {
-
-    border: 0;
-
-    border-radius: 12px;
-
-    padding:
-        14px 22px;
-
-    font-size: 16px;
-
-    font-weight: 800;
-
-    color: white;
-
-    background:
-        #16a34a;
-}
-
-
-/* =========================================================
-   FINISH
-========================================================= */
-
 .finish-button {
 
-    position: absolute;
+    position:
+        absolute;
 
-    bottom: 18px;
+    bottom:
+        18px;
 
-    left: 50%;
+    left:
+        50%;
 
     transform:
         translateX(-50%);
 
-    z-index: 20;
+    z-index:
+        20;
 
     padding:
         12px 20px;
 
-    border: 0;
+    border:
+        0;
 
-    border-radius: 12px;
+    border-radius:
+        12px;
 
     background:
         #dc2626;
 
-    color: white;
+    color:
+        white;
 
-    font-size: 14px;
+    font-size:
+        14px;
 
-    font-weight: 900;
+    font-weight:
+        900;
 
-    display: none;
+    display:
+        none;
 }
 
-
-/* =========================================================
-   SHAKE
-========================================================= */
 
 .shake {
 
     animation:
-        shake .16s linear;
+        shake .16s
+        linear;
 }
+
 
 @keyframes shake {
 
@@ -1366,61 +1242,177 @@ button {
 }
 
 
-/* =========================================================
-   MOBILE
-========================================================= */
+/* =====================================================
+   LEADERBOARD
+===================================================== */
 
-@media (max-width: 800px) {
+.leaderboard {
 
-    .name-screen {
+    margin-top:
+        22px;
 
-        padding:
-            20px 12px;
-    }
+    border-radius:
+        20px;
 
-    .name-page {
+    background:
+        rgba(15,23,42,.85);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    overflow:
+        hidden;
+}
+
+
+.leaderboard-header {
+
+    padding:
+        20px;
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+}
+
+
+.leaderboard-header h2 {
+
+    margin: 0;
+
+    font-size:
+        22px;
+}
+
+
+.table-row {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        60px 1fr 120px 100px;
+
+    padding:
+        13px 20px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.06);
+
+    align-items:
+        center;
+}
+
+
+.table-header {
+
+    color:
+        #9ca3af;
+
+    font-size:
+        12px;
+
+    text-transform:
+        uppercase;
+}
+
+
+.rank {
+
+    font-weight:
+        900;
+}
+
+
+.table-score {
+
+    text-align:
+        right;
+
+    font-weight:
+        900;
+}
+
+
+.combo-score {
+
+    text-align:
+        right;
+
+    color:
+        #fbbf24;
+
+    font-weight:
+        800;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:800px) {
+
+    .auth-wrapper {
 
         grid-template-columns:
             1fr;
-
-        width:
-            min(520px, 100%);
     }
 
-    .name-box {
+    .auth-box {
 
-        position:
-            relative;
+        max-width:
+            500px;
 
-        top: auto;
+        margin:
+            auto;
+
+        width: 100%;
     }
 
-    .start-leaderboard {
+    .login-board {
+
+        max-width:
+            500px;
+
+        margin:
+            auto;
 
         width: 100%;
     }
 }
 
 
-@media (max-width: 600px) {
+@media(max-width:600px) {
 
     .container {
 
         width: 96%;
 
-        padding-top: 15px;
+        padding-top:
+            15px;
     }
 
     .header h1 {
 
-        font-size: 32px;
+        font-size:
+            32px;
     }
 
     .game-area {
 
-        min-height: 570px;
+        min-height:
+            590px;
 
-        border-radius: 18px;
+        border-radius:
+            18px;
     }
 
     .stats {
@@ -1435,14 +1427,16 @@ button {
 
     .stat {
 
-        min-width: 78px;
+        min-width:
+            78px;
 
         padding: 8px;
     }
 
     .stat-value {
 
-        font-size: 18px;
+        font-size:
+            18px;
     }
 
     .target-zone {
@@ -1450,105 +1444,87 @@ button {
         top: 57%;
     }
 
-    .top-three {
-
-        gap: 6px;
-
-        padding:
-            15px 10px;
-    }
-
-    .top-player {
-
-        min-height: 110px;
-
-        padding:
-            12px 4px;
-    }
-
-    .top-player.first {
-
-        min-height: 130px;
-    }
-
-    .top-medal {
-
-        font-size: 25px;
-    }
-
-    .top-name {
-
-        font-size: 11px;
-    }
-
-    .top-score {
-
-        font-size: 16px;
-    }
-
-    .start-score-row {
+    .table-row {
 
         grid-template-columns:
-            40px
-            1fr
-            80px;
+            45px 1fr 90px;
 
         padding:
             12px;
     }
 
-    .start-combo {
+    .table-row .combo-score {
 
-        display: none;
+        display:
+            none;
+    }
+
+    .table-header .combo-score {
+
+        display:
+            none;
     }
 
     .sound-button {
 
-        width: 46px;
-        height: 46px;
+        width:
+            46px;
+
+        height:
+            46px;
 
         top: 12px;
+
         right: 12px;
 
-        font-size: 21px;
+        font-size:
+            21px;
+    }
+
+    .user-badge {
+
+        top:
+            12px;
+
+        left:
+            12px;
+    }
+
+    .logout-button {
+
+        top:
+            52px;
+
+        left:
+            12px;
     }
 }
 
 </style>
+
 </head>
+
 
 <body>
 
 
 <!-- =====================================================
-     SES
-===================================================== -->
-
-<button
-    class="sound-button"
-    id="soundButton"
->
-    🔊
-</button>
-
-
-<!-- =====================================================
-     ZENGİN İSİM EKRANI
+     AUTH
 ===================================================== -->
 
 <div
-    class="name-screen"
-    id="nameScreen"
+    class="auth-screen"
+    id="authScreen"
 >
 
-    <div class="name-page">
+    <div class="auth-wrapper">
 
 
-        <!-- SOL TARAF -->
+        <!-- GİRİŞ -->
 
-        <div class="name-box">
+        <div class="auth-box">
 
-            <div class="name-logo">
+            <div class="logo">
                 🥊
             </div>
 
@@ -1557,206 +1533,147 @@ button {
                 GİYDİRMECE
             </h2>
 
-            <p class="subtitle">
-                En hızlı yumrukları at,
-                <br>
-                zirveye adını yazdır!
-            </p>
+            <div class="auth-description">
 
-
-            <div class="input-wrapper">
-
-                <input
-                    class="name-input"
-                    id="playerName"
-                    type="text"
-                    maxlength="20"
-                    placeholder="İsmini yaz..."
-                    autocomplete="off"
-                    spellcheck="false"
-                >
+                Hesabınla giriş yap ve
+                skorunu liderlik tablosuna taşı.
 
             </div>
 
 
-            <div
-                class="name-status"
-                id="nameStatus"
-            ></div>
-
-
-            <div class="start-info">
-
-                <div class="info-card">
-
-                    <strong>
-                        ⚡
-                    </strong>
-
-                    <span>
-                        Hız
-                    </span>
-
-                </div>
-
-
-                <div class="info-card">
-
-                    <strong>
-                        🔥
-                    </strong>
-
-                    <span>
-                        Combo
-                    </span>
-
-                </div>
-
-
-                <div class="info-card">
-
-                    <strong>
-                        🏆
-                    </strong>
-
-                    <span>
-                        Zirve
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="welcome-message">
-
-                İsmini yazdığın anda isim kontrol edilir.
-                <br>
-                Benzersizse oyun otomatik başlar.
-
-            </div>
-
-        </div>
-
-
-        <!-- SAĞ TARAF -->
-
-        <div class="start-leaderboard">
-
-
-            <div class="start-leaderboard-header">
-
-                <div class="start-leaderboard-title">
-
-                    <div class="cup">
-                        🏆
-                    </div>
-
-                    <div>
-
-                        <h2>
-                            CANLI SKOR TABLOSU
-                        </h2>
-
-                        <span>
-                            En iyi oyuncular
-                        </span>
-
-                    </div>
-
-                </div>
-
+            <div class="auth-tabs">
 
                 <button
-                    class="refresh-start"
-                    id="refreshStartScores"
+                    class="auth-tab active"
+                    id="loginTab"
                 >
-                    🔄 YENİLE
+                    GİRİŞ YAP
+                </button>
+
+                <button
+                    class="auth-tab"
+                    id="registerTab"
+                >
+                    KAYIT OL
                 </button>
 
             </div>
 
 
-            <!-- İLK 3 -->
+            <form id="authForm">
+
+
+                <div class="field">
+
+                    <label>
+                        Kullanıcı adı
+                    </label>
+
+                    <input
+                        class="input"
+                        id="username"
+                        type="text"
+                        maxlength="20"
+                        minlength="3"
+                        autocomplete="username"
+                        placeholder="mustafa_123"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Şifre
+                    </label>
+
+                    <input
+                        class="input"
+                        id="password"
+                        type="password"
+                        minlength="6"
+                        autocomplete="current-password"
+                        placeholder="••••••••"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    id="authButton"
+                    type="submit"
+                >
+                    GİRİŞ YAP
+                </button>
+
+
+                <div
+                    class="auth-status"
+                    id="authStatus"
+                ></div>
+
+
+            </form>
+
+        </div>
+
+
+        <!-- SKOR TABLOSU -->
+
+        <div class="login-board">
+
+            <div class="login-board-header">
+
+                <h3>
+                    🏆 TOP OYUNCULAR
+                </h3>
+
+                <button
+                    class="refresh"
+                    id="authRefresh"
+                >
+                    YENİLE
+                </button>
+
+            </div>
+
 
             <div
-                class="top-three"
-                id="startTopThree"
+                class="top-player"
+                id="topPlayer"
             >
 
-                <div class="top-player second">
-
-                    <div class="top-medal">
-                        🥈
-                    </div>
-
-                    <div class="top-name">
-                        -
-                    </div>
-
-                    <div class="top-score">
-                        0
-                    </div>
-
-                    <div class="top-combo">
-                        x0 combo
-                    </div>
-
+                <div class="crown">
+                    👑
                 </div>
 
-
-                <div class="top-player first">
-
-                    <div class="top-medal">
-                        🥇
-                    </div>
-
-                    <div class="top-name">
-                        -
-                    </div>
-
-                    <div class="top-score">
-                        0
-                    </div>
-
-                    <div class="top-combo">
-                        x0 combo
-                    </div>
-
+                <div
+                    class="top-player-name"
+                    id="topPlayerName"
+                >
+                    Henüz skor yok
                 </div>
 
-
-                <div class="top-player third">
-
-                    <div class="top-medal">
-                        🥉
-                    </div>
-
-                    <div class="top-name">
-                        -
-                    </div>
-
-                    <div class="top-score">
-                        0
-                    </div>
-
-                    <div class="top-combo">
-                        x0 combo
-                    </div>
-
+                <div
+                    class="top-player-score"
+                    id="topPlayerScore"
+                >
+                    -
                 </div>
 
             </div>
 
 
-            <!-- LİSTE -->
-
             <div
-                class="start-score-list"
-                id="startScoreList"
+                class="auth-score-list"
+                id="authScoreList"
             >
 
-                <div class="start-loading">
+                <div class="empty">
                     Skorlar yükleniyor...
                 </div>
 
@@ -1769,9 +1686,40 @@ button {
 </div>
 
 
+
 <!-- =====================================================
-     ANA SAYFA
+     APP
 ===================================================== -->
+
+<div
+    class="app"
+    id="app"
+>
+
+
+<button
+    class="sound-button"
+    id="soundButton"
+>
+    🔊
+</button>
+
+
+<div
+    class="user-badge"
+    id="userBadge"
+>
+    👤 -
+</div>
+
+
+<button
+    class="logout-button"
+    id="logoutButton"
+>
+    ÇIKIŞ YAP
+</button>
+
 
 <div class="container">
 
@@ -1790,17 +1738,11 @@ button {
     </div>
 
 
-    <!-- =================================================
-         OYUN
-    ================================================= -->
-
     <div
         class="game-area"
         id="gameArea"
     >
 
-
-        <!-- STATS -->
 
         <div class="stats">
 
@@ -1871,8 +1813,6 @@ button {
         </div>
 
 
-        <!-- COMBO -->
-
         <div
             class="combo"
             id="comboText"
@@ -1881,21 +1821,13 @@ button {
         </div>
 
 
-        <!-- TARGET -->
-
         <div class="target-zone">
+
 
             <div
                 class="target"
                 id="target"
             >
-
-                <!-- FOTOĞRAF EKLEMEK İÇİN:
-                <img
-                    src="apo.jpg"
-                    alt="Apo"
-                >
-                -->
 
                 <div
                     class="target-placeholder"
@@ -1913,10 +1845,9 @@ button {
 
             </div>
 
+
         </div>
 
-
-        <!-- FINISH -->
 
         <button
             class="finish-button"
@@ -1926,29 +1857,10 @@ button {
         </button>
 
 
-        <!-- OVERLAY -->
-
-        <div
-            class="overlay hidden"
-            id="overlay"
-        >
-
-            <div class="overlay-box">
-
-                <h2>
-                    🏆 Oyun Bitti!
-                </h2>
-
-            </div>
-
-        </div>
-
     </div>
 
 
-    <!-- =================================================
-         SKOR TABLOSU
-    ================================================= -->
+    <!-- LEADERBOARD -->
 
     <div class="leaderboard">
 
@@ -1959,11 +1871,34 @@ button {
             </h2>
 
             <button
+                class="refresh"
                 id="refreshScores"
-                class="refresh-start"
             >
-                🔄 YENİLE
+                YENİLE
             </button>
+
+        </div>
+
+
+        <div
+            class="table-row table-header"
+        >
+
+            <div>
+                #
+            </div>
+
+            <div>
+                Oyuncu
+            </div>
+
+            <div class="table-score">
+                Skor
+            </div>
+
+            <div class="combo-score">
+                Combo
+            </div>
 
         </div>
 
@@ -1974,50 +1909,115 @@ button {
 
     </div>
 
+
 </div>
+
+</div>
+
 
 
 <script>
 
-
-/* =========================================================
+/* =====================================================
    SUPABASE
-========================================================= */
+===================================================== */
 
-const SUPABASE_FUNCTION_URL =
-    "https://sqotorneqppbwsmnyxmy.supabase.co/functions/v1/swift-service";
+const SUPABASE_URL =
+    "https://sqotorneqppbwsmnyxmy.supabase.co";
 
 const SUPABASE_KEY =
     "sb_publishable_wUBbPRmoS1SkvRM88SqWLw_yKoUx4Rf";
 
 
-/* =========================================================
-   ELEMENTLER
-========================================================= */
+const {
+    createClient
+} = window.supabase;
 
-const playerName =
-    document.getElementById(
-        "playerName"
+
+const supabase =
+    createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
     );
 
-const nameScreen =
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const authScreen =
     document.getElementById(
-        "nameScreen"
+        "authScreen"
     );
 
-const nameStatus =
+const app =
     document.getElementById(
-        "nameStatus"
+        "app"
     );
 
-const finishButton =
+const authForm =
     document.getElementById(
-        "finishButton"
+        "authForm"
     );
 
-const overlay =
+const usernameInput =
     document.getElementById(
-        "overlay"
+        "username"
+    );
+
+const passwordInput =
+    document.getElementById(
+        "password"
+    );
+
+const authButton =
+    document.getElementById(
+        "authButton"
+    );
+
+const authStatus =
+    document.getElementById(
+        "authStatus"
+    );
+
+const loginTab =
+    document.getElementById(
+        "loginTab"
+    );
+
+const registerTab =
+    document.getElementById(
+        "registerTab"
+    );
+
+const authScoreList =
+    document.getElementById(
+        "authScoreList"
+    );
+
+const topPlayerName =
+    document.getElementById(
+        "topPlayerName"
+    );
+
+const topPlayerScore =
+    document.getElementById(
+        "topPlayerScore"
+    );
+
+const authRefresh =
+    document.getElementById(
+        "authRefresh"
+    );
+
+const userBadge =
+    document.getElementById(
+        "userBadge"
+    );
+
+const logoutButton =
+    document.getElementById(
+        "logoutButton"
     );
 
 const target =
@@ -2055,6 +2055,11 @@ const comboText =
         "comboText"
     );
 
+const finishButton =
+    document.getElementById(
+        "finishButton"
+    );
+
 const leaderboardRows =
     document.getElementById(
         "leaderboardRows"
@@ -2065,57 +2070,485 @@ const refreshScores =
         "refreshScores"
     );
 
-const refreshStartScores =
-    document.getElementById(
-        "refreshStartScores"
-    );
-
-const startTopThree =
-    document.getElementById(
-        "startTopThree"
-    );
-
-const startScoreList =
-    document.getElementById(
-        "startScoreList"
-    );
-
 const soundButton =
     document.getElementById(
         "soundButton"
     );
 
 
-/* =========================================================
-   OYUN
-========================================================= */
+/* =====================================================
+   AUTH MODE
+===================================================== */
 
-let gameStarted = false;
-
-let currentPlayerName = "";
-
-let score = 0;
-
-let hits = 0;
-
-let combo = 0;
-
-let highestCombo = 0;
-
-let lastHitTime = 0;
-
-let nameInputTimer = null;
-
-const COMBO_TIMEOUT = 900;
+let authMode = "login";
 
 
-/* =========================================================
-   SES
-========================================================= */
+function setAuthMode(mode) {
 
-let audioContext = null;
+    authMode = mode;
 
-let soundEnabled = true;
+    if (mode === "login") {
+
+        loginTab.classList.add(
+            "active"
+        );
+
+        registerTab.classList.remove(
+            "active"
+        );
+
+        authButton.textContent =
+            "GİRİŞ YAP";
+
+        passwordInput.autocomplete =
+            "current-password";
+
+    } else {
+
+        registerTab.classList.add(
+            "active"
+        );
+
+        loginTab.classList.remove(
+            "active"
+        );
+
+        authButton.textContent =
+            "HESAP OLUŞTUR";
+
+        passwordInput.autocomplete =
+            "new-password";
+    }
+
+    authStatus.textContent = "";
+}
+
+
+loginTab.addEventListener(
+    "click",
+    () => setAuthMode("login")
+);
+
+
+registerTab.addEventListener(
+    "click",
+    () => setAuthMode("register")
+);
+
+
+/* =====================================================
+   USERNAME → EMAIL
+===================================================== */
+
+/*
+   Supabase Auth email/password istediği için
+   kullanıcı adına özel internal email oluşturuyoruz.
+
+   Kullanıcı gerçek email adresini görmüyor.
+*/
+
+function usernameToEmail(username) {
+
+    return (
+        username
+            .toLowerCase()
+            .trim()
+            .replace(
+                /[^a-z0-9_]/g,
+                ""
+            )
+        +
+        "@apoyu.local"
+    );
+}
+
+
+/* =====================================================
+   USERNAME VALIDATION
+===================================================== */
+
+function validateUsername(name) {
+
+    return /^[A-Za-z0-9_]{3,20}$/
+        .test(name);
+}
+
+
+/* =====================================================
+   AUTH FORM
+===================================================== */
+
+authForm.addEventListener(
+    "submit",
+    async (event) => {
+
+        event.preventDefault();
+
+        const username =
+            usernameInput.value.trim();
+
+        const password =
+            passwordInput.value;
+
+
+        if (
+            !validateUsername(
+                username
+            )
+        ) {
+
+            authStatus.className =
+                "auth-status error";
+
+            authStatus.textContent =
+                "Kullanıcı adı 3-20 karakter olmalı. Sadece harf, rakam ve _ kullanılabilir.";
+
+            return;
+        }
+
+
+        if (password.length < 6) {
+
+            authStatus.className =
+                "auth-status error";
+
+            authStatus.textContent =
+                "Şifre en az 6 karakter olmalı.";
+
+            return;
+        }
+
+
+        authButton.disabled =
+            true;
+
+        authStatus.className =
+            "auth-status loading";
+
+
+        if (authMode === "register") {
+
+            authStatus.textContent =
+                "Hesap oluşturuluyor...";
+
+
+            const email =
+                usernameToEmail(
+                    username
+                );
+
+
+            const {
+                data,
+                error
+            } =
+                await supabase.auth.signUp({
+                    email,
+                    password,
+
+                    options: {
+
+                        data: {
+                            username
+                        }
+                    }
+                });
+
+
+            if (error) {
+
+                console.error(
+                    error
+                );
+
+                authStatus.className =
+                    "auth-status error";
+
+                authStatus.textContent =
+                    translateAuthError(
+                        error.message
+                    );
+
+                authButton.disabled =
+                    false;
+
+                return;
+            }
+
+
+            /*
+              Email confirmation kapalıysa
+              session doğrudan oluşur.
+            */
+
+            if (data.session) {
+
+                authStatus.className =
+                    "auth-status success";
+
+                authStatus.textContent =
+                    "Hesap oluşturuldu.";
+
+                await enterGame();
+
+            } else {
+
+                authStatus.className =
+                    "auth-status success";
+
+                authStatus.textContent =
+                    "Hesap oluşturuldu. Supabase email doğrulamasını bekliyor.";
+            }
+
+        } else {
+
+            authStatus.textContent =
+                "Giriş yapılıyor...";
+
+
+            const email =
+                usernameToEmail(
+                    username
+                );
+
+
+            const {
+                data,
+                error
+            } =
+                await supabase.auth.signInWithPassword({
+
+                    email,
+
+                    password
+
+                });
+
+
+            if (error) {
+
+                console.error(
+                    error
+                );
+
+                authStatus.className =
+                    "auth-status error";
+
+                authStatus.textContent =
+                    "Kullanıcı adı veya şifre hatalı.";
+
+                authButton.disabled =
+                    false;
+
+                return;
+            }
+
+
+            if (data.session) {
+
+                await enterGame();
+
+            }
+
+        }
+
+
+        authButton.disabled =
+            false;
+
+    }
+);
+
+
+/* =====================================================
+   AUTH ERROR
+===================================================== */
+
+function translateAuthError(
+    message
+) {
+
+    if (
+        message
+            .toLowerCase()
+            .includes(
+                "already registered"
+            )
+    ) {
+
+        return "Bu kullanıcı adı zaten kullanılıyor.";
+    }
+
+
+    if (
+        message
+            .toLowerCase()
+            .includes(
+                "password"
+            )
+    ) {
+
+        return "Şifre geçersiz.";
+    }
+
+
+    return (
+        "İşlem başarısız: " +
+        message
+    );
+}
+
+
+/* =====================================================
+   ENTER GAME
+===================================================== */
+
+async function enterGame() {
+
+    const {
+        data: {
+            user
+        }
+    } =
+        await supabase.auth.getUser();
+
+
+    if (!user) return;
+
+
+    const {
+        data: profile
+    } =
+        await supabase
+            .from("profiles")
+            .select(
+                "username"
+            )
+            .eq(
+                "id",
+                user.id
+            )
+            .single();
+
+
+    if (profile) {
+
+        userBadge.textContent =
+            "👤 " +
+            profile.username;
+    }
+
+
+    authScreen.style.display =
+        "none";
+
+    app.style.display =
+        "block";
+
+
+    resetGame();
+
+    await renderLeaderboard();
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+logoutButton.addEventListener(
+    "click",
+    async () => {
+
+        gameStarted = false;
+
+        await supabase.auth.signOut();
+
+        app.style.display =
+            "none";
+
+        authScreen.style.display =
+            "block";
+
+        usernameInput.value =
+            "";
+
+        passwordInput.value =
+            "";
+
+        authStatus.textContent =
+            "";
+
+        resetGame();
+
+        await loadLoginLeaderboard();
+    }
+);
+
+
+/* =====================================================
+   AUTH SESSION
+===================================================== */
+
+supabase.auth.onAuthStateChange(
+    async (
+        event,
+        session
+    ) => {
+
+        if (
+            session &&
+            (
+                event ===
+                    "SIGNED_IN" ||
+                event ===
+                    "INITIAL_SESSION"
+            )
+        ) {
+
+            await enterGame();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   GAME VARIABLES
+===================================================== */
+
+let gameStarted =
+    false;
+
+let score =
+    0;
+
+let hits =
+    0;
+
+let combo =
+    0;
+
+let highestCombo =
+    0;
+
+let lastHitTime =
+    0;
+
+const COMBO_TIMEOUT =
+    900;
+
+
+/* =====================================================
+   AUDIO
+===================================================== */
+
+let audioContext =
+    null;
+
+let soundEnabled =
+    true;
 
 
 function initAudio() {
@@ -2128,6 +2561,7 @@ function initAudio() {
                 window.webkitAudioContext
             )();
     }
+
 
     if (
         audioContext.state ===
@@ -2143,11 +2577,12 @@ function punchSound(
     critical = false
 ) {
 
-    if (!soundEnabled) {
+    if (!soundEnabled)
         return;
-    }
+
 
     initAudio();
+
 
     const oscillator =
         audioContext.createOscillator();
@@ -2155,41 +2590,51 @@ function punchSound(
     const gain =
         audioContext.createGain();
 
+
     oscillator.connect(gain);
 
     gain.connect(
         audioContext.destination
     );
 
+
     oscillator.type =
         critical
             ? "square"
             : "sine";
+
 
     oscillator.frequency.setValueAtTime(
         critical ? 180 : 110,
         audioContext.currentTime
     );
 
+
     oscillator.frequency.exponentialRampToValueAtTime(
         critical ? 80 : 55,
-        audioContext.currentTime + .08
+        audioContext.currentTime +
+            .08
     );
+
 
     gain.gain.setValueAtTime(
         critical ? .13 : .08,
         audioContext.currentTime
     );
 
+
     gain.gain.exponentialRampToValueAtTime(
         .001,
-        audioContext.currentTime + .09
+        audioContext.currentTime +
+            .09
     );
+
 
     oscillator.start();
 
     oscillator.stop(
-        audioContext.currentTime + .1
+        audioContext.currentTime +
+            .1
     );
 }
 
@@ -2206,198 +2651,23 @@ soundButton.addEventListener(
                 ? "🔊"
                 : "🔇";
 
+
         if (soundEnabled) {
+
             initAudio();
         }
     }
 );
 
 
-/* =========================================================
-   SUPABASE REQUEST
-========================================================= */
+/* =====================================================
+   GAME START
+===================================================== */
 
-async function supabaseRequest(
-    action,
-    data = {}
-) {
+function resetGame() {
 
-    const response =
-        await fetch(
-            SUPABASE_FUNCTION_URL,
-            {
-
-                method: "POST",
-
-                headers: {
-
-                    "Content-Type":
-                        "application/json",
-
-                    "apikey":
-                        SUPABASE_KEY,
-
-                    "Authorization":
-                        "Bearer " +
-                        SUPABASE_KEY
-                },
-
-                body:
-                    JSON.stringify({
-                        action,
-                        ...data
-                    })
-            }
-        );
-
-    const text =
-        await response.text();
-
-    let result;
-
-    try {
-
-        result =
-            JSON.parse(text);
-
-    } catch {
-
-        throw new Error(
-            "Sunucudan geçersiz cevap geldi: " +
-            text
-        );
-    }
-
-    if (!response.ok) {
-
-        throw new Error(
-            result.error ||
-            result.message ||
-            "Sunucu isteği başarısız."
-        );
-    }
-
-    return result;
-}
-
-
-/* =========================================================
-   İSİM KONTROL
-========================================================= */
-
-async function checkPlayerName(
-    name
-) {
-
-    try {
-
-        const result =
-            await supabaseRequest(
-                "check_name",
-                {
-                    name
-                }
-            );
-
-        if (
-            result.available === true
-        ) {
-
-            return true;
-        }
-
-        nameStatus.textContent =
-            "❌ Bu isim daha önce kullanılmış.";
-
-        nameStatus.className =
-            "name-status error";
-
-        return false;
-
-    } catch (error) {
-
-        console.error(
-            error
-        );
-
-        nameStatus.textContent =
-            "⚠️ Sunucuya bağlanılamadı.";
-
-        nameStatus.className =
-            "name-status error";
-
-        return false;
-    }
-}
-
-
-/* =========================================================
-   START GAME
-========================================================= */
-
-async function startGame() {
-
-    if (gameStarted) {
-        return;
-    }
-
-    const name =
-        playerName.value.trim();
-
-    if (!name) {
-        return;
-    }
-
-    if (name.length < 2) {
-
-        nameStatus.textContent =
-            "İsim en az 2 karakter olmalı.";
-
-        nameStatus.className =
-            "name-status error";
-
-        return;
-    }
-
-    if (name.length > 20) {
-
-        nameStatus.textContent =
-            "İsim en fazla 20 karakter olabilir.";
-
-        nameStatus.className =
-            "name-status error";
-
-        return;
-    }
-
-    nameStatus.textContent =
-        "🔍 İsim kontrol ediliyor...";
-
-    nameStatus.className =
-        "name-status loading";
-
-    playerName.disabled =
+    gameStarted =
         true;
-
-    const available =
-        await checkPlayerName(
-            name
-        );
-
-    if (!available) {
-
-        playerName.disabled =
-            false;
-
-        return;
-    }
-
-    currentPlayerName =
-        name;
-
-    initAudio();
-
-    gameStarted = true;
 
     score = 0;
 
@@ -2409,254 +2679,48 @@ async function startGame() {
 
     lastHitTime = 0;
 
-    updateStats();
-
-    nameStatus.textContent =
-        "✓ Hazır!";
-
-    nameStatus.className =
-        "name-status success";
-
-    setTimeout(
-        () => {
-
-            nameScreen.classList.add(
-                "hidden"
-            );
-
-        },
-        200
-    );
-
     finishButton.style.display =
         "inline-block";
 
-    overlay.classList.add(
-        "hidden"
-    );
-
-    const oldPlayer =
-        document.getElementById(
-            "currentPlayer"
-        );
-
-    if (oldPlayer) {
-        oldPlayer.remove();
-    }
-
-    const playerLabel =
-        document.createElement(
-            "div"
-        );
-
-    playerLabel.id =
-        "currentPlayer";
-
-    playerLabel.textContent =
-        "🥊 " + name;
-
-    playerLabel.style.position =
-        "fixed";
-
-    playerLabel.style.top =
-        "22px";
-
-    playerLabel.style.left =
-        "22px";
-
-    playerLabel.style.padding =
-        "8px 14px";
-
-    playerLabel.style.borderRadius =
-        "20px";
-
-    playerLabel.style.background =
-        "rgba(15,23,42,.85)";
-
-    playerLabel.style.zIndex =
-        "9998";
-
-    document.body.appendChild(
-        playerLabel
-    );
+    updateStats();
 }
 
 
-/* =========================================================
-   FINISH
-========================================================= */
+function endGame() {
 
-async function finishGame() {
-
-    if (!gameStarted) {
-        return;
-    }
-
-    gameStarted = false;
-
-    finishButton.disabled =
-        true;
-
-    finishButton.textContent =
-        "KAYDEDİLİYOR...";
-
-    try {
-
-        await supabaseRequest(
-            "submit_score",
-            {
-
-                name:
-                    currentPlayerName,
-
-                score:
-                    score,
-
-                hits:
-                    hits,
-
-                highestCombo:
-                    highestCombo
-            }
-        );
-
-    } catch (error) {
-
-        alert(
-            "⚠️ Skor kaydedilemedi.\n\n" +
-            error.message
-        );
-    }
-
-    finishButton.disabled =
+    gameStarted =
         false;
-
-    finishButton.textContent =
-        "OYUNU BİTİR";
 
     finishButton.style.display =
         "none";
-
-    combo = 0;
-
-    updateStats();
-
-    await renderLeaderboard();
-
-    overlay.innerHTML = `
-
-        <div class="overlay-box">
-
-            <h2>
-                🏆 Oyun Bitti!
-            </h2>
-
-            <p>
-                Toplam skor:
-                <strong>
-                    ${score.toLocaleString("tr-TR")}
-                </strong>
-            </p>
-
-            <p>
-                Vuruş:
-                <strong>
-                    ${hits}
-                </strong>
-
-                <br>
-
-                En yüksek combo:
-                <strong>
-                    x${highestCombo}
-                </strong>
-            </p>
-
-            <button
-                class="new-game-button"
-                id="newGameButton"
-            >
-                YENİ OYUNCU
-            </button>
-
-        </div>
-    `;
-
-    overlay.classList.remove(
-        "hidden"
-    );
-
-    const currentPlayer =
-        document.getElementById(
-            "currentPlayer"
-        );
-
-    if (currentPlayer) {
-        currentPlayer.remove();
-    }
-
-    currentPlayerName = "";
-
-    playerName.disabled =
-        false;
-
-    playerName.value =
-        "";
-
-    document
-        .getElementById(
-            "newGameButton"
-        )
-        .addEventListener(
-            "click",
-            newGame
-        );
 }
 
 
-/* =========================================================
-   NEW GAME
-========================================================= */
-
-function newGame() {
-
-    overlay.classList.add(
-        "hidden"
-    );
-
-    nameScreen.classList.remove(
-        "hidden"
-    );
-
-    playerName.disabled =
-        false;
-
-    playerName.value =
-        "";
-
-    nameStatus.textContent =
-        "";
-
-    renderStartLeaderboard();
-
-    playerName.focus();
-}
-
-
-/* =========================================================
+/* =====================================================
    HIT
-========================================================= */
+===================================================== */
+
+target.addEventListener(
+    "pointerdown",
+    hitTarget
+);
+
 
 function hitTarget(event) {
 
-    if (!gameStarted) {
+    if (!gameStarted)
         return;
-    }
+
 
     event.preventDefault();
 
+
+    initAudio();
+
+
     const now =
         performance.now();
+
 
     if (
         now - lastHitTime <=
@@ -2670,9 +2734,13 @@ function hitTarget(event) {
         combo = 1;
     }
 
-    lastHitTime = now;
+
+    lastHitTime =
+        now;
+
 
     hits++;
+
 
     if (
         combo >
@@ -2683,44 +2751,50 @@ function hitTarget(event) {
             combo;
     }
 
-    let multiplier = 1;
 
-    if (combo >= 30) {
+    let multiplier =
+        1;
 
+
+    if (combo >= 30)
         multiplier = 5;
 
-    } else if (combo >= 20) {
-
+    else if (combo >= 20)
         multiplier = 4;
 
-    } else if (combo >= 10) {
-
+    else if (combo >= 10)
         multiplier = 3;
 
-    } else if (combo >= 5) {
-
+    else if (combo >= 5)
         multiplier = 2;
-    }
+
 
     const critical =
         Math.random() < .07;
 
+
     let points =
         10 * multiplier;
 
-    if (critical) {
-        points *= 3;
-    }
 
-    score += points;
+    if (critical)
+        points *= 3;
+
+
+    score +=
+        points;
+
 
     updateStats();
 
+
     animateTarget();
+
 
     punchSound(
         critical
     );
+
 
     showFloatingScore(
         event,
@@ -2728,15 +2802,15 @@ function hitTarget(event) {
         critical
     );
 
-    if (combo >= 2) {
+
+    if (combo >= 2)
         showCombo();
-    }
 }
 
 
-/* =========================================================
+/* =====================================================
    ANIMATION
-========================================================= */
+===================================================== */
 
 function animateTarget() {
 
@@ -2749,6 +2823,7 @@ function animateTarget() {
     target.classList.add(
         "hit"
     );
+
 
     gameArea.classList.remove(
         "shake"
@@ -2767,21 +2842,20 @@ function showCombo() {
     comboText.textContent =
         `COMBO x${combo}`;
 
+
     comboText.classList.remove(
         "show"
     );
 
+
     void comboText.offsetWidth;
+
 
     comboText.classList.add(
         "show"
     );
 }
 
-
-/* =========================================================
-   FLOAT SCORE
-========================================================= */
 
 function showFloatingScore(
     event,
@@ -2794,30 +2868,38 @@ function showFloatingScore(
             "div"
         );
 
+
     floating.className =
         "floating-score";
+
 
     floating.textContent =
         critical
             ? `CRITICAL +${points}`
             : `+${points}`;
 
+
     const rect =
         gameArea.getBoundingClientRect();
 
-    let x =
+
+    const x =
         event.clientX -
         rect.left;
 
-    let y =
+
+    const y =
         event.clientY -
         rect.top;
+
 
     floating.style.left =
         `${x}px`;
 
+
     floating.style.top =
         `${y}px`;
+
 
     if (critical) {
 
@@ -2825,29 +2907,23 @@ function showFloatingScore(
             "#fbbf24";
     }
 
+
     gameArea.appendChild(
         floating
     );
 
+
     setTimeout(
-        () => {
-
-            if (
-                floating.parentNode
-            ) {
-
-                floating.remove();
-            }
-
-        },
+        () =>
+            floating.remove(),
         800
     );
 }
 
 
-/* =========================================================
+/* =====================================================
    STATS
-========================================================= */
+===================================================== */
 
 function updateStats() {
 
@@ -2856,61 +2932,364 @@ function updateStats() {
             "tr-TR"
         );
 
+
     hitsElement.textContent =
         hits;
+
 
     comboElement.textContent =
         `x${combo}`;
 }
 
 
-/* =========================================================
-   ESCAPE
-========================================================= */
+/* =====================================================
+   SUBMIT SCORE
+===================================================== */
 
-function escapeHtml(text) {
+finishButton.addEventListener(
+    "click",
+    async () => {
 
-    return String(text)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+        if (!gameStarted)
+            return;
+
+
+        endGame();
+
+
+        finishButton.disabled =
+            true;
+
+
+        finishButton.textContent =
+            "KAYDEDİLİYOR...";
+
+
+        try {
+
+            const {
+                data: {
+                    session
+                }
+            } =
+                await supabase.auth.getSession();
+
+
+            if (!session) {
+
+                throw new Error(
+                    "Oturum bulunamadı."
+                );
+            }
+
+
+            const {
+                data,
+                error
+            } =
+                await supabase.functions.invoke(
+                    "swift-service",
+                    {
+                        body: {
+
+                            action:
+                                "submit_score",
+
+                            score:
+                                score,
+
+                            hits:
+                                hits,
+
+                            highestCombo:
+                                highestCombo
+                        }
+                    }
+                );
+
+
+            if (error)
+                throw error;
+
+
+            console.log(
+                "Skor kaydedildi:",
+                data
+            );
+
+
+            alert(
+                `🏆 Skorun kaydedildi!\n\n` +
+                `Skor: ${Number(
+                    data.score?.score || score
+                ).toLocaleString("tr-TR")}\n` +
+                `Vuruş: ${hits}\n` +
+                `En yüksek combo: x${highestCombo}`
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                error
+            );
+
+
+            alert(
+                "⚠️ Skor kaydedilemedi.\n\n" +
+                (
+                    error.message ||
+                    "Bilinmeyen hata."
+                )
+            );
+
+        }
+
+
+        finishButton.disabled =
+            false;
+
+
+        finishButton.textContent =
+            "OYUNU BİTİR";
+
+
+        await renderLeaderboard();
+
+
+        resetGame();
+
+    }
+);
+
+
+/* =====================================================
+   LEADERBOARD
+===================================================== */
+
+async function loadLeaderboard() {
+
+    const {
+        data,
+        error
+    } =
+        await supabase
+            .from("leaderboard")
+            .select(
+                "id,user_id,username,score,hits,highest_combo,created_at"
+            )
+            .order(
+                "score",
+                {
+                    ascending: false
+                }
+            )
+            .order(
+                "highest_combo",
+                {
+                    ascending: false
+                }
+            )
+            .limit(50);
+
+
+    if (error) {
+
+        console.error(
+            error
+        );
+
+        throw error;
+    }
+
+
+    return data || [];
 }
 
 
-/* =========================================================
-   ANA LEADERBOARD
-========================================================= */
+/* =====================================================
+   LOGIN LEADERBOARD
+===================================================== */
+
+async function loadLoginLeaderboard() {
+
+    try {
+
+        const scores =
+            await loadLeaderboard();
+
+
+        authScoreList.innerHTML =
+            "";
+
+
+        if (!scores.length) {
+
+            authScoreList.innerHTML =
+                `
+                <div class="empty">
+                    Henüz skor yok.<br>
+                    İlk oyuncu sen ol!
+                </div>
+                `;
+
+
+            topPlayerName.textContent =
+                "Henüz skor yok";
+
+            topPlayerScore.textContent =
+                "-";
+
+            return;
+        }
+
+
+        const top =
+            scores[0];
+
+
+        topPlayerName.textContent =
+            top.username;
+
+
+        topPlayerScore.textContent =
+            Number(
+                top.score
+            ).toLocaleString(
+                "tr-TR"
+            ) +
+            " puan";
+
+
+        scores.forEach(
+            (
+                item,
+                index
+            ) => {
+
+                const row =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                row.className =
+                    "auth-score-row";
+
+
+                const medal =
+                    index === 0
+                        ? "🥇"
+                        : index === 1
+                            ? "🥈"
+                            : index === 2
+                                ? "🥉"
+                                : index + 1;
+
+
+                row.innerHTML = `
+
+                    <div
+                        class="auth-score-rank"
+                    >
+                        ${medal}
+                    </div>
+
+                    <div>
+
+                        <div
+                            class="auth-score-name"
+                        >
+                            ${escapeHtml(
+                                item.username
+                            )}
+                        </div>
+
+                        <div
+                            class="auth-score-meta"
+                        >
+                            ${item.hits} vuruş
+                            ·
+                            x${item.highest_combo}
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="auth-score-value"
+                    >
+                        ${Number(
+                            item.score
+                        ).toLocaleString(
+                            "tr-TR"
+                        )}
+                    </div>
+                `;
+
+
+                authScoreList.appendChild(
+                    row
+                );
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            error
+        );
+
+
+        authScoreList.innerHTML =
+            `
+            <div class="empty">
+                ⚠️ Skor tablosu yüklenemedi.
+            </div>
+            `;
+    }
+}
+
+
+authRefresh.addEventListener(
+    "click",
+    loadLoginLeaderboard
+);
+
+
+/* =====================================================
+   GAME LEADERBOARD
+===================================================== */
 
 async function renderLeaderboard() {
 
     try {
 
-        const result =
-            await supabaseRequest(
-                "leaderboard"
-            );
-
         const scores =
-            result.scores || [];
+            await loadLeaderboard();
+
 
         leaderboardRows.innerHTML =
             "";
 
+
         if (!scores.length) {
 
-            leaderboardRows.innerHTML = `
-                <div class="start-empty">
+            leaderboardRows.innerHTML =
+                `
+                <div class="empty">
                     Henüz skor yok.
                 </div>
-            `;
+                `;
+
 
             bestElement.textContent =
                 "0";
 
+
             return;
         }
+
 
         bestElement.textContent =
             Number(
@@ -2919,38 +3298,48 @@ async function renderLeaderboard() {
                 "tr-TR"
             );
 
+
         scores.forEach(
-            (item,index) => {
+            (
+                item,
+                index
+            ) => {
 
                 const row =
                     document.createElement(
                         "div"
                     );
 
+
                 row.className =
-                    "start-score-row";
+                    "table-row";
+
+
+                const medal =
+                    index === 0
+                        ? "🥇"
+                        : index === 1
+                            ? "🥈"
+                            : index === 2
+                                ? "🥉"
+                                : index + 1;
+
 
                 row.innerHTML = `
 
-                    <div class="start-rank">
-                        ${
-                            index === 0
-                                ? "🥇"
-                                : index === 1
-                                ? "🥈"
-                                : index === 2
-                                ? "🥉"
-                                : index + 1
-                        }
+                    <div class="rank">
+                        ${medal}
                     </div>
 
-                    <div class="start-player">
+                    <div>
                         ${escapeHtml(
-                            item.player_name
+                            item.username
                         )}
                     </div>
 
-                    <div class="start-score">
+                    <div
+                        class="table-score"
+                    >
                         ${Number(
                             item.score
                         ).toLocaleString(
@@ -2958,13 +3347,14 @@ async function renderLeaderboard() {
                         )}
                     </div>
 
-                    <div class="start-combo">
-                        x${Number(
-                            item.highest_combo || 0
-                        )}
+                    <div
+                        class="combo-score"
+                    >
+                        x${item.highest_combo}
                     </div>
 
                 `;
+
 
                 leaderboardRows.appendChild(
                     row
@@ -2972,418 +3362,40 @@ async function renderLeaderboard() {
             }
         );
 
-    } catch (error) {
-
-        leaderboardRows.innerHTML = `
-
-            <div class="start-empty">
-
-                ⚠️ Skor tablosuna
-                bağlanılamadı.
-
-            </div>
-        `;
-    }
-}
-
-
-/* =========================================================
-   BAŞLANGIÇ LEADERBOARD
-========================================================= */
-
-async function renderStartLeaderboard() {
-
-    startScoreList.innerHTML = `
-
-        <div class="start-loading">
-            🔄 Skorlar yükleniyor...
-        </div>
-
-    `;
-
-    try {
-
-        const result =
-            await supabaseRequest(
-                "leaderboard"
-            );
-
-        const scores =
-            result.scores || [];
-
-        if (!scores.length) {
-
-            startScoreList.innerHTML = `
-
-                <div class="start-empty">
-
-                    🏆
-
-                    <br>
-
-                    Henüz skor bulunmuyor.
-
-                    <br>
-
-                    İlk skoru sen yap!
-
-                </div>
-            `;
-
-            startTopThree.innerHTML = `
-
-                <div class="top-player second">
-                    <div class="top-medal">🥈</div>
-                    <div class="top-name">-</div>
-                    <div class="top-score">0</div>
-                    <div class="top-combo">x0 combo</div>
-                </div>
-
-                <div class="top-player first">
-                    <div class="top-medal">🥇</div>
-                    <div class="top-name">-</div>
-                    <div class="top-score">0</div>
-                    <div class="top-combo">x0 combo</div>
-                </div>
-
-                <div class="top-player third">
-                    <div class="top-medal">🥉</div>
-                    <div class="top-name">-</div>
-                    <div class="top-score">0</div>
-                    <div class="top-combo">x0 combo</div>
-                </div>
-
-            `;
-
-            return;
-        }
-
-
-        /* TOP 3 */
-
-        const first =
-            scores[0];
-
-        const second =
-            scores[1];
-
-        const third =
-            scores[2];
-
-
-        function topCard(
-            item,
-            medal,
-            className
-        ) {
-
-            if (!item) {
-
-                return `
-
-                    <div class="
-                        top-player
-                        ${className}
-                    ">
-
-                        <div class="top-medal">
-                            ${medal}
-                        </div>
-
-                        <div class="top-name">
-                            -
-                        </div>
-
-                        <div class="top-score">
-                            0
-                        </div>
-
-                        <div class="top-combo">
-                            x0 combo
-                        </div>
-
-                    </div>
-                `;
-            }
-
-
-            return `
-
-                <div class="
-                    top-player
-                    ${className}
-                ">
-
-                    <div class="top-medal">
-                        ${medal}
-                    </div>
-
-                    <div
-                        class="top-name"
-                        title="${escapeHtml(
-                            item.player_name
-                        )}"
-                    >
-                        ${escapeHtml(
-                            item.player_name
-                        )}
-                    </div>
-
-                    <div class="top-score">
-
-                        ${Number(
-                            item.score
-                        ).toLocaleString(
-                            "tr-TR"
-                        )}
-
-                    </div>
-
-                    <div class="top-combo">
-
-                        x${Number(
-                            item.highest_combo || 0
-                        )}
-                        combo
-
-                    </div>
-
-                </div>
-            `;
-        }
-
-
-        startTopThree.innerHTML =
-
-            topCard(
-                second,
-                "🥈",
-                "second"
-            )
-
-            +
-
-            topCard(
-                first,
-                "🥇",
-                "first"
-            )
-
-            +
-
-            topCard(
-                third,
-                "🥉",
-                "third"
-            );
-
-
-        /* LİSTE */
-
-        if (scores.length <= 3) {
-
-            startScoreList.innerHTML = `
-
-                <div class="start-empty">
-
-                    ✨ İlk 3 oyuncu burada!
-
-                    <br>
-
-                    Daha yüksek skor yaparak
-                    zirveyi ele geçir.
-
-                </div>
-
-            `;
-
-            return;
-        }
-
-
-        startScoreList.innerHTML =
-            "";
-
-        scores.forEach(
-            (item,index) => {
-
-                if (index < 3) {
-                    return;
-                }
-
-                const row =
-                    document.createElement(
-                        "div"
-                    );
-
-                row.className =
-                    "start-score-row";
-
-                row.innerHTML = `
-
-                    <div class="start-rank">
-
-                        ${index + 1}
-
-                    </div>
-
-                    <div
-                        class="start-player"
-                        title="${escapeHtml(
-                            item.player_name
-                        )}"
-                    >
-
-                        ${escapeHtml(
-                            item.player_name
-                        )}
-
-                    </div>
-
-                    <div class="start-score">
-
-                        ${Number(
-                            item.score
-                        ).toLocaleString(
-                            "tr-TR"
-                        )}
-
-                    </div>
-
-                    <div class="start-combo">
-
-                        x${Number(
-                            item.highest_combo || 0
-                        )}
-
-                    </div>
-
-                `;
-
-                startScoreList.appendChild(
-                    row
-                );
-            }
-        );
 
     } catch (error) {
 
         console.error(
-            "Başlangıç leaderboard:",
             error
         );
 
-        startScoreList.innerHTML = `
 
-            <div class="start-empty">
-
-                ⚠️ Skor tablosuna
-                bağlanılamadı.
-
-                <br><br>
-
-                İnternet bağlantısını
-                kontrol et.
-
+        leaderboardRows.innerHTML =
+            `
+            <div class="empty">
+                ⚠️ Skor tablosuna bağlanılamadı.
             </div>
-
-        `;
+            `;
     }
 }
 
-
-/* =========================================================
-   EVENTLER
-========================================================= */
-
-finishButton.addEventListener(
-    "click",
-    finishGame
-);
-
-target.addEventListener(
-    "pointerdown",
-    hitTarget
-);
 
 refreshScores.addEventListener(
     "click",
     renderLeaderboard
 );
 
-refreshStartScores.addEventListener(
-    "click",
-    renderStartLeaderboard
-);
 
-
-/* =========================================================
-   ENTER
-========================================================= */
-
-playerName.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key === "Enter"
-        ) {
-
-            clearTimeout(
-                nameInputTimer
-            );
-
-            startGame();
-        }
-    }
-);
-
-
-/* =========================================================
-   OTOMATİK BAŞLAT
-========================================================= */
-
-playerName.addEventListener(
-    "input",
-    () => {
-
-        clearTimeout(
-            nameInputTimer
-        );
-
-        nameStatus.textContent =
-            "";
-
-        if (
-            playerName.value
-                .trim()
-                .length >= 2
-        ) {
-
-            nameInputTimer =
-                setTimeout(
-                    () => {
-
-                        startGame();
-
-                    },
-                    700
-                );
-        }
-    }
-);
-
-
-/* =========================================================
+/* =====================================================
    COMBO RESET
-========================================================= */
+===================================================== */
 
 setInterval(
     () => {
 
-        if (!gameStarted) {
+        if (!gameStarted)
             return;
-        }
+
 
         if (
             lastHitTime &&
@@ -3403,18 +3415,67 @@ setInterval(
 );
 
 
-/* =========================================================
-   BAŞLANGIÇ
-========================================================= */
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
 
-renderLeaderboard();
+function escapeHtml(text) {
 
-renderStartLeaderboard();
+    return String(text)
 
-updateStats();
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+}
+
+
+/* =====================================================
+   INITIAL
+===================================================== */
+
+(async function init() {
+
+    await loadLoginLeaderboard();
+
+
+    const {
+        data: {
+            session
+        }
+    } =
+        await supabase.auth.getSession();
+
+
+    if (session) {
+
+        await enterGame();
+
+    }
+
+})();
 
 </script>
 
 </body>
 </html>
-```
