@@ -1404,43 +1404,29 @@ async function saveScore() {
         return;
     }
 
-    const saveButton =
-        document.getElementById("saveScoreButton");
+    saving = true;
 
-    if (saveButton) {
-        saveButton.disabled = true;
-        saveButton.textContent = "KAYDEDİLİYOR...";
-    }
+    saveButton.disabled = true;
+    saveButton.textContent = "KAYDEDİLİYOR...";
 
     try {
 
-        const result =
-            await api(
-                "submit_score",
-                {
-                    username:
-                        currentUser.username,
-
-                    score:
-                        score,
-
-                    hits:
-                        hits,
-
-                    highestCombo:
-                        highestCombo
-                }
-            );
-
+        const result = await api(
+            "submit_score",
+            {
+                username: currentUser.username,
+                score: score,
+                hits: hits,
+                highestCombo: highestCombo
+            }
+        );
 
         if (!result.success) {
-
             throw new Error(
                 result.error ||
                 "Skor kaydedilemedi."
             );
         }
-
 
         /*
          * SUNUCUNUN DÖNDÜRDÜĞÜ
@@ -1456,30 +1442,27 @@ async function saveScore() {
         const savedCombo =
             Number(result.highestCombo || 0);
 
-
-        /*
-         * SKOR TABLOSUNDAKİ TOPLAM
-         * ARTIK SUNUCUDAKİ DEĞERLE
-         * EŞLEŞİYOR.
-         */
-
         console.log(
-            "Skor kaydedildi:",
+            "Güncel toplam skor:",
             savedScore
         );
 
         console.log(
-            "Toplam combo:",
+            "Güncel toplam vuruş:",
+            savedHits
+        );
+
+        console.log(
+            "Güncel toplam combo:",
             savedCombo
         );
 
-
         /*
-         * BU OYUNUN DEĞERLERİNİ
+         * SADECE BU OYUNUN DEĞERLERİNİ
          * SIFIRLIYORUZ.
          *
-         * Böylece aynı oyunu tekrar
-         * kaydettiğinde iki kere eklenmez.
+         * Veritabanındaki toplam değer
+         * sıfırlanmıyor.
          */
 
         score = 0;
@@ -1488,32 +1471,21 @@ async function saveScore() {
         highestCombo = 0;
         lastHitTime = 0;
 
-
         updateStats();
 
+        /*
+         * KAYDEDİLDİ MESAJI
+         */
+
+        showSaveStatus();
 
         /*
-         * SKOR TABLOSUNU YENİLE
+         * SKOR TABLOSUNU GÜNCELLE
          */
 
         await renderLeaderboard();
 
-
-        /*
-         * GİRİŞ EKRANINDAKİ
-         * TOP 10'U DA GÜNCELLE
-         */
-
         await renderLoginLeaderboard();
-
-
-        alert(
-            "✅ Skor başarıyla kaydedildi!\n\n" +
-            "Toplam skor: " +
-            savedScore.toLocaleString("tr-TR") +
-            "\nToplam combo: x" +
-            savedCombo
-        );
 
     }
     catch (error) {
@@ -1531,38 +1503,11 @@ async function saveScore() {
     }
     finally {
 
-        if (saveButton) {
+        saving = false;
 
-            saveButton.disabled = false;
-
-            saveButton.textContent =
-                "💾 KAYDET";
-        }
+        saveButton.disabled = false;
+        saveButton.textContent = "💾 KAYDET";
     }
-}
-
-
-/* =========================================================
-   KAYDEDİLDİ MESAJI
-========================================================= */
-
-function showSaveStatus(){
-
-    saveStatus.classList.add(
-        "show"
-    );
-
-    setTimeout(
-        () => {
-
-            saveStatus.classList.remove(
-                "show"
-            );
-
-        },
-        1800
-    );
-
 }
 
 
