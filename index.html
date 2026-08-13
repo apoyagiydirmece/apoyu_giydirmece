@@ -1392,52 +1392,48 @@ function updateStats(){
    SKORU KAYDET
 ========================================================= */
 
-async function saveScore(){
+async function saveScore() {
 
-    if(!currentUser){
-
-        alert(
-            "Önce giriş yapmalısın."
-        );
-
+    if (!currentUser) {
+        alert("Önce giriş yapmalısın.");
         return;
     }
 
-    if(saving)
-        return;
-
-    if(score <= 0){
-
-        alert(
-            "Kaydedilecek bir skorun yok."
-        );
-
+    if (score <= 0 && hits <= 0 && highestCombo <= 0) {
+        alert("Kaydedilecek bir skor bulunmuyor.");
         return;
     }
 
-    saving = true;
+    const saveButton =
+        document.getElementById("saveScoreButton");
 
-    saveButton.disabled = true;
+    if (saveButton) {
+        saveButton.disabled = true;
+        saveButton.textContent = "KAYDEDİLİYOR...";
+    }
 
-    saveButton.textContent =
-        "⏳ KAYDEDİLİYOR...";
-
-    try{
+    try {
 
         const result =
             await api(
-                "save_score",
+                "submit_score",
                 {
                     username:
                         currentUser.username,
 
-                    score,
-                    hits,
-                    highestCombo
+                    score:
+                        score,
+
+                    hits:
+                        hits,
+
+                    highestCombo:
+                        highestCombo
                 }
             );
 
-        if(!result.success){
+
+        if (!result.success) {
 
             throw new Error(
                 result.error ||
@@ -1445,27 +1441,45 @@ async function saveScore(){
             );
         }
 
+
         /*
-         * Sunucunun döndürdüğü
-         * yeni toplam skor.
+         * SUNUCUNUN DÖNDÜRDÜĞÜ
+         * GÜNCEL TOPLAM DEĞERLER
          */
 
-        if(
-            typeof result.total_score ===
-            "number"
-        ){
+        const savedScore =
+            Number(result.score || 0);
 
-            bestElement.textContent =
-                result.total_score
-                    .toLocaleString("tr-TR");
+        const savedHits =
+            Number(result.hits || 0);
 
-        }
+        const savedCombo =
+            Number(result.highestCombo || 0);
+
 
         /*
-         * Bu oyun oturumunu sıfırla.
+         * SKOR TABLOSUNDAKİ TOPLAM
+         * ARTIK SUNUCUDAKİ DEĞERLE
+         * EŞLEŞİYOR.
+         */
+
+        console.log(
+            "Skor kaydedildi:",
+            savedScore
+        );
+
+        console.log(
+            "Toplam combo:",
+            savedCombo
+        );
+
+
+        /*
+         * BU OYUNUN DEĞERLERİNİ
+         * SIFIRLIYORUZ.
          *
-         * Böylece aynı skor iki kere
-         * kaydedilemez.
+         * Böylece aynı oyunu tekrar
+         * kaydettiğinde iki kere eklenmez.
          */
 
         score = 0;
@@ -1474,16 +1488,40 @@ async function saveScore(){
         highestCombo = 0;
         lastHitTime = 0;
 
+
         updateStats();
 
-        showSaveStatus();
+
+        /*
+         * SKOR TABLOSUNU YENİLE
+         */
 
         await renderLeaderboard();
 
-    }
-    catch(error){
 
-        console.error(error);
+        /*
+         * GİRİŞ EKRANINDAKİ
+         * TOP 10'U DA GÜNCELLE
+         */
+
+        await renderLoginLeaderboard();
+
+
+        alert(
+            "✅ Skor başarıyla kaydedildi!\n\n" +
+            "Toplam skor: " +
+            savedScore.toLocaleString("tr-TR") +
+            "\nToplam combo: x" +
+            savedCombo
+        );
+
+    }
+    catch (error) {
+
+        console.error(
+            "SAVE SCORE ERROR:",
+            error
+        );
 
         alert(
             "❌ Skor kaydedilemedi.\n\n" +
@@ -1491,15 +1529,15 @@ async function saveScore(){
         );
 
     }
-    finally{
+    finally {
 
-        saving = false;
+        if (saveButton) {
 
-        saveButton.disabled = false;
+            saveButton.disabled = false;
 
-        saveButton.textContent =
-            "💾 KAYDET";
-
+            saveButton.textContent =
+                "💾 KAYDET";
+        }
     }
 }
 
